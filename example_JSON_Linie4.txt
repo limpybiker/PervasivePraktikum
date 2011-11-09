@@ -1,0 +1,7 @@
+﻿{
+"timestamp":123456789,
+"route_number":"4",
+"route_target":"Hochleiten",
+"latitude":48.59563746361783,
+"longitude":13.46226404474511
+}

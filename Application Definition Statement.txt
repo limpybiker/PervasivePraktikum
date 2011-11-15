@@ -1,0 +1,6 @@
+Die "Passau Bus-App" soll allen Bürgern und Besuchern der Stadt Passau es erleichtern, das Bussystem der Stadtwerke Passau zeitsparend zu nutzen.
+In der momentanen Situation sind Busfahrpläne schlecht zugänglich: Gedruckte Fahrpläne hat man nur im Ausnamhefall dabei, online sind die gerade relevanten Fahrpläne umständlich zu erreichen. Die App soll die Busfahrpläne auf einer Karte visualisieren und dadurch jederzeit einfach zugänglich machen.
+
+Erstes Feature:
+Die App soll auf einer Karte von Passau die eigene Position und die Bushaltestellen der Stadt anzeigen.
+

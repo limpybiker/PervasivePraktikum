@@ -3,7 +3,7 @@
 //  PassauBusApp
 //
 //  Created by Macbook on 12.11.11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Josef Kinseher All rights reserved.
 //
 
 #import "GPSController.h"

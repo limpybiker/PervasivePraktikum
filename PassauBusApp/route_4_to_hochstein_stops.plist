@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+	   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+   <key>route_number</key>
+   <string>4</string>
+   <key>route_destination</key>
+   <string>Hochstein</string>
+   <key>stops</key>
+   <array>
+		<array><string>Achleiten</string><real>48.57867</real><real>13.50310</real></array>
+		<array><string>Haibach</string><real>48.57315</real><real>13.49609</real></array>
+		<array><string>Auenweg</string><real>48.57077</real><real>13.48755</real></array>
+		<array><string>Kremser Str.</string><real>48.56950</real><real>13.48958</real></array>
+		<array><string>Hörnerweg</string><real>48.56851</real><real>13.48863</real></array>
+		<array><string>Schwendistr.</string><real>48.56917</real><real>13.48340</real></array>
+		<array><string>J.-Bergler-Str.</string><real>48.57107</real><real>13.48058</real></array>
+		<array><string>Jesuitenschlößl (P+R)</string><real>48.57081</real><real>13.47650</real></array>
+		<array><string>Mühltalstr.</string><real>48.57082</real><real>13.47267</real></array>
+		<array><string>Schmiedgasse</string><real>48.57084</real><real>13.46676</real></array>
+		<array><string>Stadttheater</string><real>48.57359</real><real>13.46434</real></array>
+		<array><string>Augustinergasse</string><real>48.57057</real><real>13.45872</real></array>
+		<array><string>ZOB</string><real>48.57255</real><real>13.45590</real></array>
+		<array><string>Am Schanzl</string><real>48.57490</real><real>13.45604</real></array>
+		<array><string>Nagelschmiedgasse</string><real>48.57606</real><real>13.46118</real></array>
+		<array><string>Rathaus</string><real>48.57555</real><real>13.46820</real></array>
+		<array><string>Römerplatz</string><real>48.57501</real><real>13.47049</real></array>
+		<array><string>Ilzbrücke (P+R)</string><real>48.57739</real><real>13.47425</real></array>
+		<array><string>Christdobl</string><real>48.58049</real><real>13.47655</real></array>
+		<array><string>Ilzleite</string><real>48.58475</real><real>13.47366</real></array>
+		<array><string>Oetkersiedlung</string><real>48.58483</real><real>13.47026</real></array>
+		<array><string>Achatiusstr.</string><real>48.58713</real><real>13.46415</real></array>
+		<array><string>Landrichterstr.</string><real>48.58899</real><real>13.46339</real></array>
+		<array><string>Hals</string><real>48.59168</real><real>13.46280</real></array>
+		<array><string>Hochstein</string><real>48.59453</real><real>13.46268</real></array>
+   </array>
+</dict>
+</plist>

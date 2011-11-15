@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="Xcode"> 
+
+    <wpt lat="48.57355" lon="13.46392">
+         <name>Passau</name>
+	</wpt>
+    
+    <wpt lat="48.57357" lon="13.46397">
+        <name>Passau2</name>
+	</wpt>
+    
+</gpx>

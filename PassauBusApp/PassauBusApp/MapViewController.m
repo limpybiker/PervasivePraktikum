@@ -51,9 +51,9 @@ CLLocationCoordinate2D location;
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    [RMMapView class];
     
     // action handling
     mapView.delegate = self;

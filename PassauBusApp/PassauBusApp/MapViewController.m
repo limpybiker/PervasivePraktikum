@@ -29,6 +29,7 @@
 @synthesize settingsController;
 
 int MARKER_TOUCH_SIZE = 44;
+int ROUTE_LINE_WIDTH = 5;
 
 CLLocationCoordinate2D location;
 
@@ -70,7 +71,7 @@ CLLocationCoordinate2D location;
 
     image = [UIImage imageNamed:@"MyPosIcon.png"];
     button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.bounds = CGRectMake( 0, 0, image.size.width, image.size.height-15 );    
+    button.bounds = CGRectMake( 0, 0, image.size.width, image.size.height );    
     [button setImage:image forState:UIControlStateNormal];
     [button addTarget:self action:@selector(doMyPos:) forControlEvents:UIControlEventTouchUpInside];    
     UIBarButtonItem *myPosButton = [[UIBarButtonItem alloc] initWithCustomView:button];
@@ -142,7 +143,7 @@ CLLocationCoordinate2D location;
     
     path.lineColor = routeColor;
     path.fillColor = [UIColor clearColor];
-    path.lineWidth = 7;
+    path.lineWidth = ROUTE_LINE_WIDTH;
     path.scaleLineWidth = NO;
     [mapView.contents.overlay addSublayer:path]; 
 }

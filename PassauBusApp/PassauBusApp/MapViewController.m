@@ -28,6 +28,8 @@
 
 @synthesize settingsController;
 
+int MARKER_TOUCH_SIZE = 44;
+
 CLLocationCoordinate2D location;
 
 
@@ -109,18 +111,19 @@ CLLocationCoordinate2D location;
     if (![CLLocationManager locationServicesEnabled])
         NSLog(@"GPS is not enabled");
     
-    [self drawRoute];
-    [self drawRoute2];
-    [self setBusStops];
-    [self setBusStops2];
+    [self drawRoute:@"route_4_to_achleiten.plist":[UIColor brownColor]];
+    [self drawRoute:@"route_4_to_hochstein.plist":[UIColor brownColor]];
+
+    [self setBusStops:@"route_4_to_achleiten_stops.plist"];
+    [self setBusStops:@"route_4_to_hochstein_stops.plist"];
 
 }
 
--(void) drawRoute {
+-(void) drawRoute:(NSString*)plistFileName:(UIColor*)routeColor {
         
     // read "foo.plist" from application bundle
     NSString *filePath = [[NSBundle mainBundle] bundlePath];
-    NSString *finalPath = [filePath stringByAppendingPathComponent:@"route_4_to_hochstein.plist"];
+    NSString *finalPath = [filePath stringByAppendingPathComponent:plistFileName];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:finalPath];
     
     NSArray *coordinates = [dictionary objectForKey:@"coordinates"];
@@ -137,7 +140,7 @@ CLLocationCoordinate2D location;
         [path addLineToLatLong:pathCoordinate];
     }
     
-    path.lineColor = [UIColor brownColor];
+    path.lineColor = routeColor;
     path.fillColor = [UIColor clearColor];
     path.lineWidth = 7;
     path.scaleLineWidth = NO;
@@ -145,39 +148,10 @@ CLLocationCoordinate2D location;
 }
 
 
--(void) drawRoute2 {
-    
+-(void) setBusStops:(NSString*)plistStopsFileName {
     // read "foo.plist" from application bundle
     NSString *filePath = [[NSBundle mainBundle] bundlePath];
-    NSString *finalPath = [filePath stringByAppendingPathComponent:@"route_4_to_achleiten.plist"];
-    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:finalPath];
-    
-    NSArray *coordinates = [dictionary objectForKey:@"coordinates"];
-    
-    RMPath *path = [[RMPath alloc] initForMap:mapView];
-    CLLocationCoordinate2D pathCoordinate;
-    
-    for(int i=0; i<[coordinates count]; i++) {
-        NSArray *position = [coordinates objectAtIndex:i];
-        
-        pathCoordinate.longitude = [[position objectAtIndex:1] doubleValue];
-        pathCoordinate.latitude  = [[position objectAtIndex:0] doubleValue];
-        
-        [path addLineToLatLong:pathCoordinate];
-    }
-    
-    path.lineColor = [UIColor brownColor];
-    path.fillColor = [UIColor clearColor];
-    path.lineWidth = 7;
-    path.scaleLineWidth = NO;
-    [mapView.contents.overlay addSublayer:path]; 
-}
-
-
--(void) setBusStops {
-    // read "foo.plist" from application bundle
-    NSString *filePath = [[NSBundle mainBundle] bundlePath];
-    NSString *finalPath = [filePath stringByAppendingPathComponent:@"route_4_to_hochstein_stops.plist"];
+    NSString *finalPath = [filePath stringByAppendingPathComponent:plistStopsFileName];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:finalPath];
     NSArray *coordinates = [dictionary objectForKey:@"stops"];    
     
@@ -192,30 +166,12 @@ CLLocationCoordinate2D location;
         [self addBusStopMarkerAt:markerCoordinate andName:[position objectAtIndex:0]:20];
     }
 }
-
--(void) setBusStops2 {
-    // read "foo.plist" from application bundle
-    NSString *filePath = [[NSBundle mainBundle] bundlePath];
-    NSString *finalPath = [filePath stringByAppendingPathComponent:@"route_4_to_achleiten_stops.plist"];
-    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:finalPath];
-    NSArray *coordinates = [dictionary objectForKey:@"stops"];    
-    
-    CLLocationCoordinate2D markerCoordinate;
-    
-    for(int i=0; i<[coordinates count]; i++) {
-        NSArray *position = [coordinates objectAtIndex:i];
-        
-        markerCoordinate.longitude = [[position objectAtIndex:2] doubleValue];
-        markerCoordinate.latitude  = [[position objectAtIndex:1] doubleValue];
-        
-        [self addBusStopMarkerAt:markerCoordinate andName:[position objectAtIndex:0]:20];
-    }
-}
-
+                           
+                           
 - (void) setText: (NSString*)text forMarker: (RMMarker*) marker {
     CGSize textSize = [text sizeWithFont: [RMMarker defaultFont]]; 
     CGPoint position = CGPointMake(  -(textSize.width/2 - marker.bounds.size.width/2), -textSize.height );
-    //[marker changeLabelUsingText: text position: position ];    
+    [marker changeLabelUsingText: text position: position ];    
 }
 
 // update navigation bar on tap on item
@@ -234,8 +190,6 @@ CLLocationCoordinate2D location;
 
     UIImage *blueMarkerImage = [UIImage imageNamed:@"bus_stop_icon.png"];
     
-    int MARKER_TOUCH_SIZE = 44; // TODO constant
-    
     //resize image
     CGSize size = CGSizeMake(MARKER_TOUCH_SIZE, MARKER_TOUCH_SIZE);
     UIGraphicsBeginImageContext(size);
@@ -244,10 +198,10 @@ CLLocationCoordinate2D location;
     UIGraphicsEndImageContext();
 
     // set marker
-    RMMarker *marker = [[RMMarker alloc] initWithUIImage:resizeImage anchorPoint:CGPointMake(0.5, 1.0)];
+    RMMarker *marker = [[RMMarker alloc] initWithUIImage:resizeImage anchorPoint:CGPointMake(0.5, 0.5)];
     [mapView.contents.markerManager addMarker:marker AtLatLong:markerPosition];
     
-    [self setText:name forMarker: marker];
+    //[self setText:name forMarker: marker];
     marker.data = name;
     
     

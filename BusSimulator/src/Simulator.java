@@ -75,17 +75,13 @@ public class Simulator extends Thread {
                 + Math.pow((long1 - long2), 2));
 
             int nrOfPoints = (int) Math.floor(distance / DISTANCE_THRESHOLD);
-            // System.out.println("nrOfPoints: " + nrOfPoints);
             double m = (long2 - long1) / (lat2 - lat1);
-            // System.out.println("m: " + m);
 
             for (int i = 1; i < nrOfPoints; i++) {
                 GPSCoordinate p_new = new GPSCoordinate(lat1
                     + (DISTANCE_THRESHOLD * m * i), long1
                     + (DISTANCE_THRESHOLD * m * i) * m);
                 movementPath.add(p_new);
-                // System.out.println("P_new_lat: " + p_new.getLatitude());
-                // System.out.println("P_new_long: " + p_new.getLongitude());
             }
             // set last point new
             lat1 = lat2;

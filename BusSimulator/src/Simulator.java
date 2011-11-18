@@ -2,37 +2,56 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Simulator {
+/**
+ * @author Matthias v. Treuberg
+ * 
+ */
+public class Simulator extends Thread {
 
     // ~7punkte auf 80m
     private final static Double DISTANCE_THRESHOLD = 0.0001;
+    private final static long SLEEP_MILLIS = 500;
+    private Server server;
+    private final static String HOST = "127.0.0.1";
+    private final static int PORT = 1234;
+    private final static String FILEPATH = ".\\route_4_to_achleiten.plist";
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        String filepath = ".\\route_4_to_achleiten.plist";
-        PListParser parser = new PListParser();
-
-        List<GPSCoordinate> coords = parser.parsePList(filepath);
-        // for (GPSCoordinate c : coords) {
-        // System.out.println("Lat: " + c.getLatitude() + " Long: "
-        // + c.getLongitude());
-        // }
-
-        // System.out
-        // .println("Distance: "
-        // + Math.floor((Math.sqrt(Math.pow(
-        // (13.46226404474511 - 13.46246911430127), 2)
-        // + Math.pow((48.59563746361783 - 48.59484076863929), 2)) /
-        // DISTANCE_THRESHOLD)));
-        Simulator s = new Simulator();
-        // List<GPSCoordinate> two = new LinkedList<GPSCoordinate>();
-        // two.add(new GPSCoordinate(48.57791773539429, 13.50295518233387));
-        // two.add(new GPSCoordinate(48.57865615274315, 13.50303730127264));
-        s.createMovementPath(coords);
+    public Simulator() {
+        server = new Server();
     }
 
+    public static void main(String[] args) {
+        Simulator s = new Simulator();
+        s.run();
+    }
+
+    @Override
+    public void run() {
+        PListParser parser = new PListParser();
+        List<GPSCoordinate> coords = parser.parsePList(FILEPATH);
+        List<GPSCoordinate> movementPath = createMovementPath(coords);
+        Iterator<GPSCoordinate> it = movementPath.iterator();
+
+        while (it.hasNext()) {
+
+            String message = createJSONfromGPSCoordinate(it.next());
+            server.sendMessage(HOST, PORT, message);
+            try {
+                sleep(SLEEP_MILLIS);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Takes a list of coordinates and adds coordinates in between if the
+     * distance between two coordinates is greater than THRESHOLD.
+     * 
+     * @param coords The list of coordinates.
+     * @return A list like coords, just that points are added in between, with
+     *         distance THRESHOLD.
+     */
     private List<GPSCoordinate> createMovementPath(List<GPSCoordinate> coords) {
         Double lat1 = 0d;
         Double long1 = 0d;
@@ -74,5 +93,20 @@ public class Simulator {
         }
 
         return movementPath;
+    }
+
+    /**
+     * Creates a JSON String from a GPSCoordinate.
+     * 
+     * @param coord GPSCoordinate.
+     * @return Coordinate as JSON.
+     */
+    private String createJSONfromGPSCoordinate(GPSCoordinate coord) {
+        String JSON = "{\"timestamp\":123456789,\"route_number\":\"4\",\"route_destination\":\"Achleiten\",\"latitude\":"
+            + coord.getLatitude().toString()
+            + ",\"longitude\":"
+            + coord.getLongitude().toString() + "}";
+
+        return JSON;
     }
 }

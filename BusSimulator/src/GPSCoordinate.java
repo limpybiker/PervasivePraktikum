@@ -1,12 +1,12 @@
+/**
+ * @author Matthias v. Treuberg
+ * 
+ */
 public class GPSCoordinate {
 
     private Double latitude;
     private Double longitude;
 
-    /**
-     * @param latitude
-     * @param longitude
-     */
     public GPSCoordinate(Double latitude, Double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;

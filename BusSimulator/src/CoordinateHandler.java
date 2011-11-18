@@ -5,6 +5,12 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * A custom Handler for the PLists we use in this project.
+ * 
+ * @author Matthias v. Treuberg
+ * 
+ */
 public class CoordinateHandler extends DefaultHandler {
 
     private final static String TAG_REAL = "real";

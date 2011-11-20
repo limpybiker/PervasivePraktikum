@@ -96,14 +96,14 @@ CLLocationCoordinate2D location;
     [[[RMMapContents alloc] initWithView:mapView tilesource: cmTilesource] autorelease];
     
     // set initial position and set zoom level
-    location.longitude = 13.46392,0;
     location.latitude  = 48.57351,0;
+    location.longitude = 13.45392,0;
     [mapView moveToLatLong: location];
-    [mapView.contents setZoom: 16];
+    [mapView.contents setZoom: 13];
     
     // adjust zoom levels
     [mapView.contents setMaxZoom:18];
-    [mapView.contents setMinZoom:12];
+    [mapView.contents setMinZoom:10];
     
     
     // initialize location marker
@@ -115,8 +115,14 @@ CLLocationCoordinate2D location;
     [self drawRoute:@"route_4_to_achleiten.plist":[UIColor brownColor]];
     [self drawRoute:@"route_4_to_hochstein.plist":[UIColor brownColor]];
 
+    [self drawRoute:@"route_8_to_koenigschalding.plist":[UIColor magentaColor]];
+    [self drawRoute:@"route_8_to_kohlbruck.plist":[UIColor magentaColor]];
+    
     [self setBusStops:@"route_4_to_achleiten_stops.plist"];
     [self setBusStops:@"route_4_to_hochstein_stops.plist"];
+    
+    [self setBusStops:@"route_8_to_koenigschalding_stops.plist"];
+    [self setBusStops:@"route_8_to_kohlbruck_stops.plist"];
 
 }
 

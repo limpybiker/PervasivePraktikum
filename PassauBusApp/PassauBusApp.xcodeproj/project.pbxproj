@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0479CAA81479A2540063CEB0 /* route_8_to_koenigschalding_stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA41479A2540063CEB0 /* route_8_to_koenigschalding_stops.plist */; };
+		0479CAA91479A2540063CEB0 /* route_8_to_koenigschalding.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA51479A2540063CEB0 /* route_8_to_koenigschalding.plist */; };
+		0479CAAA1479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA61479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist */; };
+		0479CAAB1479A2540063CEB0 /* route_8_to_kohlbruck.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA71479A2540063CEB0 /* route_8_to_kohlbruck.plist */; };
 		FA64AE821472E8F50017F777 /* route_4_to_achleiten_stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA64AE811472E8F50017F777 /* route_4_to_achleiten_stops.plist */; };
 		FAA58F4A146D7B2200FBE146 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA58F49146D7B2200FBE146 /* libstdc++.6.dylib */; };
 		FAA58F4E146D7F2D00FBE146 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA58F4D146D7F2D00FBE146 /* libsqlite3.0.dylib */; };
@@ -40,6 +44,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0479CAA41479A2540063CEB0 /* route_8_to_koenigschalding_stops.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_koenigschalding_stops.plist; sourceTree = "<group>"; };
+		0479CAA51479A2540063CEB0 /* route_8_to_koenigschalding.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_koenigschalding.plist; sourceTree = "<group>"; };
+		0479CAA61479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_kohlbruck_stops.plist; sourceTree = "<group>"; };
+		0479CAA71479A2540063CEB0 /* route_8_to_kohlbruck.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_kohlbruck.plist; sourceTree = "<group>"; };
 		FA62ED721473DDC500C416B0 /* RMAbstractMercatorWebSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMAbstractMercatorWebSource.h; sourceTree = "<group>"; };
 		FA62ED731473DDC500C416B0 /* RMCachedTileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMCachedTileSource.h; sourceTree = "<group>"; };
 		FA62ED741473DDC500C416B0 /* RMCloudMadeHiResMapSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMCloudMadeHiResMapSource.h; sourceTree = "<group>"; };
@@ -448,6 +456,10 @@
 				FAA59064146F0F6D00FBE146 /* route_4_to_hochstein_stops.plist */,
 				FAA59060146DEFD000FBE146 /* route_4_to_hochstein.plist */,
 				FAA5905E146DEFBF00FBE146 /* route_4_to_achleiten.plist */,
+				0479CAA41479A2540063CEB0 /* route_8_to_koenigschalding_stops.plist */,
+				0479CAA51479A2540063CEB0 /* route_8_to_koenigschalding.plist */,
+				0479CAA61479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist */,
+				0479CAA71479A2540063CEB0 /* route_8_to_kohlbruck.plist */,
 				FAA58FE0146DC99200FBE146 /* marker-blue.png */,
 				FAA58FDE146DA05500FBE146 /* red-pin.png */,
 				FAA58FDC146DA04900FBE146 /* icon.png */,
@@ -520,6 +532,10 @@
 				FAA59063146F0ED500FBE146 /* bus_stop_icon.png in Resources */,
 				FAA59065146F0F6F00FBE146 /* route_4_to_hochstein_stops.plist in Resources */,
 				FA64AE821472E8F50017F777 /* route_4_to_achleiten_stops.plist in Resources */,
+				0479CAA81479A2540063CEB0 /* route_8_to_koenigschalding_stops.plist in Resources */,
+				0479CAA91479A2540063CEB0 /* route_8_to_koenigschalding.plist in Resources */,
+				0479CAAA1479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist in Resources */,
+				0479CAAB1479A2540063CEB0 /* route_8_to_kohlbruck.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

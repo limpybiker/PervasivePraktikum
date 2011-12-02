@@ -7,4 +7,7 @@ Empfängt der Server:
 -HELLO SERVER: der Host, der das geschickt hat, wird zum Liste der Hosts hinzugefügt
 -UNREGISTER: der Host, der das geschickt hat, wird von der Liste der Hosts entfert
 
-Server schickt auf Port 4321 zurück.
+Der Server schickt auf Port 4321 das JSON zurück.
+
+Um das ganze zu verwenden, einfach nur die Simulator-Klasse starten. Der Rest ist automatisch.
+~ Matze

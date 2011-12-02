@@ -12,6 +12,7 @@
 		0479CAAA1479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA61479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist */; };
 		0479CAAB1479A2540063CEB0 /* route_8_to_kohlbruck.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA71479A2540063CEB0 /* route_8_to_kohlbruck.plist */; };
 		FA64AE821472E8F50017F777 /* route_4_to_achleiten_stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA64AE811472E8F50017F777 /* route_4_to_achleiten_stops.plist */; };
+		FA9E75831488FE0B005A3A4C /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9E75821488FE0B005A3A4C /* GCDAsyncUdpSocket.m */; };
 		FAA58F4A146D7B2200FBE146 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA58F49146D7B2200FBE146 /* libstdc++.6.dylib */; };
 		FAA58F4E146D7F2D00FBE146 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA58F4D146D7F2D00FBE146 /* libsqlite3.0.dylib */; };
 		FAA58F50146D878B00FBE146 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA58F4F146D878B00FBE146 /* MapKit.framework */; };
@@ -94,6 +95,8 @@
 		FA62ED9D1473DDC500C416B0 /* RMWebTileImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMWebTileImage.h; sourceTree = "<group>"; };
 		FA62ED9E1473DDC500C416B0 /* RMYahooMapSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMYahooMapSource.h; sourceTree = "<group>"; };
 		FA64AE811472E8F50017F777 /* route_4_to_achleiten_stops.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_4_to_achleiten_stops.plist; sourceTree = "<group>"; };
+		FA9E75811488FE01005A3A4C /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		FA9E75821488FE0B005A3A4C /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 		FAA58EC7146D6D5200FBE146 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		FAA58F49146D7B2200FBE146 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		FAA58F4D146D7F2D00FBE146 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -266,9 +269,22 @@
 			path = "route-me";
 			sourceTree = "<group>";
 		};
+		FA9E75801488FDC1005A3A4C /* UDP */ = {
+			isa = PBXGroup;
+			children = (
+				FA9E75821488FE0B005A3A4C /* GCDAsyncUdpSocket.m */,
+				FA9E75811488FE01005A3A4C /* GCDAsyncUdpSocket.h */,
+			);
+			name = UDP;
+			sourceTree = "<group>";
+		};
 		FAA58FE4146DD85E00FBE146 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				FAA58EC7146D6D5200FBE146 /* libsqlite3.dylib */,
+				FAA58F49146D7B2200FBE146 /* libstdc++.6.dylib */,
+				FAA58F4D146D7F2D00FBE146 /* libsqlite3.0.dylib */,
+				FAA58FE2146DD66600FBE146 /* libz.dylib */,
 				FAA58FE5146DD85E00FBE146 /* CloudMade */,
 				FAA58FE7146DD85E00FBE146 /* Proj4 */,
 				FAA58FE9146DD85E00FBE146 /* route-me */,
@@ -384,14 +400,11 @@
 		FAC01163146C0A820089E264 = {
 			isa = PBXGroup;
 			children = (
+				FA9E75801488FDC1005A3A4C /* UDP */,
 				FAA5905D146DEC8E00FBE146 /* Location.gpx */,
 				FAA58FEE146DD86E00FBE146 /* inc */,
 				FAA58FE4146DD85E00FBE146 /* libs */,
-				FAA58FE2146DD66600FBE146 /* libz.dylib */,
 				FAA59062146F0ED300FBE146 /* bus_stop_icon.png */,
-				FAA58F4D146D7F2D00FBE146 /* libsqlite3.0.dylib */,
-				FAA58F49146D7B2200FBE146 /* libstdc++.6.dylib */,
-				FAA58EC7146D6D5200FBE146 /* libsqlite3.dylib */,
 				FAC01178146C0A820089E264 /* PassauBusApp */,
 				FAC01171146C0A820089E264 /* Frameworks */,
 				FAC0116F146C0A820089E264 /* Products */,
@@ -551,6 +564,7 @@
 				FAC01191146C0B230089E264 /* MapViewController.m in Sources */,
 				FAC01196146C0D900089E264 /* SettingsViewController.m in Sources */,
 				FAA5905A146DE35700FBE146 /* GPSController.m in Sources */,
+				FA9E75831488FE0B005A3A4C /* GCDAsyncUdpSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

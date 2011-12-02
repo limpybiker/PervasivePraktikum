@@ -72,7 +72,7 @@
 	if (msg) {
         NSLog(@"RECVEIVED: %@", msg);
 	}
-}
+} 
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

@@ -1,0 +1,10 @@
+Wenn der Simulator gestartet wurde, wartet er auf Port 1234 auf Anfragen.
+Hosts die GPS-Koordinaten empfangen wollen, müssen sich registrieren.
+Sie machen das, indem sie an den Server auf Port 1234 eine UDP-Nachricht schicken,
+mit Inhalt z.B. HELLO SERVER.
+
+Empfängt der Server:
+-HELLO SERVER: der Host, der das geschickt hat, wird zum Liste der Hosts hinzugefügt
+-UNREGISTER: der Host, der das geschickt hat, wird von der Liste der Hosts entfert
+
+Server schickt auf Port 4321 zurück.

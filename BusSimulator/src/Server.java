@@ -44,6 +44,8 @@ public class Server extends Thread {
                     unregisterHost(host);
                     System.out.println("Server unregistered host: "
                         + packet.getAddress().getHostName());
+                } else {
+                    System.out.println("Server received: " + msg);
                 }
 
                 // Reset the length of the packet before reusing it.

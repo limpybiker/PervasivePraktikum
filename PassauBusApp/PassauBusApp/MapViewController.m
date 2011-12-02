@@ -112,11 +112,11 @@ CLLocationCoordinate2D location;
     if (![CLLocationManager locationServicesEnabled])
         NSLog(@"GPS is not enabled");
     
-    [self drawRoute:@"route_4_to_achleiten.plist":[UIColor brownColor]];
+    /*[self drawRoute:@"route_4_to_achleiten.plist":[UIColor brownColor]];
     [self drawRoute:@"route_4_to_hochstein.plist":[UIColor brownColor]];
 
     [self drawRoute:@"route_8_to_koenigschalding.plist":[UIColor magentaColor]];
-    [self drawRoute:@"route_8_to_kohlbruck.plist":[UIColor magentaColor]];
+    [self drawRoute:@"route_8_to_kohlbruck.plist":[UIColor magentaColor]];*/
     
     [self setBusStops:@"route_4_to_achleiten_stops.plist"];
     [self setBusStops:@"route_4_to_hochstein_stops.plist"];
@@ -193,16 +193,18 @@ CLLocationCoordinate2D location;
 }
 
 
+// TODO Bild nur einmal am startup laden und resizen
 -(void) addBusStopMarkerAt:(CLLocationCoordinate2D) markerPosition andName:(NSString*)name:(int)iconSize {
 
-    UIImage *blueMarkerImage = [UIImage imageNamed:@"bus_stop_icon.png"];
+    UIImage *image = [UIImage imageNamed:@"bus_stop_icon.png"];
     
     //resize image
     CGSize size = CGSizeMake(MARKER_TOUCH_SIZE, MARKER_TOUCH_SIZE);
     UIGraphicsBeginImageContext(size);
-    [blueMarkerImage drawInRect:CGRectMake(MARKER_TOUCH_SIZE/2-iconSize/2, MARKER_TOUCH_SIZE/2-iconSize/2,iconSize,iconSize)];
+    [image drawInRect:CGRectMake(MARKER_TOUCH_SIZE/2-iconSize/2, MARKER_TOUCH_SIZE/2-iconSize/2,iconSize,iconSize)];
     UIImage* resizeImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    [image release];
 
     // set marker
     RMMarker *marker = [[RMMarker alloc] initWithUIImage:resizeImage anchorPoint:CGPointMake(0.5, 0.5)];
@@ -210,14 +212,45 @@ CLLocationCoordinate2D location;
     
     //[self setText:name forMarker: marker];
     marker.data = name;
-    
-    
+        
     [marker release];
 }
 
 - (void) beforeMapZoom: (RMMapView*) map byFactor: (float) zoomFactor near:(CGPoint) center {
     
     NSLog(@"zoom Factor: %f", [mapView.contents zoom]);
+}
+
+- (void) afterMapZoom:(RMMapView *)map byFactor:(float)zoomFactor near:(CGPoint)center {
+    NSLog(@"afterZoom: ");
+    
+    int iconSize = MARKER_TOUCH_SIZE - (MARKER_TOUCH_SIZE - [mapView.contents zoom]*2.5);
+
+
+    if([mapView.contents zoom] < 15)
+        iconSize = MARKER_TOUCH_SIZE - (MARKER_TOUCH_SIZE - [mapView.contents zoom]*1.5);
+    if([mapView.contents zoom] < 16)
+        iconSize = MARKER_TOUCH_SIZE - (MARKER_TOUCH_SIZE - [mapView.contents zoom]*2);
+    if([mapView.contents zoom] < 17)
+        iconSize = MARKER_TOUCH_SIZE - (MARKER_TOUCH_SIZE - [mapView.contents zoom]);
+    
+    NSLog(@"iconSize %i", iconSize);
+    
+    UIImage *image = [UIImage imageNamed:@"bus_stop_icon.png"];
+    
+    //resize image
+    CGSize size = CGSizeMake(MARKER_TOUCH_SIZE, MARKER_TOUCH_SIZE);
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(MARKER_TOUCH_SIZE/2-iconSize/2, MARKER_TOUCH_SIZE/2-iconSize/2,iconSize,iconSize)];
+    UIImage* resizeImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [image release];
+    
+    for(int i=0; i<map.markerManager.markers.count; i++) {
+        RMMarker *marker = [map.markerManager.markers objectAtIndex:i];
+        //NSLog(@"marker %@", marker);
+        [marker replaceUIImage:resizeImage anchorPoint:CGPointMake(0.5, 0.5)];
+    }
 }
 
 

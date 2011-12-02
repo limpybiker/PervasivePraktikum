@@ -38,7 +38,7 @@
 	
 	int port = 1234;
 	
-	NSString *msg = @"http://stackoverflow.com/questions/708901/how-to-send-json-back-with-java";
+	NSString *msg = @"HELLO SERVER";
     
     double tag = 0;
 	
@@ -116,12 +116,6 @@
 	
 	NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
 	[udpSocket sendData:data toHost:host port:port withTimeout:-1 tag:tag];
-    
-    /*
-     Called when the application is about to terminate.
-     Save data if appropriate.
-     See also applicationDidEnterBackground:.
-     */
 }
 
 @end

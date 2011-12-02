@@ -10,10 +10,9 @@ public class Simulator extends Thread {
 
     // ~7punkte auf 80m
     private final static Double DISTANCE_THRESHOLD = 0.0001;
-    private final static long SLEEP_MILLIS = 500;
+    // time how often the server sends out gps coords
+    private final static long SLEEP_MILLIS = 1000;
     private Server server;
-    private final static String HOST = "127.0.0.1";
-    private final static int PORT = 1234;
     private final static String FILEPATH = ".\\route_4_to_achleiten.plist";
 
     public Simulator() {
@@ -22,20 +21,20 @@ public class Simulator extends Thread {
 
     public static void main(String[] args) {
         Simulator s = new Simulator();
-        s.run();
+        s.start();
     }
 
     @Override
     public void run() {
+        server.start();
         PListParser parser = new PListParser();
         List<GPSCoordinate> coords = parser.parsePList(FILEPATH);
         List<GPSCoordinate> movementPath = createMovementPath(coords);
         Iterator<GPSCoordinate> it = movementPath.iterator();
 
         while (it.hasNext()) {
-
             String message = createJSONfromGPSCoordinate(it.next());
-            server.sendMessage(HOST, PORT, message);
+            server.sendMessageToHosts(message);
             try {
                 sleep(SLEEP_MILLIS);
             } catch (InterruptedException e) {

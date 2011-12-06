@@ -1,13 +1,23 @@
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.json.simple.JSONObject;
+
 /**
+ * When the server is started, it listens for incoming TCP-connections and
+ * registers hosts that request to be registered. Acts likewise for
+ * unregistering. The server also has the possibility to send out UDP messages.
+ * 
  * @author Matthias v. Treuberg
  * 
  */
@@ -16,6 +26,9 @@ public class Server extends Thread {
 
     private Set<InetAddress> hosts;
     private final static int HOSTS_PORT = 4321;
+    private final static int SERVER_PORT = 1234;
+    private final static String REGISTER_CMD = "HELLO SERVER";
+    private final static String UNREGISTER_CMD = "UNREGISTER";
 
     public Server() {
         hosts = new HashSet<InetAddress>();
@@ -23,49 +36,45 @@ public class Server extends Thread {
 
     @Override
     public void run() {
+        ServerSocket serverSocket = null;
         try {
-            DatagramSocket dsock = new DatagramSocket(1234);
-            byte[] buffer = new byte[2048];
-            DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-
-            // Now loop forever, waiting to receive packets and printing them.
+            serverSocket = new ServerSocket(SERVER_PORT);
+            System.out.println("Server started: "
+                + InetAddress.getLocalHost().getHostAddress() + ":"
+                + SERVER_PORT);
             while (true) {
-                // Wait to receive a datagram
-                dsock.receive(packet);
+                Socket sock = serverSocket.accept();
+                BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(sock.getInputStream()));
+                String host = sock.getInetAddress().getHostAddress();
+                String msg = reader.readLine();
 
-                // Convert the contents to a string, and display them
-                String msg = new String(buffer, 0, packet.getLength());
-                String host = packet.getAddress().getHostName();
-                if (msg.equals("HELLO SERVER")) {
+                if (msg.equals(REGISTER_CMD)) {
                     registerHost(host);
-                    System.out.println("Server registered host: "
-                        + packet.getAddress().getHostName());
-                } else if (msg.equals("UNREGISTER")) {
+                    System.out.println("Server registered host: " + host);
+                } else if (msg.equals(UNREGISTER_CMD)) {
                     unregisterHost(host);
-                    System.out.println("Server unregistered host: "
-                        + packet.getAddress().getHostName());
+                    System.out.println("Server unregistered host: " + host);
                 } else {
-                    System.out.println("Server received: " + msg);
+                    System.out.println("Server received unknown command: "
+                        + msg + " from host " + host);
                 }
-
-                // Reset the length of the packet before reusing it.
-                packet.setLength(buffer.length);
+                sock.close();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
-     * Sends a message to all registered hosts of the server.
+     * Sends a UDP message to all registered hosts of the server.
      * 
      * @param message A message.
      */
-    public void sendMessageToHosts(String message) {
+    public void sendMessageToHosts(JSONObject message) {
         for (InetAddress addr : hosts) {
-            DatagramPacket packet = new DatagramPacket(message.getBytes(),
-                message.length(), addr, HOSTS_PORT);
+            DatagramPacket packet = new DatagramPacket(message.toJSONString()
+                .getBytes(), message.toJSONString().length(), addr, HOSTS_PORT);
             try {
                 DatagramSocket dsock = new DatagramSocket();
                 dsock.send(packet);
@@ -107,32 +116,4 @@ public class Server extends Thread {
         }
         hosts.remove(addr);
     }
-
-    // /**
-    // * Sends a message to a certain address to a certain port.
-    // *
-    // * @param host IP-Address to send the message to.
-    // * @param port Port to send message to.
-    // * @param message The message.
-    // */
-    // public void sendMessage(String host, String message) {
-    // InetAddress addr = null;
-    // try {
-    // addr = InetAddress.getByName(host);
-    // } catch (UnknownHostException e) {
-    // e.printStackTrace();
-    // }
-    //
-    // DatagramPacket packet = new DatagramPacket(message.getBytes(),
-    // message.length(), addr, PORT);
-    // try {
-    // DatagramSocket dsock = new DatagramSocket();
-    // dsock.send(packet);
-    // dsock.close();
-    // } catch (SocketException e) {
-    // e.printStackTrace();
-    // } catch (IOException e) {
-    // e.printStackTrace();
-    // }
-    // }
 }

@@ -2,6 +2,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.json.simple.JSONObject;
+
 /**
  * @author Matthias v. Treuberg
  * 
@@ -33,7 +35,7 @@ public class Simulator extends Thread {
         Iterator<GPSCoordinate> it = movementPath.iterator();
 
         while (it.hasNext()) {
-            String message = createJSONfromGPSCoordinate(it.next());
+            JSONObject message = createJSONfromGPSCoordinate(it.next());
             server.sendMessageToHosts(message);
             try {
                 sleep(SLEEP_MILLIS);
@@ -96,12 +98,20 @@ public class Simulator extends Thread {
      * @param coord GPSCoordinate.
      * @return Coordinate as JSON.
      */
-    private String createJSONfromGPSCoordinate(GPSCoordinate coord) {
-        String JSON = "{\"timestamp\":123456789,\"route_number\":\"4\",\"route_destination\":\"Achleiten\",\"latitude\":"
-            + coord.getLatitude().toString()
-            + ",\"longitude\":"
-            + coord.getLongitude().toString() + "}";
+    @SuppressWarnings("unchecked")
+    private JSONObject createJSONfromGPSCoordinate(GPSCoordinate coord) {
+        JSONObject json = new JSONObject();
+        json.put("timestamp", new Integer(123456789));
+        json.put("route_number", "4");
+        json.put("route_destination", "Achleiten");
+        json.put("latitude", coord.getLatitude());
+        json.put("longitude", coord.getLongitude());
+        // String JSON =
+        // "{\"timestamp\":123456789,\"route_number\":\"4\",\"route_destination\":\"Achleiten\",\"latitude\":"
+        // + coord.getLatitude().toString()
+        // + ",\"longitude\":"
+        // + coord.getLongitude().toString() + "}";
 
-        return JSON;
+        return json;
     }
 }

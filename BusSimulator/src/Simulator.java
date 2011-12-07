@@ -109,6 +109,7 @@ public class Simulator extends Thread {
         json.put("route_destination", ROUTE_DESTINATION);
         json.put("latitude", coord.getLatitude());
         json.put("longitude", coord.getLongitude());
+        json.put("bus_id", 1);//TODO ATM only one bus, when more, change this
 
         return json;
     }

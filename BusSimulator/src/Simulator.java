@@ -45,6 +45,7 @@ public class Simulator extends Thread {
                 e.printStackTrace();
             }
         }
+        System.out.println("Warning: List is finished!");
     }
 
     /**

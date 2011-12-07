@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MapViewController.h"
+#import "GCDAsyncUdpSocket.h"
 
 @implementation AppDelegate
 
@@ -21,6 +22,32 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    //set up the udp socket
+    udpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    NSError *error = nil;
+	
+	if (![udpSocket bindToPort:4321 error:&error])
+        NSLog(@"Error binding: %@", error);
+    
+	if (![udpSocket beginReceiving:&error])
+		NSLog(@"Error receiving: %@", error);
+	
+    
+    NSString *host = @"192.168.178.20";
+	
+	int port = 1234;
+	
+	NSString *msg = @"HELLO SERVER";
+    
+    double tag = 0;
+	
+	NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
+	[udpSocket sendData:data toHost:host port:port withTimeout:-1 tag:tag];
+    
+    tag++;
+    
+    
     // Override point for customization after application launch.
     UIViewController *rootController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
     
@@ -31,6 +58,21 @@
     [self.window makeKeyAndVisible];
     return YES;    
 }
+
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag {
+    NSLog(@"did sent data with tag %ld", tag);
+}
+
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error {
+    NSLog(@"did sent data with tag %ld error: %@", tag, error);
+}
+
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext {
+	NSString *msg = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+	if (msg) {
+        NSLog(@"RECVEIVED: %@", msg);
+	}
+} 
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -62,13 +104,18 @@
      */
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    /*
-     Called when the application is about to terminate.
-     Save data if appropriate.
-     See also applicationDidEnterBackground:.
-     */
+- (void)applicationWillTerminate:(UIApplication *)application {
+    
+    NSString *host = @"192.168.178.20";
+	
+	int port = 1234;
+	
+	NSString *msg = @"UNREGISTER";
+    
+    double tag = 0;
+	
+	NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
+	[udpSocket sendData:data toHost:host port:port withTimeout:-1 tag:tag];
 }
 
 @end

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GCDAsyncUdpSocket.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
     UINavigationController *navigationController;
+    GCDAsyncUdpSocket *udpSocket;
 }
 
 @property (strong, nonatomic) UINavigationController *navigationController;

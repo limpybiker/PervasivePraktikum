@@ -51,10 +51,8 @@ public class Server extends Thread {
 
                 if (msg.equals(REGISTER_CMD)) {
                     registerHost(host);
-                    System.out.println("Server registered host: " + host);
                 } else if (msg.equals(UNREGISTER_CMD)) {
                     unregisterHost(host);
-                    System.out.println("Server unregistered host: " + host);
                 } else {
                     System.out.println("Server received unknown command: "
                         + msg + " from host " + host);
@@ -98,8 +96,11 @@ public class Server extends Thread {
             addr = InetAddress.getByName(host);
         } catch (UnknownHostException e) {
             e.printStackTrace();
+            return;
         }
         hosts.add(addr);
+        System.out.println("Server registered host: " + host);
+        System.out.println("-- new nr of hosts: " + hosts.size());
     }
 
     /**
@@ -113,7 +114,10 @@ public class Server extends Thread {
             addr = InetAddress.getByName(host);
         } catch (UnknownHostException e) {
             e.printStackTrace();
+            return;
         }
         hosts.remove(addr);
+        System.out.println("Server unregistered host: " + host);
+        System.out.println("-- new nr of hosts: " + hosts.size());
     }
 }

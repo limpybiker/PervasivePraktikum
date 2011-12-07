@@ -15,7 +15,9 @@ public class Simulator extends Thread {
     // time how often the server sends out gps coords
     private final static long SLEEP_MILLIS = 1000;
     private Server server;
-    private final static String FILEPATH = ".\\route_4_to_achleiten.plist";
+    private final static String FILEPATH = "route_4_to_achleiten.plist";
+    private final static String ROUTE_NUMBER = "4";
+    private final static String ROUTE_DESTINATION = "Achleiten";
 
     public Simulator() {
         server = new Server();
@@ -101,16 +103,11 @@ public class Simulator extends Thread {
     @SuppressWarnings("unchecked")
     private JSONObject createJSONfromGPSCoordinate(GPSCoordinate coord) {
         JSONObject json = new JSONObject();
-        json.put("timestamp", new Integer(123456789));
-        json.put("route_number", "4");
-        json.put("route_destination", "Achleiten");
+        json.put("timestamp", System.currentTimeMillis());
+        json.put("route_number", ROUTE_NUMBER);
+        json.put("route_destination", ROUTE_DESTINATION);
         json.put("latitude", coord.getLatitude());
         json.put("longitude", coord.getLongitude());
-        // String JSON =
-        // "{\"timestamp\":123456789,\"route_number\":\"4\",\"route_destination\":\"Achleiten\",\"latitude\":"
-        // + coord.getLatitude().toString()
-        // + ",\"longitude\":"
-        // + coord.getLongitude().toString() + "}";
 
         return json;
     }

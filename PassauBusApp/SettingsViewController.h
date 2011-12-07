@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingsViewController : UIViewController
+@property (retain, nonatomic) IBOutlet UISwitch *settingsSwitchUseGPS;
+@property (retain, nonatomic) IBOutlet UISwitch *settingsSwitchShowStops;
 
 @end

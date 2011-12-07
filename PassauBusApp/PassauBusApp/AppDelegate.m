@@ -34,7 +34,7 @@
 		NSLog(@"Error receiving: %@", error);
 	
     
-    NSString *host = @"192.168.178.20";
+    NSString *host = @"192.168.1.24";
 	
 	int port = 1234;
 	
@@ -106,7 +106,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     
-    NSString *host = @"192.168.178.20";
+    NSString *host = @"192.168.1.24";
 	
 	int port = 1234;
 	

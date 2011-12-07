@@ -1,0 +1,81 @@
+// !$*UTF8*$!
+{
+	39A4A5FE148F901700538888 /* PassauBusApp */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = PassauBusApp;
+		sourceDirectories = (
+		);
+	};
+	39A4A607148F901900538888 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	39A4A608148F901900538888 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	FAC01165146C0A820089E264 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 39A4A5FE148F901700538888 /* PassauBusApp */;
+		activeTarget = FAC0116D146C0A820089E264 /* PassauBusApp */;
+		codeSenseManager = 39A4A608148F901900538888 /* Code sense */;
+		executables = (
+			39A4A5FE148F901700538888 /* PassauBusApp */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					833,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 344954866;
+			PBXWorkspaceStateSaveDate = 344954866;
+		};
+		sourceControlManager = 39A4A607148F901900538888 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	FAC0116D146C0A820089E264 /* PassauBusApp */ = {
+		activeExec = 0;
+		executables = (
+			39A4A5FE148F901700538888 /* PassauBusApp */,
+		);
+	};
+}

@@ -11,9 +11,14 @@
 @implementation SettingsViewController
 @synthesize settingsSwitchUseGPS;
 @synthesize settingsSwitchShowStops;
+@synthesize settingsSwitchShowRoute4;
+@synthesize settingsSwitchShowRoute8;
 
 NSString * settingsUseGPS = @"true";
 NSString * settingsShowStops = @"true";
+
+NSString * settingsShowRoute4 = @"true";
+NSString * settingsShowRoute8 = @"true";
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -58,6 +63,8 @@ NSString * settingsShowStops = @"true";
     
     settingsUseGPS = [[savedStock objectForKey:@"useGPS"] copy];
     settingsShowStops = [[savedStock objectForKey:@"showStops"] copy];
+    settingsShowRoute4 = [[savedStock objectForKey:@"showRoute4"] copy];
+    settingsShowRoute8 = [[savedStock objectForKey:@"showRoute8"] copy];
     
     [savedStock release];
     
@@ -75,10 +82,16 @@ NSString * settingsShowStops = @"true";
     [self loadSettings];
     
     // update settings view
+    
     [settingsSwitchUseGPS setOn:NO];
     if([settingsUseGPS isEqualToString:@"true"]) [settingsSwitchUseGPS setOn:YES];
     [settingsSwitchShowStops setOn:NO];
     if([settingsShowStops isEqualToString:@"true"]) [settingsSwitchShowStops setOn:YES];
+ 
+    [settingsSwitchShowRoute4 setOn:NO];
+    if([settingsShowRoute4 isEqualToString:@"true"]) [settingsSwitchShowRoute4 setOn:YES];
+    [settingsSwitchShowRoute8 setOn:NO];
+    if([settingsShowRoute8 isEqualToString:@"true"]) [settingsSwitchShowRoute8 setOn:YES];
     
 }
 
@@ -86,6 +99,8 @@ NSString * settingsShowStops = @"true";
 {
     [self setSettingsSwitchUseGPS:nil];
     [self setSettingsSwitchShowStops:nil];
+    [self setSettingsSwitchShowRoute4:nil];
+    [self setSettingsSwitchShowRoute8:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -122,6 +137,8 @@ NSString * settingsShowStops = @"true";
     
     [data setObject:settingsUseGPS forKey:@"useGPS"];
     [data setObject:settingsShowStops forKey:@"showStops"];
+    [data setObject:settingsShowRoute4 forKey:@"showRoute4"];
+    [data setObject:settingsShowRoute8 forKey:@"showRoute8"];
     
     [data writeToFile:plistPath atomically:YES];
     [data release];
@@ -150,6 +167,27 @@ NSString * settingsShowStops = @"true";
 
 
 
+- (IBAction)settingsClickSwitchShowRoute4:(id)sender {
+    settingsShowRoute4 = @"false";
+    if(settingsSwitchShowRoute4.isOn) settingsShowRoute4 = @"true";
+    [self saveSettings];
+}
+
+
+- (IBAction)settingsClickSwitchShowRoute8:(id)sender {
+    settingsShowRoute8 = @"false";
+    if(settingsSwitchShowRoute8.isOn) settingsShowRoute8 = @"true";
+    [self saveSettings];
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -157,6 +195,8 @@ NSString * settingsShowStops = @"true";
 - (void)dealloc {
     [settingsSwitchUseGPS release];
     [settingsSwitchShowStops release];
+    [settingsSwitchShowRoute4 release];
+    [settingsSwitchShowRoute8 release];
     [super dealloc];
 }
 @end

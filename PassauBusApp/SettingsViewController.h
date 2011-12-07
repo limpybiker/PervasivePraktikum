@@ -12,4 +12,7 @@
 @property (retain, nonatomic) IBOutlet UISwitch *settingsSwitchUseGPS;
 @property (retain, nonatomic) IBOutlet UISwitch *settingsSwitchShowStops;
 
+@property (retain, nonatomic) IBOutlet UISwitch *settingsSwitchShowRoute4;
+@property (retain, nonatomic) IBOutlet UISwitch *settingsSwitchShowRoute8;
+
 @end

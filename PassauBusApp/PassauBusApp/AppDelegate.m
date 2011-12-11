@@ -77,8 +77,13 @@ const double UNREGISTER_TAG = 1;
 	if (![udpSocket beginReceiving:&error])
 		NSLog(@"Error receiving: %@", error);
 	
+<<<<<<< HEAD
     /*
     NSString *host = @"192.168.178.20";
+=======
+    
+    NSString *host = @"192.168.1.24";
+>>>>>>> 39de9bd9be6fb6b3ebc35d36993eb69036ec1226
 	
 	int port = 1234;
 	
@@ -152,6 +157,7 @@ const double UNREGISTER_TAG = 1;
      */
 }
 
+<<<<<<< HEAD
 - (void) registerOnServer {
     asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *error = nil;
@@ -165,6 +171,20 @@ const double UNREGISTER_TAG = 1;
         [asyncSocket writeData:data withTimeout:-1 tag:REGISTER_TAG];
         [asyncSocket disconnectAfterWriting];
 	}
+=======
+- (void)applicationWillTerminate:(UIApplication *)application {
+    
+    NSString *host = @"192.168.1.24";
+	
+	int port = 1234;
+	
+	NSString *msg = @"UNREGISTER";
+    
+    double tag = 0;
+	
+	NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
+	[udpSocket sendData:data toHost:host port:port withTimeout:-1 tag:tag];
+>>>>>>> 39de9bd9be6fb6b3ebc35d36993eb69036ec1226
 }
 
 - (void) deregisterFromServer {

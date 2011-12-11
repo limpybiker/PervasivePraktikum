@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		047878E3148F8E3C00983E25 /* AppSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 047878E2148F8E3C00983E25 /* AppSettings.plist */; };
 		0479CAA81479A2540063CEB0 /* route_8_to_koenigschalding_stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA41479A2540063CEB0 /* route_8_to_koenigschalding_stops.plist */; };
 		0479CAA91479A2540063CEB0 /* route_8_to_koenigschalding.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA51479A2540063CEB0 /* route_8_to_koenigschalding.plist */; };
 		0479CAAA1479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA61479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist */; };
@@ -57,6 +58,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		047878E2148F8E3C00983E25 /* AppSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppSettings.plist; sourceTree = "<group>"; };
 		0479CAA41479A2540063CEB0 /* route_8_to_koenigschalding_stops.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_koenigschalding_stops.plist; sourceTree = "<group>"; };
 		0479CAA51479A2540063CEB0 /* route_8_to_koenigschalding.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_koenigschalding.plist; sourceTree = "<group>"; };
 		0479CAA61479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_kohlbruck_stops.plist; sourceTree = "<group>"; };
@@ -457,9 +459,14 @@
 		FAC01163146C0A820089E264 = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				FAB0A90B1490F34100D71C7A /* SPOI.bundle */,
 				FAAF85BC148FBE3500ED849A /* JSON */,
 				FA9E75801488FDC1005A3A4C /* AsyncSocket */,
+=======
+				047878E2148F8E3C00983E25 /* AppSettings.plist */,
+				FA9E75801488FDC1005A3A4C /* UDP */,
+>>>>>>> 39de9bd9be6fb6b3ebc35d36993eb69036ec1226
 				FAA5905D146DEC8E00FBE146 /* Location.gpx */,
 				FAA58FEE146DD86E00FBE146 /* inc */,
 				FAA58FE4146DD85E00FBE146 /* libs */,
@@ -611,9 +618,13 @@
 				0479CAA91479A2540063CEB0 /* route_8_to_koenigschalding.plist in Resources */,
 				0479CAAA1479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist in Resources */,
 				0479CAAB1479A2540063CEB0 /* route_8_to_kohlbruck.plist in Resources */,
+<<<<<<< HEAD
 				FAB0A9121491163600D71C7A /* splashScreen@2x.png in Resources */,
 				FAA6A951149512A000B8664A /* bus_4_icon20x20.png in Resources */,
 				FAA6A954149512AF00B8664A /* bus_4_icon40x40.png in Resources */,
+=======
+				047878E3148F8E3C00983E25 /* AppSettings.plist in Resources */,
+>>>>>>> 39de9bd9be6fb6b3ebc35d36993eb69036ec1226
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

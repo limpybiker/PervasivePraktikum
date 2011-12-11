@@ -9,11 +9,39 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "PassauBusApp/MapViewController.m"
-         timestampString = "344209198.654389"
+         timestampString = "345045802.368019"
          startingColumnNumber = "2147483647"
          endingColumnNumber = "2147483647"
-         startingLineNumber = "250"
-         endingLineNumber = "250"
+         startingLineNumber = "260"
+         endingLineNumber = "260"
+         landmarkName = "-addBusStopMarkerAt:andName:andSize:andID:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "PassauBusApp/MapViewController.m"
+         timestampString = "345051342.202115"
+         startingColumnNumber = "2147483647"
+         endingColumnNumber = "2147483647"
+         startingLineNumber = "321"
+         endingLineNumber = "321"
+         landmarkName = "-afterMapZoom:byFactor:near:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "PassauBusApp/MapViewController.m"
+         timestampString = "345051766.269758"
+         startingColumnNumber = "2147483647"
+         endingColumnNumber = "2147483647"
+         startingLineNumber = "341"
+         endingLineNumber = "341"
          landmarkName = "-afterMapZoom:byFactor:near:"
          landmarkType = "5">
       </FileBreakpoint>

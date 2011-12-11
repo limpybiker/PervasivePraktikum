@@ -31,6 +31,18 @@
 		FAA59061146DEFD000FBE146 /* route_4_to_hochstein.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAA59060146DEFD000FBE146 /* route_4_to_hochstein.plist */; };
 		FAA59063146F0ED500FBE146 /* bus_stop_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA59062146F0ED300FBE146 /* bus_stop_icon.png */; };
 		FAA59065146F0F6F00FBE146 /* route_4_to_hochstein_stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAA59064146F0F6D00FBE146 /* route_4_to_hochstein_stops.plist */; };
+		FAA6A951149512A000B8664A /* bus_4_icon20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA6A950149512A000B8664A /* bus_4_icon20x20.png */; };
+		FAA6A954149512AF00B8664A /* bus_4_icon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA6A953149512AF00B8664A /* bus_4_icon40x40.png */; };
+		FAAF85B2148F8D3500ED849A /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF85B1148F8D3500ED849A /* GCDAsyncSocket.m */; };
+		FAAF85B4148F94B300ED849A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAAF85B3148F94B300ED849A /* CFNetwork.framework */; };
+		FAAF85CA148FBE3500ED849A /* NSDictionary+JSONKeyPath.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF85BF148FBE3500ED849A /* NSDictionary+JSONKeyPath.m */; };
+		FAAF85CB148FBE3500ED849A /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF85C1148FBE3500ED849A /* NSObject+SBJSON.m */; };
+		FAAF85CC148FBE3500ED849A /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF85C3148FBE3500ED849A /* NSString+SBJSON.m */; };
+		FAAF85CD148FBE3500ED849A /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF85C5148FBE3500ED849A /* SBJsonBase.m */; };
+		FAAF85CE148FBE3500ED849A /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF85C7148FBE3500ED849A /* SBJsonParser.m */; };
+		FAAF85CF148FBE3500ED849A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF85C9148FBE3500ED849A /* SBJsonWriter.m */; };
+		FAB0A90C1490F34100D71C7A /* SPOI.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB0A90B1490F34100D71C7A /* SPOI.bundle */; };
+		FAB0A9121491163600D71C7A /* splashScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB0A9111491163600D71C7A /* splashScreen@2x.png */; };
 		FAC01173146C0A820089E264 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC01172146C0A820089E264 /* UIKit.framework */; };
 		FAC01175146C0A820089E264 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC01174146C0A820089E264 /* Foundation.framework */; };
 		FAC01177146C0A820089E264 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC01176146C0A820089E264 /* CoreGraphics.framework */; };
@@ -176,6 +188,26 @@
 		FAA59060146DEFD000FBE146 /* route_4_to_hochstein.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_4_to_hochstein.plist; sourceTree = "<group>"; };
 		FAA59062146F0ED300FBE146 /* bus_stop_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_stop_icon.png; sourceTree = "<group>"; };
 		FAA59064146F0F6D00FBE146 /* route_4_to_hochstein_stops.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_4_to_hochstein_stops.plist; sourceTree = "<group>"; };
+		FAA6A950149512A000B8664A /* bus_4_icon20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_4_icon20x20.png; sourceTree = "<group>"; };
+		FAA6A953149512AF00B8664A /* bus_4_icon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bus_4_icon40x40.png; path = libs/bus_4_icon40x40.png; sourceTree = "<group>"; };
+		FAAF85AF148F8D2B00ED849A /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		FAAF85B1148F8D3500ED849A /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		FAAF85B3148F94B300ED849A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		FAAF85BD148FBE3500ED849A /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		FAAF85BE148FBE3500ED849A /* NSDictionary+JSONKeyPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONKeyPath.h"; sourceTree = "<group>"; };
+		FAAF85BF148FBE3500ED849A /* NSDictionary+JSONKeyPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JSONKeyPath.m"; sourceTree = "<group>"; };
+		FAAF85C0148FBE3500ED849A /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		FAAF85C1148FBE3500ED849A /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		FAAF85C2148FBE3500ED849A /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		FAAF85C3148FBE3500ED849A /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		FAAF85C4148FBE3500ED849A /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		FAAF85C5148FBE3500ED849A /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		FAAF85C6148FBE3500ED849A /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		FAAF85C7148FBE3500ED849A /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		FAAF85C8148FBE3500ED849A /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		FAAF85C9148FBE3500ED849A /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		FAB0A90B1490F34100D71C7A /* SPOI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SPOI.bundle; path = ../../Desktop/SPOI.bundle; sourceTree = "<group>"; };
+		FAB0A9111491163600D71C7A /* splashScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splashScreen@2x.png"; sourceTree = "<group>"; };
 		FAC0116E146C0A820089E264 /* PassauBusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassauBusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC01172146C0A820089E264 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FAC01174146C0A820089E264 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -201,6 +233,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAB0A90C1490F34100D71C7A /* SPOI.bundle in Frameworks */,
+				FAAF85B4148F94B300ED849A /* CFNetwork.framework in Frameworks */,
 				FAA58FDB146D88E300FBE146 /* CoreLocation.framework in Frameworks */,
 				FAA58FD9146D88D000FBE146 /* QuartzCore.framework in Frameworks */,
 				FAA58F50146D878B00FBE146 /* MapKit.framework in Frameworks */,
@@ -271,13 +305,16 @@
 			path = "route-me";
 			sourceTree = "<group>";
 		};
-		FA9E75801488FDC1005A3A4C /* UDP */ = {
+		FA9E75801488FDC1005A3A4C /* AsyncSocket */ = {
 			isa = PBXGroup;
 			children = (
+				FAAF85B1148F8D3500ED849A /* GCDAsyncSocket.m */,
+				FAAF85AF148F8D2B00ED849A /* GCDAsyncSocket.h */,
 				FA9E758C14891F6E005A3A4C /* GCDAsyncUdpSocket.m */,
 				FA9E758814891F33005A3A4C /* GCDAsyncUdpSocket.h */,
+				FAB0A9111491163600D71C7A /* splashScreen@2x.png */,
 			);
-			name = UDP;
+			name = AsyncSocket;
 			sourceTree = "<group>";
 		};
 		FAA58FE4146DD85E00FBE146 /* libs */ = {
@@ -399,15 +436,43 @@
 			path = Proj4;
 			sourceTree = "<group>";
 		};
+		FAAF85BC148FBE3500ED849A /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				FAAF85BD148FBE3500ED849A /* JSON.h */,
+				FAAF85BE148FBE3500ED849A /* NSDictionary+JSONKeyPath.h */,
+				FAAF85BF148FBE3500ED849A /* NSDictionary+JSONKeyPath.m */,
+				FAAF85C0148FBE3500ED849A /* NSObject+SBJSON.h */,
+				FAAF85C1148FBE3500ED849A /* NSObject+SBJSON.m */,
+				FAAF85C2148FBE3500ED849A /* NSString+SBJSON.h */,
+				FAAF85C3148FBE3500ED849A /* NSString+SBJSON.m */,
+				FAAF85C4148FBE3500ED849A /* SBJsonBase.h */,
+				FAAF85C5148FBE3500ED849A /* SBJsonBase.m */,
+				FAAF85C6148FBE3500ED849A /* SBJsonParser.h */,
+				FAAF85C7148FBE3500ED849A /* SBJsonParser.m */,
+				FAAF85C8148FBE3500ED849A /* SBJsonWriter.h */,
+				FAAF85C9148FBE3500ED849A /* SBJsonWriter.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
 		FAC01163146C0A820089E264 = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
+				FAB0A90B1490F34100D71C7A /* SPOI.bundle */,
+				FAAF85BC148FBE3500ED849A /* JSON */,
+				FA9E75801488FDC1005A3A4C /* AsyncSocket */,
+=======
 				047878E2148F8E3C00983E25 /* AppSettings.plist */,
 				FA9E75801488FDC1005A3A4C /* UDP */,
+>>>>>>> 39de9bd9be6fb6b3ebc35d36993eb69036ec1226
 				FAA5905D146DEC8E00FBE146 /* Location.gpx */,
 				FAA58FEE146DD86E00FBE146 /* inc */,
 				FAA58FE4146DD85E00FBE146 /* libs */,
 				FAA59062146F0ED300FBE146 /* bus_stop_icon.png */,
+				FAA6A953149512AF00B8664A /* bus_4_icon40x40.png */,
+				FAA6A950149512A000B8664A /* bus_4_icon20x20.png */,
 				FAC01178146C0A820089E264 /* PassauBusApp */,
 				FAC01171146C0A820089E264 /* Frameworks */,
 				FAC0116F146C0A820089E264 /* Products */,
@@ -426,6 +491,7 @@
 		FAC01171146C0A820089E264 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FAAF85B3148F94B300ED849A /* CFNetwork.framework */,
 				FAA58FDA146D88E300FBE146 /* CoreLocation.framework */,
 				FAA58FD8146D88D000FBE146 /* QuartzCore.framework */,
 				FAA58F4F146D878B00FBE146 /* MapKit.framework */,
@@ -552,7 +618,13 @@
 				0479CAA91479A2540063CEB0 /* route_8_to_koenigschalding.plist in Resources */,
 				0479CAAA1479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist in Resources */,
 				0479CAAB1479A2540063CEB0 /* route_8_to_kohlbruck.plist in Resources */,
+<<<<<<< HEAD
+				FAB0A9121491163600D71C7A /* splashScreen@2x.png in Resources */,
+				FAA6A951149512A000B8664A /* bus_4_icon20x20.png in Resources */,
+				FAA6A954149512AF00B8664A /* bus_4_icon40x40.png in Resources */,
+=======
 				047878E3148F8E3C00983E25 /* AppSettings.plist in Resources */,
+>>>>>>> 39de9bd9be6fb6b3ebc35d36993eb69036ec1226
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +641,13 @@
 				FAC01196146C0D900089E264 /* SettingsViewController.m in Sources */,
 				FAA5905A146DE35700FBE146 /* GPSController.m in Sources */,
 				FA9E758D14891F6E005A3A4C /* GCDAsyncUdpSocket.m in Sources */,
+				FAAF85B2148F8D3500ED849A /* GCDAsyncSocket.m in Sources */,
+				FAAF85CA148FBE3500ED849A /* NSDictionary+JSONKeyPath.m in Sources */,
+				FAAF85CB148FBE3500ED849A /* NSObject+SBJSON.m in Sources */,
+				FAAF85CC148FBE3500ED849A /* NSString+SBJSON.m in Sources */,
+				FAAF85CD148FBE3500ED849A /* SBJsonBase.m in Sources */,
+				FAAF85CE148FBE3500ED849A /* SBJsonParser.m in Sources */,
+				FAAF85CF148FBE3500ED849A /* SBJsonWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +730,7 @@
 					"\"$(SRCROOT)/libs/Proj4\"",
 					"\"$(SRCROOT)/libs/route-me\"",
 				);
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -678,6 +758,7 @@
 					"\"$(SRCROOT)/libs/Proj4\"",
 					"\"$(SRCROOT)/libs/route-me\"",
 				);
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

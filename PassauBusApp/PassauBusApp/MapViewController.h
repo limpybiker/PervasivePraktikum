@@ -23,7 +23,7 @@
 
 @property (nonatomic, strong) IBOutlet SettingsViewController *settingsController;
 
--(void) addBusStopMarkerAt:(CLLocationCoordinate2D) markerPosition andName:(NSString*)name:(int)iconSize;
+-(void) addBusStopMarkerAt:(CLLocationCoordinate2D) markerPosition andName:(NSString*)name andSize:(int)iconSize andID:(int)ID;
 -(void) drawRoute:plistFileName:(UIColor*)routeColor;
 -(void) setBusStops:plistStopsFileName;
 

@@ -9,11 +9,23 @@
 #import "AppDelegate.h"
 #import "MapViewController.h"
 #import "GCDAsyncUdpSocket.h"
+#import "GCDAsyncSocket.h"
+#import "JSON.h"
+
+
+const double REGISTER_TAG = 0;
+const double UNREGISTER_TAG = 1;
+
+//TODO konstanten für TCP, UPD, Messages
+
+// BOOL isConnected => status meldungen
 
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize navigationController;
+@synthesize splashScreenViewController;
+
 
 - (void)dealloc
 {
@@ -22,18 +34,50 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    /*
+    // Add the splashScreen to the window and display.
+    splashScreeenViewController = [[UIViewController alloc] init];
+    CGRect frame = CGRectMake(0.0, 0.0, 320.0, 480.0);
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+    imageView.image = [UIImage imageNamed:@"splashScreen@2x.png"];
+    
+    [splashScreeenViewController.view addSubview:imageView];
+    [imageView release];
+    
+    [self.window addSubview:splashScreeenViewController.view];
+    [splashScreeenViewController.view setNeedsDisplay];
+    
+    
+    // Animate splashScreen out
+    [UIView beginAnimations:nil context:nil];
+    
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:0.5];
+    splashScreeenViewController.view.alpha = 0.0;
+    //tabBarController.view.alpha = 1.0;
+    
+    [UIView commitAnimations];
+    
+    // Throw away splashscreen
+    [splashScreeenViewController.view removeFromSuperview];
+    [splashScreeenViewController release];
+    */
+    
+    // register client on server
+    [self registerOnServer];
+
     
     //set up the udp socket
     udpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-    NSError *error = nil;
-	
+
+	NSError *error = nil;
 	if (![udpSocket bindToPort:4321 error:&error])
         NSLog(@"Error binding: %@", error);
     
 	if (![udpSocket beginReceiving:&error])
 		NSLog(@"Error receiving: %@", error);
 	
-    
+    /*
     NSString *host = @"192.168.178.20";
 	
 	int port = 1234;
@@ -45,7 +89,7 @@
 	NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
 	[udpSocket sendData:data toHost:host port:port withTimeout:-1 tag:tag];
     
-    tag++;
+    tag++;*/
     
     
     // Override point for customization after application launch.
@@ -59,42 +103,46 @@
     return YES;    
 }
 
-- (void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag {
-    NSLog(@"did sent data with tag %ld", tag);
+// tcp
+- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port {
+	NSLog(@"socket:didConnectToHost:%@ port:%hu", host, port);
 }
 
-- (void)udpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error {
-    NSLog(@"did sent data with tag %ld error: %@", tag, error);
+// tcp
+- (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag {
+    if(tag == REGISTER_TAG) {
+        NSLog(@"successfully registered");
+    }
+    if(tag == UNREGISTER_TAG) {
+        NSLog(@"successfully unregistered");
+    }
 }
 
+// upd
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext {
-	NSString *msg = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-	if (msg) {
-        NSLog(@"RECVEIVED: %@", msg);
-	}
+	
+    NSString *msg = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+	
+    NSLog(@" %@", msg);
+    
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+	NSError *error = nil;
+	NSDictionary *busData = [parser objectWithString:msg error:&error];
+	[parser release];
+
+    if(error == nil) {
+        //send out data
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NewBusData" object:self userInfo:busData];
+    }
 } 
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    /*
-     Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-     Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-     */
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    [self deregisterFromServer];
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-     If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-     */
-}
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    [self registerOnServer];
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    /*
-     Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-     */
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -104,18 +152,35 @@
      */
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-    
-    NSString *host = @"192.168.178.20";
-	
-	int port = 1234;
-	
-	NSString *msg = @"UNREGISTER";
-    
-    double tag = 0;
-	
-	NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
-	[udpSocket sendData:data toHost:host port:port withTimeout:-1 tag:tag];
+- (void) registerOnServer {
+    asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    NSError *error = nil;
+    if (![asyncSocket connectToHost:@"192.168.178.26" onPort:1234 withTimeout:-1 error:&error]) {
+		NSLog(@"Unable to connect to due to invalid configuration: %@", error);
+	}
+	else {
+		NSLog(@"Connecting... to server %@", error);
+        NSString *msg = @"HELLO SERVER";
+        NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
+        [asyncSocket writeData:data withTimeout:-1 tag:REGISTER_TAG];
+        [asyncSocket disconnectAfterWriting];
+	}
 }
+
+- (void) deregisterFromServer {
+    asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    NSError *error = nil;
+    if (![asyncSocket connectToHost:@"192.168.178.26" onPort:1234 withTimeout:-1 error:&error]) {
+		NSLog(@"Unable to connect to due to invalid configuration: %@", error);
+	}
+	else {
+		NSLog(@"Connecting... to server %@", error);
+        NSString *msg = @"UNREGISTER";
+        NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
+        [asyncSocket writeData:data withTimeout:-1 tag:UNREGISTER_TAG];
+        [asyncSocket disconnectAfterWriting];
+	}
+}
+
 
 @end

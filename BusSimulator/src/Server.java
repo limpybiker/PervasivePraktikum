@@ -11,6 +11,7 @@ import java.net.UnknownHostException;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
@@ -25,6 +26,7 @@ public class Server extends Thread {
     // Server listens at port: 1234
 
     private Set<InetAddress> hosts;
+    private Set<JSONObject> messages;
     private final static int HOSTS_PORT = 4321;
     private final static int SERVER_PORT = 1234;
     private final static String REGISTER_CMD = "HELLO SERVER";
@@ -32,6 +34,7 @@ public class Server extends Thread {
 
     public Server() {
         hosts = new HashSet<InetAddress>();
+        messages = new HashSet<JSONObject>();
     }
 
     @Override
@@ -69,7 +72,7 @@ public class Server extends Thread {
      * 
      * @param message A message.
      */
-    public void sendMessageToHosts(JSONObject message) {
+    private void sendMessageToHosts(JSONObject message) {
         for (InetAddress addr : hosts) {
             DatagramPacket packet = new DatagramPacket(message.toJSONString()
                 .getBytes(), message.toJSONString().length(), addr, HOSTS_PORT);
@@ -83,6 +86,33 @@ public class Server extends Thread {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * Sends all gathered messages to the hosts. Use 'addMessage' to add
+     * messages in advance.
+     */
+    @SuppressWarnings("unchecked")
+    public void sendMessages() {
+        // create a JSON with all messages (also JSONs) in it
+        JSONObject json = new JSONObject();
+        JSONArray jarr = new JSONArray();
+        jarr.addAll(messages);
+        json.put("messages", jarr);
+
+        // send a single JSON to each host. That JSON contains multiple JSONs
+        sendMessageToHosts(json);
+        // remove all messages
+        messages.clear();
+    }
+
+    /**
+     * Add a message that will be gathered and later on sent together.
+     * 
+     * @param message Message to be sent.
+     */
+    public void addMessage(JSONObject message) {
+        messages.add(message);
     }
 
     /**

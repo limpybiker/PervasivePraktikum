@@ -30,7 +30,7 @@ public class Client {
 
         // Now loop forever, waiting to receive packets and printing them.
         int i = 0;
-        while (i < 5) {
+        while (i < 15) {
             // Wait to receive a datagram
             dsock.receive(packet);
 

@@ -1,6 +1,10 @@
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.json.simple.JSONObject;
 
@@ -11,16 +15,27 @@ import org.json.simple.JSONObject;
 public class Simulator extends Thread {
 
     // ~7punkte auf 80m
-    private final static Double DISTANCE_THRESHOLD = 0.0001;
+    private final static Double DISTANCE_THRESHOLD = 0.00005;
     // time how often the server sends out gps coords
-    private final static long SLEEP_MILLIS = 1000;
+    private final static long SLEEP_MILLIS = 500;
     private Server server;
-    private final static String FILEPATH = "route_4_to_achleiten.plist";
-    private final static String ROUTE_NUMBER = "4";
-    private final static String ROUTE_DESTINATION = "Achleiten";
+    private Set<SimulationContext> simulations;
 
     public Simulator() {
         server = new Server();
+        simulations = new HashSet<SimulationContext>();
+
+        // |-----------------------|
+        // | ADD SIMULATIONS HERE: |
+        // |-----------------------|
+        simulations.add(new SimulationContext("4", "Achleiten",
+            "route_4_to_achleiten.plist"));
+        simulations.add(new SimulationContext("4", "Hochstein",
+            "route_4_to_hochstein.plist"));
+        simulations.add(new SimulationContext("8", "Koenigschalding",
+            "route_8_to_koenigschalding.plist"));
+        simulations.add(new SimulationContext("8", "PEB",
+            "route_8_to_peb.plist"));
     }
 
     public static void main(String[] args) {
@@ -28,24 +43,55 @@ public class Simulator extends Thread {
         s.start();
     }
 
-    @Override
+    /**
+     * Starts the Simulator. Stops automatically when all Simulations are done.
+     */
     public void run() {
         server.start();
-        PListParser parser = new PListParser();
-        List<GPSCoordinate> coords = parser.parsePList(FILEPATH);
-        List<GPSCoordinate> movementPath = createMovementPath(coords);
-        Iterator<GPSCoordinate> it = movementPath.iterator();
+        Map<SimulationContext, List<GPSCoordinate>> map = createSimulationsWithGPS();
 
-        while (it.hasNext()) {
-            JSONObject message = createJSONfromGPSCoordinate(it.next());
-            server.sendMessageToHosts(message);
+        while (!map.isEmpty()) {
+            for (SimulationContext s : map.keySet()) {
+                List<GPSCoordinate> coords = map.get(s);
+
+                if (!coords.isEmpty()) {
+                    // add message to server
+                    GPSCoordinate gps = coords.remove(0);
+                    server.addMessage(createJSONfromGPSCoordinate(gps, s));
+                } else {
+                    map.remove(s);
+                }
+            }
+
+            // send gathered messages
+            server.sendMessages();
+
             try {
                 sleep(SLEEP_MILLIS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("Warning: List is finished!");
+        System.out.println("Finished all simulations!");
+    }
+
+    /**
+     * Creates a Map of Simulations and movementPaths (GPSCoordinates).
+     * 
+     * @return The map.
+     */
+    private Map<SimulationContext, List<GPSCoordinate>> createSimulationsWithGPS() {
+        PListParser parser = new PListParser();
+        Map<SimulationContext, List<GPSCoordinate>> map = new HashMap<SimulationContext, List<GPSCoordinate>>();
+
+        for (SimulationContext s : simulations) {
+            List<GPSCoordinate> coords = parser.parsePList(s
+                .getPlist_filepath());
+            List<GPSCoordinate> movementPath = createMovementPath(coords);
+            map.put(s, movementPath);
+        }
+
+        return map;
     }
 
     /**
@@ -72,21 +118,25 @@ public class Simulator extends Thread {
         }
         while (it.hasNext()) {
             GPSCoordinate coord2 = it.next();
-            movementPath.add(coord2);
+
             lat2 = coord2.getLatitude();
             long2 = coord2.getLongitude();
             Double distance = Math.sqrt(Math.pow((lat1 - lat2), 2)
                 + Math.pow((long1 - long2), 2));
 
-            int nrOfPoints = (int) Math.floor(distance / DISTANCE_THRESHOLD);
-            double m = (long2 - long1) / (lat2 - lat1);
+            int nrOfPoints = (int) Math.floor((distance) / DISTANCE_THRESHOLD);
+            Double m = (long2 - long1) / (lat2 - lat1);
+            Double t2 = (lat2 - lat1) / nrOfPoints;
 
             for (int i = 1; i < nrOfPoints; i++) {
-                GPSCoordinate p_new = new GPSCoordinate(lat1
-                    + (DISTANCE_THRESHOLD * m * i), long1
-                    + (DISTANCE_THRESHOLD * m * i) * m);
+                Double new_lat = t2 * i + lat1;
+                Double new_long = long1 + (new_lat - lat1) * m;
+                GPSCoordinate p_new = new GPSCoordinate(new_lat, new_long);
                 movementPath.add(p_new);
             }
+
+            // add the last point
+            movementPath.add(coord2);
             // set last point new
             lat1 = lat2;
             long1 = long2;
@@ -96,20 +146,22 @@ public class Simulator extends Thread {
     }
 
     /**
-     * Creates a JSON String from a GPSCoordinate.
+     * Creates a JSON String from a GPSCoordinate and a SimulationSetting.
      * 
      * @param coord GPSCoordinate.
+     * @param setting A context setting.
      * @return Coordinate as JSON.
      */
     @SuppressWarnings("unchecked")
-    private JSONObject createJSONfromGPSCoordinate(GPSCoordinate coord) {
+    private JSONObject createJSONfromGPSCoordinate(GPSCoordinate coord,
+        SimulationContext setting) {
         JSONObject json = new JSONObject();
         json.put("timestamp", System.currentTimeMillis());
-        json.put("route_number", ROUTE_NUMBER);
-        json.put("route_destination", ROUTE_DESTINATION);
+        json.put("route_number", setting.getRoute_number());
+        json.put("route_destination", setting.getRoute_destination());
         json.put("latitude", coord.getLatitude());
         json.put("longitude", coord.getLongitude());
-        json.put("bus_id", 1);//TODO ATM only one bus, when more, change this
+        json.put("bus_id", setting.getBus_id());
 
         return json;
     }

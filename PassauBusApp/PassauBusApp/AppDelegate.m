@@ -183,7 +183,7 @@ const double UNREGISTER_TAG = 1;
 - (void) registerOnServer {
     asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *error = nil;
-    if (![asyncSocket connectToHost:@"192.168.2.103" onPort:1234 withTimeout:-1 error:&error]) {
+    if (![asyncSocket connectToHost:@"192.168.2.100" onPort:1234 withTimeout:-1 error:&error]) {
 		NSLog(@"Unable to connect to due to invalid configuration: %@", error);
 	}
 	else {
@@ -198,7 +198,7 @@ const double UNREGISTER_TAG = 1;
 - (void) deregisterFromServer {
     asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *error = nil;
-    if (![asyncSocket connectToHost:@"192.168.2.103App" onPort:1234 withTimeout:-1 error:&error]) {
+    if (![asyncSocket connectToHost:@"192.168.2.100" onPort:1234 withTimeout:-1 error:&error]) {
 		NSLog(@"Unable to connect to due to invalid configuration: %@", error);
 	}
 	else {

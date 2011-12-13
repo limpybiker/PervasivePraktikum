@@ -23,6 +23,9 @@
 #import "RMMarkerManager.h"
 #import "CMCurrentLocationMarker.h"
 #import "RMMarkerAdditions.h"
+#import "Settings.h"
+
+#define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
 
 @implementation MapViewController
@@ -173,17 +176,33 @@ float currentZoomLevel;
     if (![CLLocationManager locationServicesEnabled])
         NSLog(@"GPS is not enabled");
     
-    [self drawRoute:@"route_4_to_achleiten.plist":[UIColor brownColor]];
-    [self drawRoute:@"route_4_to_hochstein.plist":[UIColor brownColor]];
+
+}
+
+
+-(void) viewDidAppear:(BOOL)animated{
     
-    [self drawRoute:@"route_8_to_koenigschalding.plist":[UIColor magentaColor]];
-    [self drawRoute:@"route_8_to_kohlbruck.plist":[UIColor magentaColor]];
+    // clear map
+    NSArray * contents = [NSArray arrayWithArray:[[mapView.contents overlay] sublayers]];
+    [(RMLayerCollection*)[mapView.contents overlay] removeSublayers:contents];
     
-    [self setBusStops:@"route_4_to_achleiten_stops.plist"];
-    [self setBusStops:@"route_4_to_hochstein_stops.plist"];
+    if([_settingsShowRoute4 isEqualToString:@"true"]){
+        [self drawRoute:@"route_4_to_achleiten.plist": RGB(140, 108, 83) ];
+        [self drawRoute:@"route_4_to_hochstein.plist": RGB(140, 108, 83) ];
+    }
     
-    [self setBusStops:@"route_8_to_koenigschalding_stops.plist"];
-    [self setBusStops:@"route_8_to_kohlbruck_stops.plist"];
+    if([_settingsShowRoute8 isEqualToString:@"true"]){
+        [self drawRoute:@"route_8_to_koenigschalding.plist": RGB(245, 136, 142) ];
+        [self drawRoute:@"route_8_to_kohlbruck.plist": RGB(245, 136, 142) ];
+    }
+    
+    if([_settingsShowStops isEqualToString:@"true"]){
+        [self setBusStops:@"route_4_to_achleiten_stops.plist"];
+        [self setBusStops:@"route_4_to_hochstein_stops.plist"];
+    
+        [self setBusStops:@"route_8_to_koenigschalding_stops.plist"];
+        [self setBusStops:@"route_8_to_kohlbruck_stops.plist"];
+    }
     
 }
 

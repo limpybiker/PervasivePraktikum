@@ -54,9 +54,6 @@ NSString * _settingsShowRoute8;
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     
-    // TODO model muss check beim app start machen... vars in model
-    //[self loadSettings];
-    
     // update settings view
     
     [settingsSwitchUseGPS setOn:NO];

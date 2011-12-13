@@ -564,14 +564,14 @@
 			isa = PBXGroup;
 			children = (
 				047E7D611497A34C00306100 /* Settings.h */,
-				FAC01193146C0D900089E264 /* SettingsViewController.h */,
-				FAC01194146C0D900089E264 /* SettingsViewController.m */,
-				FAC01195146C0D900089E264 /* SettingsViewController.xib */,
 				FAC01181146C0A830089E264 /* AppDelegate.h */,
 				FAC01182146C0A830089E264 /* AppDelegate.m */,
 				FAC0118E146C0B230089E264 /* MapViewController.h */,
 				FAC0118F146C0B230089E264 /* MapViewController.m */,
 				FAC01190146C0B230089E264 /* MapViewController.xib */,
+				FAC01193146C0D900089E264 /* SettingsViewController.h */,
+				FAC01194146C0D900089E264 /* SettingsViewController.m */,
+				FAC01195146C0D900089E264 /* SettingsViewController.xib */,
 				FA5756AC1496923D00D30F61 /* Icons */,
 				FAC01179146C0A820089E264 /* Supporting Files */,
 				FAA59058146DE35600FBE146 /* GPSController.h */,

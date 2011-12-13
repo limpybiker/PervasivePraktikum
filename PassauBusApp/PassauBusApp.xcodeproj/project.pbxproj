@@ -11,6 +11,7 @@
 		0479CAA91479A2540063CEB0 /* route_8_to_koenigschalding.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA51479A2540063CEB0 /* route_8_to_koenigschalding.plist */; };
 		0479CAAA1479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA61479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist */; };
 		0479CAAB1479A2540063CEB0 /* route_8_to_kohlbruck.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA71479A2540063CEB0 /* route_8_to_kohlbruck.plist */; };
+		047D7EC21497D028005B17E7 /* AppSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 047D7EC11497D028005B17E7 /* AppSettings.plist */; };
 		047E7D641497ADBC00306100 /* busApp-icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 047E7D631497ADBB00306100 /* busApp-icon57x57.png */; };
 		047E7D661497ADC400306100 /* busApp-icon114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 047E7D651497ADC400306100 /* busApp-icon114x114.png */; };
 		047E7D681497ADD400306100 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 047E7D671497ADD400306100 /* Default.png */; };
@@ -80,6 +81,7 @@
 		0479CAA51479A2540063CEB0 /* route_8_to_koenigschalding.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_koenigschalding.plist; sourceTree = "<group>"; };
 		0479CAA61479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_kohlbruck_stops.plist; sourceTree = "<group>"; };
 		0479CAA71479A2540063CEB0 /* route_8_to_kohlbruck.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_kohlbruck.plist; sourceTree = "<group>"; };
+		047D7EC11497D028005B17E7 /* AppSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppSettings.plist; sourceTree = "<group>"; };
 		047E7D611497A34C00306100 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		047E7D631497ADBB00306100 /* busApp-icon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "busApp-icon57x57.png"; sourceTree = "<group>"; };
 		047E7D651497ADC400306100 /* busApp-icon114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "busApp-icon114x114.png"; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 		FAC01163146C0A820089E264 = {
 			isa = PBXGroup;
 			children = (
+				047D7EC11497D028005B17E7 /* AppSettings.plist */,
 				047E7D691497ADEB00306100 /* Default@2x.png */,
 				047E7D671497ADD400306100 /* Default.png */,
 				047E7D651497ADC400306100 /* busApp-icon114x114.png */,
@@ -701,6 +704,7 @@
 				047E7D661497ADC400306100 /* busApp-icon114x114.png in Resources */,
 				047E7D681497ADD400306100 /* Default.png in Resources */,
 				047E7D6A1497ADEB00306100 /* Default@2x.png in Resources */,
+				047D7EC21497D028005B17E7 /* AppSettings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

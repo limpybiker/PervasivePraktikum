@@ -184,7 +184,7 @@ float currentZoomLevel;
     
     // clear map
     NSArray * contents = [NSArray arrayWithArray:[[mapView.contents overlay] sublayers]];
-    [(RMLayerCollection*)[mapView.contents overlay] removeSublayers:contents];
+    [(RMLayerCollection*)[mapView.contents overlay] removeSublayers:contents]; // works
     
     if([_settingsShowRoute4 isEqualToString:@"true"]){
         [self drawRoute:@"route_4_to_achleiten.plist": RGB(140, 108, 83) ];

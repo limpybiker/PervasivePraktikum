@@ -51,6 +51,10 @@ public class Simulator extends Thread {
         Map<SimulationContext, List<GPSCoordinate>> map = createSimulationsWithGPS();
 
         while (!map.isEmpty()) {
+        	boolean markDelete = false;
+        	SimulationContext key = null;
+        	
+        	// go through map and always display first item of list.
             for (SimulationContext s : map.keySet()) {
                 List<GPSCoordinate> coords = map.get(s);
 
@@ -59,9 +63,13 @@ public class Simulator extends Thread {
                     GPSCoordinate gps = coords.remove(0);
                     server.addMessage(createJSONfromGPSCoordinate(gps, s));
                 } else {
-                    map.remove(s);
+                	markDelete = true;
+					key = s;
                 }
             }
+			if (markDelete) {
+				map.remove(key);
+			}
 
             // send gathered messages
             server.sendMessages();

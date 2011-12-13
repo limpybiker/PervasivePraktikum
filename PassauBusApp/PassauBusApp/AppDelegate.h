@@ -10,7 +10,6 @@
 #import "GCDAsyncUdpSocket.h"
 #import "GCDAsyncSocket.h"
 
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
     UINavigationController *navigationController;
     GCDAsyncUdpSocket *udpSocket;
@@ -25,6 +24,8 @@
 
 - (void) deregisterFromServer;
 - (void) registerOnServer;
+
+
 
 
 @end

@@ -6,6 +6,7 @@
 //  Copyright (c) 2011 Josef Kinseher All rights reserved.
 //
 
+#import "Settings.h"
 #import "AppDelegate.h"
 #import "MapViewController.h"
 #import "GCDAsyncUdpSocket.h"
@@ -22,9 +23,47 @@ const double UNREGISTER_TAG = 1;
 
 @implementation AppDelegate
 
+
 @synthesize window = _window;
 @synthesize navigationController;
 @synthesize splashScreenViewController;
+
+
+- (void) loadSettings{
+    // TODO fix extern var problem
+     
+    _settingsUseGPS = @"true";
+    _settingsShowStops = @"true";
+    
+    _settingsShowRoute4 = @"true";
+    _settingsShowRoute8 = @"true";
+
+    
+    // obtain path for plist
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString * plistPath = [[documentsDirectory stringByAppendingPathComponent:@"AppSettings.plist"] copy];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if (![fileManager fileExistsAtPath: plistPath])
+    {
+        NSString *bundle = [[NSBundle mainBundle] pathForResource:@"AppSettings" ofType:@"plist"];
+        
+        [fileManager copyItemAtPath:bundle toPath: plistPath error:&error];
+    }
+    // read settings
+    NSMutableDictionary *savedStock = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    
+    _settingsUseGPS = [[savedStock objectForKey:@"useGPS"] copy];
+    _settingsShowStops = [[savedStock objectForKey:@"showStops"] copy];
+    _settingsShowRoute4 = [[savedStock objectForKey:@"showRoute4"] copy];
+    _settingsShowRoute8 = [[savedStock objectForKey:@"showRoute8"] copy];
+    
+    [savedStock release];
+    
+}
 
 
 - (void)dealloc
@@ -85,6 +124,9 @@ const double UNREGISTER_TAG = 1;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window addSubview:navigationController.view];
     [self.window makeKeyAndVisible];
+    
+    [self loadSettings];
+    
     return YES;    
 }
 
@@ -141,7 +183,7 @@ const double UNREGISTER_TAG = 1;
 - (void) registerOnServer {
     asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *error = nil;
-    if (![asyncSocket connectToHost:@"192.168.178.26" onPort:1234 withTimeout:-1 error:&error]) {
+    if (![asyncSocket connectToHost:@"192.168.2.103" onPort:1234 withTimeout:-1 error:&error]) {
 		NSLog(@"Unable to connect to due to invalid configuration: %@", error);
 	}
 	else {
@@ -156,7 +198,7 @@ const double UNREGISTER_TAG = 1;
 - (void) deregisterFromServer {
     asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *error = nil;
-    if (![asyncSocket connectToHost:@"192.168.178.26" onPort:1234 withTimeout:-1 error:&error]) {
+    if (![asyncSocket connectToHost:@"192.168.2.103App" onPort:1234 withTimeout:-1 error:&error]) {
 		NSLog(@"Unable to connect to due to invalid configuration: %@", error);
 	}
 	else {

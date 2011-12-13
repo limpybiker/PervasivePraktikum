@@ -7,11 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		047878E3148F8E3C00983E25 /* AppSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 047878E2148F8E3C00983E25 /* AppSettings.plist */; };
 		0479CAA81479A2540063CEB0 /* route_8_to_koenigschalding_stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA41479A2540063CEB0 /* route_8_to_koenigschalding_stops.plist */; };
 		0479CAA91479A2540063CEB0 /* route_8_to_koenigschalding.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA51479A2540063CEB0 /* route_8_to_koenigschalding.plist */; };
 		0479CAAA1479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA61479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist */; };
 		0479CAAB1479A2540063CEB0 /* route_8_to_kohlbruck.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA71479A2540063CEB0 /* route_8_to_kohlbruck.plist */; };
+		FA5756AF1496928000D30F61 /* bus_stop_icon10x10.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756AE1496928000D30F61 /* bus_stop_icon10x10.png */; };
+		FA5756B11496928800D30F61 /* bus_stop_icon20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756B01496928800D30F61 /* bus_stop_icon20x20.png */; };
+		FA5756B31496929000D30F61 /* bus_stop_icon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756B21496929000D30F61 /* bus_stop_icon40x40.png */; };
+		FA5756B5149692D600D30F61 /* bus_stop_icon30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756B4149692D600D30F61 /* bus_stop_icon30x30.png */; };
+		FA5756B71496C83B00D30F61 /* bus_9_icon30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756B61496C83B00D30F61 /* bus_9_icon30x30.png */; };
+		FA5756B91496C84400D30F61 /* bus_9_icon10x10.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756B81496C84400D30F61 /* bus_9_icon10x10.png */; };
+		FA5756BC1496C92F00D30F61 /* bus_4_icon10x10.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756BA1496C92F00D30F61 /* bus_4_icon10x10.png */; };
+		FA5756BD1496C92F00D30F61 /* bus_4_icon30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756BB1496C92F00D30F61 /* bus_4_icon30x30.png */; };
+		FA5756C01496C94100D30F61 /* bus_8_icon30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756BE1496C94100D30F61 /* bus_8_icon30x30.png */; };
+		FA5756C11496C94100D30F61 /* bus_8_icon10x10.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756BF1496C94100D30F61 /* bus_8_icon10x10.png */; };
+		FA5756C31496C95F00D30F61 /* bus_9_icon20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756C21496C95F00D30F61 /* bus_9_icon20x20.png */; };
+		FA5756C51496C98500D30F61 /* bus_8_icon20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756C41496C98500D30F61 /* bus_8_icon20x20.png */; };
 		FA64AE821472E8F50017F777 /* route_4_to_achleiten_stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA64AE811472E8F50017F777 /* route_4_to_achleiten_stops.plist */; };
 		FA9E758D14891F6E005A3A4C /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9E758C14891F6E005A3A4C /* GCDAsyncUdpSocket.m */; };
 		FAA58F4A146D7B2200FBE146 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA58F49146D7B2200FBE146 /* libstdc++.6.dylib */; };
@@ -55,14 +66,28 @@
 		FAC01197146C0D900089E264 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC01195146C0D900089E264 /* SettingsViewController.xib */; };
 		FAC01199146C16C90089E264 /* SettingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC01198146C16C90089E264 /* SettingsIcon.png */; };
 		FAC0119B146C16D00089E264 /* MyPosIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC0119A146C16D00089E264 /* MyPosIcon.png */; };
+		FAFD8EA61496468800289199 /* mapBusLineToIcon.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAFD8EA51496468800289199 /* mapBusLineToIcon.plist */; };
+		FAFD8EA914964A2B00289199 /* bus_8_icon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD8EA814964A2B00289199 /* bus_8_icon40x40.png */; };
+		FAFD8EAB14964A3900289199 /* bus_9_icon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD8EAA14964A3900289199 /* bus_9_icon40x40.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		047878E2148F8E3C00983E25 /* AppSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppSettings.plist; sourceTree = "<group>"; };
 		0479CAA41479A2540063CEB0 /* route_8_to_koenigschalding_stops.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_koenigschalding_stops.plist; sourceTree = "<group>"; };
 		0479CAA51479A2540063CEB0 /* route_8_to_koenigschalding.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_koenigschalding.plist; sourceTree = "<group>"; };
 		0479CAA61479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_kohlbruck_stops.plist; sourceTree = "<group>"; };
 		0479CAA71479A2540063CEB0 /* route_8_to_kohlbruck.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_kohlbruck.plist; sourceTree = "<group>"; };
+		FA5756AE1496928000D30F61 /* bus_stop_icon10x10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_stop_icon10x10.png; sourceTree = "<group>"; };
+		FA5756B01496928800D30F61 /* bus_stop_icon20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_stop_icon20x20.png; sourceTree = "<group>"; };
+		FA5756B21496929000D30F61 /* bus_stop_icon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_stop_icon40x40.png; sourceTree = "<group>"; };
+		FA5756B4149692D600D30F61 /* bus_stop_icon30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_stop_icon30x30.png; sourceTree = "<group>"; };
+		FA5756B61496C83B00D30F61 /* bus_9_icon30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_9_icon30x30.png; sourceTree = "<group>"; };
+		FA5756B81496C84400D30F61 /* bus_9_icon10x10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_9_icon10x10.png; sourceTree = "<group>"; };
+		FA5756BA1496C92F00D30F61 /* bus_4_icon10x10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_4_icon10x10.png; sourceTree = "<group>"; };
+		FA5756BB1496C92F00D30F61 /* bus_4_icon30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_4_icon30x30.png; sourceTree = "<group>"; };
+		FA5756BE1496C94100D30F61 /* bus_8_icon30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_8_icon30x30.png; sourceTree = "<group>"; };
+		FA5756BF1496C94100D30F61 /* bus_8_icon10x10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_8_icon10x10.png; sourceTree = "<group>"; };
+		FA5756C21496C95F00D30F61 /* bus_9_icon20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_9_icon20x20.png; sourceTree = "<group>"; };
+		FA5756C41496C98500D30F61 /* bus_8_icon20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_8_icon20x20.png; sourceTree = "<group>"; };
 		FA62ED721473DDC500C416B0 /* RMAbstractMercatorWebSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMAbstractMercatorWebSource.h; sourceTree = "<group>"; };
 		FA62ED731473DDC500C416B0 /* RMCachedTileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMCachedTileSource.h; sourceTree = "<group>"; };
 		FA62ED741473DDC500C416B0 /* RMCloudMadeHiResMapSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMCloudMadeHiResMapSource.h; sourceTree = "<group>"; };
@@ -226,6 +251,9 @@
 		FAC01195146C0D900089E264 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = ../SettingsViewController.xib; sourceTree = "<group>"; };
 		FAC01198146C16C90089E264 /* SettingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsIcon.png; sourceTree = "<group>"; };
 		FAC0119A146C16D00089E264 /* MyPosIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MyPosIcon.png; sourceTree = "<group>"; };
+		FAFD8EA51496468800289199 /* mapBusLineToIcon.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = mapBusLineToIcon.plist; path = PassauBusApp/mapBusLineToIcon.plist; sourceTree = "<group>"; };
+		FAFD8EA814964A2B00289199 /* bus_8_icon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bus_8_icon40x40.png; path = PassauBusApp/bus_8_icon40x40.png; sourceTree = "<group>"; };
+		FAFD8EAA14964A3900289199 /* bus_9_icon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bus_9_icon40x40.png; path = PassauBusApp/bus_9_icon40x40.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +281,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA5756AC1496923D00D30F61 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				FA5756C41496C98500D30F61 /* bus_8_icon20x20.png */,
+				FA5756C21496C95F00D30F61 /* bus_9_icon20x20.png */,
+				FA5756BE1496C94100D30F61 /* bus_8_icon30x30.png */,
+				FA5756BF1496C94100D30F61 /* bus_8_icon10x10.png */,
+				FA5756B81496C84400D30F61 /* bus_9_icon10x10.png */,
+				FA5756B61496C83B00D30F61 /* bus_9_icon30x30.png */,
+				FA5756B4149692D600D30F61 /* bus_stop_icon30x30.png */,
+				FA5756B21496929000D30F61 /* bus_stop_icon40x40.png */,
+				FA5756B01496928800D30F61 /* bus_stop_icon20x20.png */,
+				FA5756AE1496928000D30F61 /* bus_stop_icon10x10.png */,
+				FAA6A953149512AF00B8664A /* bus_4_icon40x40.png */,
+				FAA6A950149512A000B8664A /* bus_4_icon20x20.png */,
+				FA5756BA1496C92F00D30F61 /* bus_4_icon10x10.png */,
+				FA5756BB1496C92F00D30F61 /* bus_4_icon30x30.png */,
+				FAFD8EA814964A2B00289199 /* bus_8_icon40x40.png */,
+				FAFD8EAA14964A3900289199 /* bus_9_icon40x40.png */,
+			);
+			name = Icons;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		FA62ED711473DDC500C416B0 /* route-me */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,20 +511,13 @@
 		FAC01163146C0A820089E264 = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				FAB0A90B1490F34100D71C7A /* SPOI.bundle */,
 				FAAF85BC148FBE3500ED849A /* JSON */,
 				FA9E75801488FDC1005A3A4C /* AsyncSocket */,
-=======
-				047878E2148F8E3C00983E25 /* AppSettings.plist */,
-				FA9E75801488FDC1005A3A4C /* UDP */,
->>>>>>> 39de9bd9be6fb6b3ebc35d36993eb69036ec1226
 				FAA5905D146DEC8E00FBE146 /* Location.gpx */,
 				FAA58FEE146DD86E00FBE146 /* inc */,
 				FAA58FE4146DD85E00FBE146 /* libs */,
 				FAA59062146F0ED300FBE146 /* bus_stop_icon.png */,
-				FAA6A953149512AF00B8664A /* bus_4_icon40x40.png */,
-				FAA6A950149512A000B8664A /* bus_4_icon20x20.png */,
 				FAC01178146C0A820089E264 /* PassauBusApp */,
 				FAC01171146C0A820089E264 /* Frameworks */,
 				FAC0116F146C0A820089E264 /* Products */,
@@ -513,6 +558,7 @@
 				FAC0118E146C0B230089E264 /* MapViewController.h */,
 				FAC0118F146C0B230089E264 /* MapViewController.m */,
 				FAC01190146C0B230089E264 /* MapViewController.xib */,
+				FA5756AC1496923D00D30F61 /* Icons */,
 				FAC01179146C0A820089E264 /* Supporting Files */,
 				FAA59058146DE35600FBE146 /* GPSController.h */,
 				FAA59059146DE35700FBE146 /* GPSController.m */,
@@ -534,6 +580,7 @@
 		FAC0119C146C16EA0089E264 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				FAFD8EA51496468800289199 /* mapBusLineToIcon.plist */,
 				FA64AE811472E8F50017F777 /* route_4_to_achleiten_stops.plist */,
 				FAA59064146F0F6D00FBE146 /* route_4_to_hochstein_stops.plist */,
 				FAA59060146DEFD000FBE146 /* route_4_to_hochstein.plist */,
@@ -618,13 +665,24 @@
 				0479CAA91479A2540063CEB0 /* route_8_to_koenigschalding.plist in Resources */,
 				0479CAAA1479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist in Resources */,
 				0479CAAB1479A2540063CEB0 /* route_8_to_kohlbruck.plist in Resources */,
-<<<<<<< HEAD
 				FAB0A9121491163600D71C7A /* splashScreen@2x.png in Resources */,
 				FAA6A951149512A000B8664A /* bus_4_icon20x20.png in Resources */,
 				FAA6A954149512AF00B8664A /* bus_4_icon40x40.png in Resources */,
-=======
-				047878E3148F8E3C00983E25 /* AppSettings.plist in Resources */,
->>>>>>> 39de9bd9be6fb6b3ebc35d36993eb69036ec1226
+				FAFD8EA61496468800289199 /* mapBusLineToIcon.plist in Resources */,
+				FAFD8EA914964A2B00289199 /* bus_8_icon40x40.png in Resources */,
+				FAFD8EAB14964A3900289199 /* bus_9_icon40x40.png in Resources */,
+				FA5756AF1496928000D30F61 /* bus_stop_icon10x10.png in Resources */,
+				FA5756B11496928800D30F61 /* bus_stop_icon20x20.png in Resources */,
+				FA5756B31496929000D30F61 /* bus_stop_icon40x40.png in Resources */,
+				FA5756B5149692D600D30F61 /* bus_stop_icon30x30.png in Resources */,
+				FA5756B71496C83B00D30F61 /* bus_9_icon30x30.png in Resources */,
+				FA5756B91496C84400D30F61 /* bus_9_icon10x10.png in Resources */,
+				FA5756BC1496C92F00D30F61 /* bus_4_icon10x10.png in Resources */,
+				FA5756BD1496C92F00D30F61 /* bus_4_icon30x30.png in Resources */,
+				FA5756C01496C94100D30F61 /* bus_8_icon30x30.png in Resources */,
+				FA5756C11496C94100D30F61 /* bus_8_icon10x10.png in Resources */,
+				FA5756C31496C95F00D30F61 /* bus_9_icon20x20.png in Resources */,
+				FA5756C51496C98500D30F61 /* bus_8_icon20x20.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

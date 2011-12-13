@@ -113,9 +113,6 @@ NSString * settingsShowRoute8 = @"true";
 }
 
 
-
-
-
 -(void) saveSettings{
     
     // create path for plist
@@ -164,9 +161,6 @@ NSString * settingsShowRoute8 = @"true";
     [self saveSettings];
 }
 
-
-
-
 - (IBAction)settingsClickSwitchShowRoute4:(id)sender {
     settingsShowRoute4 = @"false";
     if(settingsSwitchShowRoute4.isOn) settingsShowRoute4 = @"true";
@@ -179,17 +173,6 @@ NSString * settingsShowRoute8 = @"true";
     if(settingsSwitchShowRoute8.isOn) settingsShowRoute8 = @"true";
     [self saveSettings];
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 - (void)dealloc {

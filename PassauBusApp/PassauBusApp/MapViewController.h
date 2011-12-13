@@ -26,6 +26,7 @@
 -(void) addBusStopMarkerAt:(CLLocationCoordinate2D) markerPosition andName:(NSString*)name andSize:(int)iconSize andID:(int)ID;
 -(void) drawRoute:plistFileName:(UIColor*)routeColor;
 -(void) setBusStops:plistStopsFileName;
+-(NSString*) getIconTypeFromZoomLevel:(float)zoomLevel;
 
 
 

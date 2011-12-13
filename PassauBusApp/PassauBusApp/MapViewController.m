@@ -35,10 +35,27 @@ const int NUMBER_OF_BUSES = 15;
 
 CLLocationCoordinate2D location;
 
-NSMutableDictionary *busMarkers;
+// holds the marker objects
+NSMutableSet *busMarkers;
 NSMutableSet *stopMarkers;
 
+// holds the images in different sizes 
+UIImage *stopImage_tiny;
+UIImage *stopImage_small;
+UIImage *stopImage_middle;
+UIImage *stopImage_large;
+
+NSMutableDictionary *busImages;
+
+
+
+float currentZoomLevel;
+
+
+//TODO: initial size variable für ALLE icons
 //TODO: GLOBALE ID's in PList für alle bus stops
+
+//TODO: bus ids werden gesendet, bisher aber nicht mehr benötigt
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -50,23 +67,36 @@ NSMutableSet *stopMarkers;
         // get notified when updated bus positions available
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(busUpdate:) name:@"NewBusData" object:nil]; 
         
-        busMarkers = [[NSMutableDictionary alloc] init];
+        // allocate memory for the marker objects
+        busMarkers = [[NSMutableSet alloc] init];//[[NSMutableDictionary alloc] init];
         stopMarkers = [[NSMutableSet alloc] init];
         
+        // load the images for the bus stops
+        stopImage_tiny = [UIImage imageNamed:@"bus_stop_icon10x10.png"];
+        stopImage_small = [UIImage imageNamed:@"bus_stop_icon20x20.png"];;
+        stopImage_middle = [UIImage imageNamed:@"bus_stop_icon30x30.png"];;
+        stopImage_large = [UIImage imageNamed:@"bus_stop_icon40x40.png"];;
         
+        // load the images for the buses
+        NSString *filePath = [[NSBundle mainBundle] bundlePath];
+        NSString *finalPath = [filePath stringByAppendingPathComponent:@"mapBusLineToIcon.plist"];
+        busImages = [[NSMutableDictionary dictionaryWithContentsOfFile:finalPath] retain];
+        
+        
+        NSLog(@"bI0 %@ ", busImages);
         /*UIImage *image = [UIImage imageNamed:@"bus_stop_icon.png"];
-        int iconSize = 40;
-        //resize image
-        CGSize size = CGSizeMake(MARKER_TOUCH_SIZE, MARKER_TOUCH_SIZE);
-        UIGraphicsBeginImageContext(size);
-        [image drawInRect:CGRectMake(MARKER_TOUCH_SIZE/2-iconSize/2, MARKER_TOUCH_SIZE/2-iconSize/2,iconSize,iconSize)];
-        UIImage* resizeImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        [image release];
+         int iconSize = 40;
+         //resize image
+         CGSize size = CGSizeMake(MARKER_TOUCH_SIZE, MARKER_TOUCH_SIZE);
+         UIGraphicsBeginImageContext(size);
+         [image drawInRect:CGRectMake(MARKER_TOUCH_SIZE/2-iconSize/2, MARKER_TOUCH_SIZE/2-iconSize/2,iconSize,iconSize)];
+         UIImage* resizeImage = UIGraphicsGetImageFromCurrentImageContext();
+         UIGraphicsEndImageContext();
+         [image release];
+         
+         busmarker = [[RMMarker alloc] initWithUIImage:resizeImage anchorPoint:CGPointMake(0.5, 0.5)];
+         [mapView.contents.markerManager addMarker:busmarker ];*/
         
-        busmarker = [[RMMarker alloc] initWithUIImage:resizeImage anchorPoint:CGPointMake(0.5, 0.5)];
-        [mapView.contents.markerManager addMarker:busmarker ];*/
-
     }
     return self;
 }
@@ -87,7 +117,10 @@ NSMutableSet *stopMarkers;
     
     // action handling
     mapView.delegate = self;
-
+    
+    self.navigationController.navigationBar.tintColor = nil;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    
     // -- for the image icons    
     UIImage *image = [UIImage imageNamed:@"SettingsIcon.png"];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -95,7 +128,7 @@ NSMutableSet *stopMarkers;
     [button setImage:image forState:UIControlStateNormal];
     [button addTarget:self action:@selector(doSettings:) forControlEvents:UIControlEventTouchUpInside];    
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-
+    
     image = [UIImage imageNamed:@"MyPosIcon.png"];
     button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.bounds = CGRectMake( 0, 0, image.size.width, image.size.height );    
@@ -110,10 +143,10 @@ NSMutableSet *stopMarkers;
     self.navigationItem.title = @"Passau Bus App";
     self.navigationItem.rightBarButtonItem = settingsButton;
     self.navigationItem.leftBarButtonItem = myPosButton;
-        
+    
     //this button is shown to go back to this view
     self.navigationItem.backBarButtonItem =
-        [[[UIBarButtonItem alloc] initWithTitle:@"Zurück" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
+    [[[UIBarButtonItem alloc] initWithTitle:@"Zurück" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
     
     [settingsButton release];
     [myPosButton release];
@@ -127,6 +160,7 @@ NSMutableSet *stopMarkers;
     location.longitude = 13.45392,0;
     [mapView moveToLatLong: location];
     [mapView.contents setZoom: 13];
+    currentZoomLevel = [mapView.contents zoom];
     
     // adjust zoom levels
     [mapView.contents setMaxZoom:18];
@@ -141,7 +175,7 @@ NSMutableSet *stopMarkers;
     
     [self drawRoute:@"route_4_to_achleiten.plist":[UIColor brownColor]];
     [self drawRoute:@"route_4_to_hochstein.plist":[UIColor brownColor]];
-
+    
     [self drawRoute:@"route_8_to_koenigschalding.plist":[UIColor magentaColor]];
     [self drawRoute:@"route_8_to_kohlbruck.plist":[UIColor magentaColor]];
     
@@ -150,18 +184,18 @@ NSMutableSet *stopMarkers;
     
     [self setBusStops:@"route_8_to_koenigschalding_stops.plist"];
     [self setBusStops:@"route_8_to_kohlbruck_stops.plist"];
-
+    
 }
 
 -(void) drawRoute:(NSString*)plistFileName:(UIColor*)routeColor {
-        
+    
     // read "foo.plist" from application bundle
     NSString *filePath = [[NSBundle mainBundle] bundlePath];
     NSString *finalPath = [filePath stringByAppendingPathComponent:plistFileName];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:finalPath];
     
     NSArray *coordinates = [dictionary objectForKey:@"coordinates"];
-        
+    
     RMPath *path = [[RMPath alloc] initForMap:mapView];
     CLLocationCoordinate2D pathCoordinate;
     
@@ -196,28 +230,28 @@ NSMutableSet *stopMarkers;
         
         markerCoordinate.longitude = [[position objectAtIndex:2] doubleValue];
         markerCoordinate.latitude  = [[position objectAtIndex:1] doubleValue];
-
+        
         [self addBusStopMarkerAt:markerCoordinate andName:[position objectAtIndex:0] andSize: 20 andID:i];
     }
 }
 
 -(void) updateBusPosition:(int) busID {
-  
+    
     /*NSDictionary *busData = [bus_locations objectForKey:[NSNumber numberWithInt:busID]];
+     
+     NSString *route_destination = [busData objectForKey:@"route_destination"];
+     int route_number = [[busData objectForKey:@"route_number"] intValue];
+     double longitude = [[busData objectForKey:@"longitude"] doubleValue];
+     double latitude = [[busData objectForKey:@"latitude"] doubleValue];
+     
+     CLLocationCoordinate2D positionCoordinate;
+     positionCoordinate.longitude = longitude;
+     positionCoordinate.latitude  = latitude;
+     */
     
-    NSString *route_destination = [busData objectForKey:@"route_destination"];
-    int route_number = [[busData objectForKey:@"route_number"] intValue];
-    double longitude = [[busData objectForKey:@"longitude"] doubleValue];
-    double latitude = [[busData objectForKey:@"latitude"] doubleValue];
-    
-    CLLocationCoordinate2D positionCoordinate;
-    positionCoordinate.longitude = longitude;
-    positionCoordinate.latitude  = latitude;
-    */
-
 }
-                           
-                           
+
+
 - (void) setText: (NSString*)text forMarker: (RMMarker*) marker {
     CGSize textSize = [text sizeWithFont: [RMMarker defaultFont]]; 
     CGPoint position = CGPointMake(  -(textSize.width/2 - marker.bounds.size.width/2), -textSize.height );
@@ -229,7 +263,7 @@ NSMutableSet *stopMarkers;
     NSLog(@"Name: %@", marker.data);
     self.navigationItem.title = (NSString *)marker.data;
     //[marker addAnnotationViewWithTitle:@"name"];
-
+    
 }
 
 
@@ -239,9 +273,9 @@ NSMutableSet *stopMarkers;
 }
 
 
-// TODO Bild nur einmal am startup laden und resizen
+// TODO Parameter size weg
 -(void) addBusStopMarkerAt:(CLLocationCoordinate2D) markerPosition andName:(NSString*)name andSize:(int)iconSize andID:(int)ID {
-
+    
     UIImage *image = [UIImage imageNamed:@"bus_stop_icon.png"];
     
     //resize image
@@ -251,7 +285,7 @@ NSMutableSet *stopMarkers;
     UIImage* resizeImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [image release];
-
+    
     // set marker
     RMMarker *marker = [[RMMarker alloc] initWithUIImage:resizeImage anchorPoint:CGPointMake(0.5, 0.5)];
     [stopMarkers addObject:marker];
@@ -259,25 +293,22 @@ NSMutableSet *stopMarkers;
     
     //[self setText:name forMarker: marker];
     marker.data = name;
-        
+    
     [marker release];
 }
 
 // TODO Bild nur einmal am startup laden und resizen
 -(void) addBusMarkerAt:(NSDictionary*) busData andSize:(int)iconSize andID:(int)ID {
+
+    NSLog(@"iconType: %@", [self getIconTypeFromZoomLevel:[mapView.contents zoom]]);
     
-    UIImage *image = [UIImage imageNamed:@"bus_4_icon40x40.png"];
+    NSDictionary *busLineImages = [busImages objectForKey: [busData objectForKey:@"route_number"]];
+    NSString *imageName = [busLineImages objectForKey:[self getIconTypeFromZoomLevel:[mapView.contents zoom]]];
+    UIImage *image = [UIImage imageNamed:imageName];
     
-    //resize image
-    CGSize size = CGSizeMake(MARKER_TOUCH_SIZE, MARKER_TOUCH_SIZE);
-    UIGraphicsBeginImageContext(size);
-    [image drawInRect:CGRectMake(MARKER_TOUCH_SIZE/2-iconSize/2, MARKER_TOUCH_SIZE/2-iconSize/2,iconSize,iconSize)];
-    UIImage* resizeImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [image release];
-    
-    //NSString *route_destination = [busData objectForKey:@"route_destination"];
-    //int route_number = [[busData objectForKey:@"route_number"] intValue];
+    NSLog(@"imageName: %@", imageName);
+
+        
     double longitude = [[busData objectForKey:@"longitude"] doubleValue];
     double latitude = [[busData objectForKey:@"latitude"] doubleValue];    
     CLLocationCoordinate2D busCoordinate;
@@ -285,16 +316,17 @@ NSMutableSet *stopMarkers;
     busCoordinate.latitude  = latitude;
     
     // set marker
-    RMMarker *marker = [[RMMarker alloc] initWithUIImage:resizeImage anchorPoint:CGPointMake(0.5, 0.5)];
-    [busMarkers setObject:marker forKey:[NSNumber numberWithInt:ID]];
+    RMMarker *marker = [[RMMarker alloc] initWithUIImage:image anchorPoint:CGPointMake(0.5, 0.5)];
+    [busMarkers addObject:marker];// forKey:[NSNumber numberWithInt:ID]];
     [mapView.contents.markerManager addMarker:marker AtLatLong:busCoordinate];
-    
+        
     //[self setText:name forMarker: marker];
     marker.data = busData;
     
     [marker release];
 }
 
+/*
 -(void) updateBusMarkerPosition:(NSDictionary*) busData andID:(int)ID {
     RMMarker *marker = [busMarkers objectForKey:[NSNumber numberWithInt:ID]];
     marker.data = busData;
@@ -307,7 +339,7 @@ NSMutableSet *stopMarkers;
     
     [mapView.contents.markerManager removeMarker:marker];
     [mapView.contents.markerManager addMarker:marker AtLatLong:busCoordinate];
-}
+}*/
 
 - (void) beforeMapZoom: (RMMapView*) map byFactor: (float) zoomFactor near:(CGPoint) center {
     
@@ -317,40 +349,65 @@ NSMutableSet *stopMarkers;
 - (void) afterMapZoom:(RMMapView *)map byFactor:(float)zoomFactor near:(CGPoint)center {
     NSLog(@"afterZoom: ");
     
-    int iconSize = MARKER_TOUCH_SIZE - (MARKER_TOUCH_SIZE - [mapView.contents zoom]*2.5);
+    BOOL repaint = NO;
+    UIImage *stop_image = nil;
+    
+    NSLog(@"currentZoomLevel %f ", currentZoomLevel);
+    
+    if(([mapView.contents zoom] < 13) && (currentZoomLevel > 13)) {
+        repaint = YES;
+        stop_image = stopImage_tiny;
+    }
+    if(([mapView.contents zoom] < 14.5) && ([mapView.contents zoom] > 13.0) && ((currentZoomLevel > 14.5) || (currentZoomLevel < 13.0))) {
+        repaint = YES;
+        stop_image = stopImage_small;
+    }
+    if(([mapView.contents zoom] < 15.5) && ([mapView.contents zoom] > 14.5) && ((currentZoomLevel < 14.5) || (currentZoomLevel > 15.5))) {
+        repaint = YES;
+        stop_image = stopImage_middle;
+    }
+    if(([mapView.contents zoom] > 15.5) && (currentZoomLevel < 15.5)) {
+        repaint = YES;
+        stop_image = stopImage_large;
+    }
+    
+    currentZoomLevel = [mapView.contents zoom];
+    
+    if(repaint) {
+        // repaint all bus stop markers
+        for(int i= 0; i<[[stopMarkers allObjects] count]; i++) {
+            [[[stopMarkers allObjects] objectAtIndex:i] replaceUIImage:stop_image anchorPoint:CGPointMake(0.5, 0.5)];
+        }
+        
+        //     if([busMarkers objectForKey:[NSNumber numberWithInt:bus_id]] == nil) {
+
+        
+        /*for(int i= 0; i<[[busMarkers allObjects] count]; i++) {
+            RMMarker *marker = [busMarkers objectAtIndex:i];
+            
+            [[[stopMarkers allObjects] objectAtIndex:i] replaceUIImage:stop_image anchorPoint:CGPointMake(0.5, 0.5)];
+        }*/
+    }
+}
 
 
-    if([mapView.contents zoom] < 14.5) {
-        iconSize = MARKER_TOUCH_SIZE - (MARKER_TOUCH_SIZE - [mapView.contents zoom]*1.5);
-        NSLog(@"case 1");
+// return either tiny, small, middle oder large
+// evtl noch konstanten draus
+- (NSString*)getIconTypeFromZoomLevel:(float)zoomLevel {
+    NSString *iconType = [[[NSString alloc] init] autorelease];
+    if(zoomLevel <= 13) {
+        iconType = @"tiny";
     }
-    if(([mapView.contents zoom] < 15.5) && ([mapView.contents zoom] > 14.5)) {
-        iconSize = MARKER_TOUCH_SIZE - (MARKER_TOUCH_SIZE - [mapView.contents zoom]*2);
-        NSLog(@"case 2");
+    if((zoomLevel <= 14.5) && (zoomLevel > 13.0)) {
+        iconType = @"small";
     }
-    if(([mapView.contents zoom] < 16.5) && ([mapView.contents zoom] > 15.5)) {
-        iconSize = MARKER_TOUCH_SIZE - (MARKER_TOUCH_SIZE - [mapView.contents zoom]*2.5);
-        NSLog(@"case 3");
+    if((zoomLevel <= 15.5) && (zoomLevel > 14.5)) {
+        iconType = @"middle";
     }
-    
-    NSLog(@"iconSize %i", iconSize);
-    
-    UIImage *image = [UIImage imageNamed:@"bus_stop_icon.png"];
-    
-    //resize image
-    CGSize size = CGSizeMake(MARKER_TOUCH_SIZE, MARKER_TOUCH_SIZE);
-    UIGraphicsBeginImageContext(size);
-    [image drawInRect:CGRectMake(MARKER_TOUCH_SIZE/2-iconSize/2, MARKER_TOUCH_SIZE/2-iconSize/2,iconSize,iconSize)];
-    UIImage* resizeImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [image release];
-    
-    for(int i= 0; i<[[stopMarkers allObjects] count]; i++) {
-        [[[stopMarkers allObjects] objectAtIndex:i] replaceUIImage:resizeImage anchorPoint:CGPointMake(0.5, 0.5)];
-    }
-    
-    //TODO bus icons je nach linie laden für resize
-    
+    if(zoomLevel > 15.5) {
+        iconType = @"large";
+    }    
+    return iconType;
 }
 
 
@@ -364,20 +421,27 @@ NSMutableSet *stopMarkers;
 - (void)busUpdate:(NSNotification *)theNotification {
     NSLog(@"new bus position available");
     
+    NSArray *busData = [theNotification.userInfo objectForKey:@"messages"];    
     
-    //BUS ID NEEDS TO BE DETERMINED OR POSTED FROM THE SERVER
-    int bus_id = [[theNotification.userInfo objectForKey:@"bus_id"] intValue];
-    //int bus_id = 1;
+    //remove all bus markers and clear marker list
+    for(int i= 0; i<[[busMarkers allObjects] count]; i++) {
+        [mapView.contents.markerManager removeMarker:[[busMarkers allObjects] objectAtIndex:i]];
+    }
+    [busMarkers removeAllObjects];
     
-    // andID noch aus SIGNATUR raus und in data rein
+    // add all incoming bus coordinates
+    for(int i=0; i<[busData count]; i++) {
+        int bus_id = [[[busData objectAtIndex:i] objectForKey:@"bus_id"] intValue];
+        [self addBusMarkerAt:[busData objectAtIndex:i] andSize:40 andID:bus_id];
+    }
     
-    if([busMarkers objectForKey:[NSNumber numberWithInt:bus_id]] == nil) {
+    /*if([busMarkers objectForKey:[NSNumber numberWithInt:bus_id]] == nil) {
         //add new marker
         [self addBusMarkerAt:theNotification.userInfo andSize:40 andID:bus_id];
     } else {
         //change marker position
         [self updateBusMarkerPosition:theNotification.userInfo andID:bus_id];
-    }
+    }*/
 }
 
 

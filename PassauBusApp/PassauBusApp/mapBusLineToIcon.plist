@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>4</key>
+	<dict>
+		<key>tiny</key>
+		<string>bus_4_icon10x10.png</string>
+		<key>small</key>
+		<string>bus_4_icon20x20.png</string>
+		<key>middle</key>
+		<string>bus_4_icon30x30.png</string>
+		<key>large</key>
+		<string>bus_4_icon40x40.png</string>
+	</dict>
+	<key>8</key>
+	<dict>
+		<key>tiny</key>
+		<string>bus_8_icon10x10.png</string>
+		<key>small</key>
+		<string>bus_8_icon20x20.png</string>
+		<key>middle</key>
+		<string>bus_8_icon30x30.png</string>
+		<key>large</key>
+		<string>bus_8_icon40x40.png</string>
+	</dict>
+	<key>9</key>
+	<dict>
+		<key>tiny</key>
+		<string>bus_9_icon10x10.png</string>
+		<key>small</key>
+		<string>bus_9_icon20x20.png</string>
+		<key>middle</key>
+		<string>bus_9_icon30x30.png</string>
+		<key>large</key>
+		<string>bus_9_icon40x40.png</string>
+	</dict>
+</dict>
+</plist>

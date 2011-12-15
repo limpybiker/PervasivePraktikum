@@ -26,22 +26,18 @@
    
     double horizontalAccuracy = newLocation.horizontalAccuracy;
     
+    NSNumber *longitude = [NSNumber numberWithDouble:newLocation.coordinate.longitude];
+    NSNumber *latitude = [NSNumber numberWithDouble:newLocation.coordinate.latitude];
+    NSNumber *precision = [NSNumber numberWithDouble:horizontalAccuracy];
+        
+    NSMutableDictionary *gpsData = [NSMutableDictionary dictionaryWithCapacity:3];
+    [gpsData setObject:longitude forKey:@"lo"];
+    [gpsData setObject:latitude forKey:@"la"];
+    [gpsData setObject:precision forKey:@"p"];
+        
+    //send out data
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NewGpsFix" object:self userInfo:gpsData];
     
-    // check if precision is high enough...
-    if (horizontalAccuracy <= 60.0) {
-        
-        NSNumber *longitude = [NSNumber numberWithDouble:newLocation.coordinate.longitude];
-        NSNumber *latitude = [NSNumber numberWithDouble:newLocation.coordinate.latitude];
-        NSNumber *precision = [NSNumber numberWithDouble:horizontalAccuracy];
-        
-        NSMutableDictionary *gpsData = [NSMutableDictionary dictionaryWithCapacity:3];
-        [gpsData setObject:longitude forKey:@"lo"];
-        [gpsData setObject:latitude forKey:@"la"];
-        [gpsData setObject:precision forKey:@"p"];
-        
-        //send out data
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"NewGpsFix" object:self userInfo:gpsData];
-    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {

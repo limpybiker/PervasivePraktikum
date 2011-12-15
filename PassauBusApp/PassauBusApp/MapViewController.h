@@ -12,9 +12,13 @@
 #import "CMCurrentLocationMarker.h"
 #import "RMMapViewDelegate.h"
 #import "CMRoutingManager.h"
+#import "TimetableViewController.h"
 
 @interface MapViewController : UIViewController<RMMapViewDelegate> {
     SettingsViewController *settingsController;
+    TimetableViewController *timetableController;
+
+    
     CMCurrentLocationMarker *locationMarker;
     
     IBOutlet RMMapView* mapView;
@@ -23,7 +27,8 @@
 
 @property (nonatomic, strong) IBOutlet SettingsViewController *settingsController;
 
--(void) addBusStopMarkerAt:(CLLocationCoordinate2D) markerPosition andName:(NSString*)name andSize:(int)iconSize andID:(int)ID;
+-(void) repaintMarkers;
+-(void) addBusStopMarkerAt:(NSDictionary*) markerData andImage:(UIImage*)image;
 -(void) drawRoute:plistFileName:(UIColor*)routeColor;
 -(void) setBusStops:plistStopsFileName;
 -(NSString*) getIconTypeFromZoomLevel:(float)zoomLevel;

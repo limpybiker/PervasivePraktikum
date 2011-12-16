@@ -73,34 +73,6 @@ const double UNREGISTER_TAG = 1;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    /*
-    // Add the splashScreen to the window and display.
-    splashScreeenViewController = [[UIViewController alloc] init];
-    CGRect frame = CGRectMake(0.0, 0.0, 320.0, 480.0);
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-    imageView.image = [UIImage imageNamed:@"splashScreen@2x.png"];
-    
-    [splashScreeenViewController.view addSubview:imageView];
-    [imageView release];
-    
-    [self.window addSubview:splashScreeenViewController.view];
-    [splashScreeenViewController.view setNeedsDisplay];
-    
-    
-    // Animate splashScreen out
-    [UIView beginAnimations:nil context:nil];
-    
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:0.5];
-    splashScreeenViewController.view.alpha = 0.0;
-    //tabBarController.view.alpha = 1.0;
-    
-    [UIView commitAnimations];
-    
-    // Throw away splashscreen
-    [splashScreeenViewController.view removeFromSuperview];
-    [splashScreeenViewController release];
-    */
     
     // register client on server
     [self registerOnServer];
@@ -183,7 +155,7 @@ const double UNREGISTER_TAG = 1;
 - (void) registerOnServer {
     asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *error = nil;
-    if (![asyncSocket connectToHost:@"192.168.1.24" onPort:1234 withTimeout:-1 error:&error]) {
+    if (![asyncSocket connectToHost:@"192.168.178.26" onPort:1234 withTimeout:-1 error:&error]) {
 		NSLog(@"Unable to connect to due to invalid configuration: %@", error);
 	}
 	else {
@@ -198,7 +170,7 @@ const double UNREGISTER_TAG = 1;
 - (void) deregisterFromServer {
     asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *error = nil;
-    if (![asyncSocket connectToHost:@"192.168.1.24" onPort:1234 withTimeout:-1 error:&error]) {
+    if (![asyncSocket connectToHost:@"192.168.178.26" onPort:1234 withTimeout:-1 error:&error]) {
 		NSLog(@"Unable to connect to due to invalid configuration: %@", error);
 	}
 	else {

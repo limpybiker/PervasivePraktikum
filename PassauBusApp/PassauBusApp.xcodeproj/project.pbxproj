@@ -17,6 +17,7 @@
 		047E7D681497ADD400306100 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 047E7D671497ADD400306100 /* Default.png */; };
 		047E7D6A1497ADEB00306100 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047E7D691497ADEB00306100 /* Default@2x.png */; };
 		0482610F14972E3300F7A909 /* bus_stop_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0482610E14972E3300F7A909 /* bus_stop_icon.png */; };
+		FA15762E1498C961007DC5BE /* busStopIcons.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA15762D1498C961007DC5BE /* busStopIcons.plist */; };
 		FA5756AF1496928000D30F61 /* bus_stop_icon10x10.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756AE1496928000D30F61 /* bus_stop_icon10x10.png */; };
 		FA5756B11496928800D30F61 /* bus_stop_icon20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756B01496928800D30F61 /* bus_stop_icon20x20.png */; };
 		FA5756B31496929000D30F61 /* bus_stop_icon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756B21496929000D30F61 /* bus_stop_icon40x40.png */; };
@@ -71,6 +72,8 @@
 		FAC01197146C0D900089E264 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC01195146C0D900089E264 /* SettingsViewController.xib */; };
 		FAC01199146C16C90089E264 /* SettingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC01198146C16C90089E264 /* SettingsIcon.png */; };
 		FAC0119B146C16D00089E264 /* MyPosIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC0119A146C16D00089E264 /* MyPosIcon.png */; };
+		FACD874F149A6D6800CC2D1C /* TimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACD874D149A6D6800CC2D1C /* TimetableViewController.m */; };
+		FACD8750149A6D6800CC2D1C /* TimetableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACD874E149A6D6800CC2D1C /* TimetableViewController.xib */; };
 		FAFD8EA61496468800289199 /* mapBusLineToIcon.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAFD8EA51496468800289199 /* mapBusLineToIcon.plist */; };
 		FAFD8EA914964A2B00289199 /* bus_8_icon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD8EA814964A2B00289199 /* bus_8_icon40x40.png */; };
 		FAFD8EAB14964A3900289199 /* bus_9_icon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFD8EAA14964A3900289199 /* bus_9_icon40x40.png */; };
@@ -88,6 +91,7 @@
 		047E7D671497ADD400306100 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		047E7D691497ADEB00306100 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		0482610E14972E3300F7A909 /* bus_stop_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_stop_icon.png; sourceTree = "<group>"; };
+		FA15762D1498C961007DC5BE /* busStopIcons.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = busStopIcons.plist; sourceTree = "<group>"; };
 		FA5756AE1496928000D30F61 /* bus_stop_icon10x10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_stop_icon10x10.png; sourceTree = "<group>"; };
 		FA5756B01496928800D30F61 /* bus_stop_icon20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_stop_icon20x20.png; sourceTree = "<group>"; };
 		FA5756B21496929000D30F61 /* bus_stop_icon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_stop_icon40x40.png; sourceTree = "<group>"; };
@@ -262,6 +266,9 @@
 		FAC01195146C0D900089E264 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = ../SettingsViewController.xib; sourceTree = "<group>"; };
 		FAC01198146C16C90089E264 /* SettingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsIcon.png; sourceTree = "<group>"; };
 		FAC0119A146C16D00089E264 /* MyPosIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MyPosIcon.png; sourceTree = "<group>"; };
+		FACD874C149A6D6800CC2D1C /* TimetableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimetableViewController.h; path = ../../TimetableViewController.h; sourceTree = "<group>"; };
+		FACD874D149A6D6800CC2D1C /* TimetableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimetableViewController.m; path = ../../TimetableViewController.m; sourceTree = "<group>"; };
+		FACD874E149A6D6800CC2D1C /* TimetableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TimetableViewController.xib; path = ../../TimetableViewController.xib; sourceTree = "<group>"; };
 		FAFD8EA51496468800289199 /* mapBusLineToIcon.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = mapBusLineToIcon.plist; path = PassauBusApp/mapBusLineToIcon.plist; sourceTree = "<group>"; };
 		FAFD8EA814964A2B00289199 /* bus_8_icon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bus_8_icon40x40.png; path = PassauBusApp/bus_8_icon40x40.png; sourceTree = "<group>"; };
 		FAFD8EAA14964A3900289199 /* bus_9_icon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bus_9_icon40x40.png; path = PassauBusApp/bus_9_icon40x40.png; sourceTree = "<group>"; };
@@ -570,6 +577,9 @@
 				FAC01181146C0A830089E264 /* AppDelegate.h */,
 				FAC01182146C0A830089E264 /* AppDelegate.m */,
 				FAC0118E146C0B230089E264 /* MapViewController.h */,
+				FACD874C149A6D6800CC2D1C /* TimetableViewController.h */,
+				FACD874D149A6D6800CC2D1C /* TimetableViewController.m */,
+				FACD874E149A6D6800CC2D1C /* TimetableViewController.xib */,
 				FAC0118F146C0B230089E264 /* MapViewController.m */,
 				FAC01190146C0B230089E264 /* MapViewController.xib */,
 				FAC01193146C0D900089E264 /* SettingsViewController.h */,
@@ -598,6 +608,7 @@
 			isa = PBXGroup;
 			children = (
 				FAFD8EA51496468800289199 /* mapBusLineToIcon.plist */,
+				FA15762D1498C961007DC5BE /* busStopIcons.plist */,
 				FA64AE811472E8F50017F777 /* route_4_to_achleiten_stops.plist */,
 				FAA59064146F0F6D00FBE146 /* route_4_to_hochstein_stops.plist */,
 				FAA59060146DEFD000FBE146 /* route_4_to_hochstein.plist */,
@@ -705,6 +716,8 @@
 				047E7D681497ADD400306100 /* Default.png in Resources */,
 				047E7D6A1497ADEB00306100 /* Default@2x.png in Resources */,
 				047D7EC21497D028005B17E7 /* AppSettings.plist in Resources */,
+				FA15762E1498C961007DC5BE /* busStopIcons.plist in Resources */,
+				FACD8750149A6D6800CC2D1C /* TimetableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,6 +741,7 @@
 				FAAF85CD148FBE3500ED849A /* SBJsonBase.m in Sources */,
 				FAAF85CE148FBE3500ED849A /* SBJsonParser.m in Sources */,
 				FAAF85CF148FBE3500ED849A /* SBJsonWriter.m in Sources */,
+				FACD874F149A6D6800CC2D1C /* TimetableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -279,9 +279,12 @@ float currentZoomLevel;
     NSLog(@"Name: %@", marker.data);
     // handle stop marker
     if([stopMarkers containsObject:marker]) {    
-        TimetableViewController *timetableViewController = [[TimetableViewController alloc] init];
-        timetableViewController.title = [(NSDictionary *)marker.data objectForKey:@"name"];
+        NSString *name = [(NSDictionary *)marker.data objectForKey:@"name"];
+        TimetableViewController *timetableViewController = [[TimetableViewController alloc] initWithString:name];
+
         [self.navigationController pushViewController:timetableViewController animated:YES];
+        
+        //[timetableViewController release];
     }
     
     //handle bus marker

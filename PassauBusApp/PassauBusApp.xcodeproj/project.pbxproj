@@ -31,6 +31,9 @@
 		FA5756C31496C95F00D30F61 /* bus_9_icon20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756C21496C95F00D30F61 /* bus_9_icon20x20.png */; };
 		FA5756C51496C98500D30F61 /* bus_8_icon20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756C41496C98500D30F61 /* bus_8_icon20x20.png */; };
 		FA64AE821472E8F50017F777 /* route_4_to_achleiten_stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA64AE811472E8F50017F777 /* route_4_to_achleiten_stops.plist */; };
+		FA6CF884149B7A7600C831EC /* BusStopSchedules.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA6CF883149B7A7600C831EC /* BusStopSchedules.plist */; };
+		FA6CF88F149BC17400C831EC /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF88D149BC17200C831EC /* WebViewController.m */; };
+		FA6CF890149BC17400C831EC /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6CF88E149BC17300C831EC /* WebViewController.xib */; };
 		FA9E758D14891F6E005A3A4C /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9E758C14891F6E005A3A4C /* GCDAsyncUdpSocket.m */; };
 		FAA58F4A146D7B2200FBE146 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA58F49146D7B2200FBE146 /* libstdc++.6.dylib */; };
 		FAA58F4E146D7F2D00FBE146 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA58F4D146D7F2D00FBE146 /* libsqlite3.0.dylib */; };
@@ -150,6 +153,10 @@
 		FA62ED9D1473DDC500C416B0 /* RMWebTileImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMWebTileImage.h; sourceTree = "<group>"; };
 		FA62ED9E1473DDC500C416B0 /* RMYahooMapSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMYahooMapSource.h; sourceTree = "<group>"; };
 		FA64AE811472E8F50017F777 /* route_4_to_achleiten_stops.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_4_to_achleiten_stops.plist; sourceTree = "<group>"; };
+		FA6CF883149B7A7600C831EC /* BusStopSchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BusStopSchedules.plist; sourceTree = "<group>"; };
+		FA6CF88C149BC17200C831EC /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		FA6CF88D149BC17200C831EC /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		FA6CF88E149BC17300C831EC /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		FA9E758814891F33005A3A4C /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		FA9E758C14891F6E005A3A4C /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 		FAA58EC7146D6D5200FBE146 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -581,6 +588,9 @@
 				FACD874D149A6D6800CC2D1C /* TimetableViewController.m */,
 				FACD874E149A6D6800CC2D1C /* TimetableViewController.xib */,
 				FAC0118F146C0B230089E264 /* MapViewController.m */,
+				FA6CF88C149BC17200C831EC /* WebViewController.h */,
+				FA6CF88D149BC17200C831EC /* WebViewController.m */,
+				FA6CF88E149BC17300C831EC /* WebViewController.xib */,
 				FAC01190146C0B230089E264 /* MapViewController.xib */,
 				FAC01193146C0D900089E264 /* SettingsViewController.h */,
 				FAC01194146C0D900089E264 /* SettingsViewController.m */,
@@ -622,6 +632,7 @@
 				FAA58FDC146DA04900FBE146 /* icon.png */,
 				FAC01198146C16C90089E264 /* SettingsIcon.png */,
 				FAC0119A146C16D00089E264 /* MyPosIcon.png */,
+				FA6CF883149B7A7600C831EC /* BusStopSchedules.plist */,
 			);
 			name = Ressources;
 			sourceTree = "<group>";
@@ -718,6 +729,8 @@
 				047D7EC21497D028005B17E7 /* AppSettings.plist in Resources */,
 				FA15762E1498C961007DC5BE /* busStopIcons.plist in Resources */,
 				FACD8750149A6D6800CC2D1C /* TimetableViewController.xib in Resources */,
+				FA6CF884149B7A7600C831EC /* BusStopSchedules.plist in Resources */,
+				FA6CF890149BC17400C831EC /* WebViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -742,6 +755,7 @@
 				FAAF85CE148FBE3500ED849A /* SBJsonParser.m in Sources */,
 				FAAF85CF148FBE3500ED849A /* SBJsonWriter.m in Sources */,
 				FACD874F149A6D6800CC2D1C /* TimetableViewController.m in Sources */,
+				FA6CF88F149BC17400C831EC /* WebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

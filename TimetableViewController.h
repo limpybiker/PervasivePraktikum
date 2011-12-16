@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TimetableViewController : UIViewController
+@interface TimetableViewController : UIViewController {
+    UITableView *myTableView;
+    NSString *name;
+
+}
+
+@property (nonatomic, retain) IBOutlet UITableView *myTableView;
+//@property (nonatomic, retain) NSString *name;
+
+- (id)initWithString:(NSString *)_name;
+
 
 @end

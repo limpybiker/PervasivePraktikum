@@ -64,8 +64,8 @@
 			<real>13.46118</real>
 		</array>
 		<array>
-			<string>Am Schanzl</string>
-			<real>48.57523</real>
+			<string>Schanzlbrücke</string>
+			<integer>48</integer>
 			<real>13.45576</real>
 		</array>
 		<array>
@@ -84,6 +84,11 @@
 			<real>13.46368</real>
 		</array>
 		<array>
+			<string>Kirchenplatz</string>
+			<real>48.571116</real>
+			<real>13.466148</real>
+		</array>
+		<array>
 			<string>Jahnstr.</string>
 			<real>48.57021</real>
 			<real>13.46672</real>
@@ -99,7 +104,7 @@
 			<real>13.4765</real>
 		</array>
 		<array>
-			<string>J.-Bergler-Str.</string>
+			<string>Johann-Bergler-Str.</string>
 			<real>48.57107</real>
 			<real>13.48058</real>
 		</array>
@@ -114,7 +119,7 @@
 			<real>13.48863</real>
 		</array>
 		<array>
-			<string>Kremser Str.</string>
+			<string>Kremserstr.</string>
 			<real>48.5695</real>
 			<real>13.48958</real>
 		</array>

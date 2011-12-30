@@ -1,43 +1,158 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
-	   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-   <key>route_number</key>
-   <string>8</string>
-   <key>route_destination</key>
-   <string>Kohlbruck / Erlebnisbad</string>
-   <key>stops</key>
-   <array>
-		<array><string>Königschalding</string><real>48.57998</real><real>13.36324</real></array>
-		<array><string>Rittsteig</string><real>48.58080</real><real>13.36881</real></array>
-		<array><string>Gionstr.</string><real>48.58187</real><real>13.37145</real></array>
-		<array><string>Hofmannsthalstr.</string><real>48.58332</real><real>13.37736</real></array>
-		<array><string>Pater-Rupert-Mayer-Str.</string><real>48.58334</real><real>13.38289</real></array>
-		<array><string>Eich</string><real>48.58445</real><real>13.38860</real></array>
-		<array><string>Raiffeisenstr.</string><real>48.58466</real><real>13.39405</real></array>
-		<array><string>Heining</string><real>48.58414</real><real>13.39572</real></array>
-		<array><string>Kachlet</string><real>48.57684</real><real>13.40598</real></array>
-		<array><string>Hacklstein</string><real>48.57586</real><real>13.41049</real></array>
-		<array><string>Steinbachmühle</string><real>48.57403</real><real>13.41701</real></array>
-		<array><string>Stelzhammerstr.</string><real>48.57332</real><real>13.4212</real></array>
-		<array><string>Parkhaus Güterbahnhof</string><real>48.57444</real><real>13.44596</real></array>
-		<array><string>Bahnhof</string><real>48.57436</real><real>13.45119</real></array>
-		<array><string>ZOB</string><real>48.57255</real><real>13.45590</real></array>
-		<array><string>Augustinergasse</string><real>48.57013</real><real>13.45759</real></array>
-		<array><string>Universität</string><real>48.56882</real><real>13.45366</real></array>
-		<array><string>Wörthstr.</string><real>48.56706</real><real>13.44965</real></array>
-		<array><string>Klinikum</string><real>48.56473</real><real>13.44638</real></array>
-		<array><string>Apfelkoch</string><real>48.56115</real><real>13.44201</real></array>
-		<array><string>Weinleitenweg</string><real>48.56162</real><real>13.43692</real></array>
-		<array><string>Graf-Salm-Str.</string><real>48.56242</real><real>13.43411</real></array>
-		<array><string>Schönleitnerweg</string><real>48.56245</real><real>13.42742</real></array>
-		<array><string>Breslauer Str.</string><real>48.56024</real><real>13.42203</real></array>
-		<array><string>Königsberger Str.</string><real>48.56292</real><real>13.41755</real></array>
-		<array><string>Vornholz</string><real>48.56110</real><real>13.41435</real></array>
-		<array><string>Birkhamerstr.</string><real>48.56182</real><real>13.41158</real></array>
-		<array><string>Simmerlingweg</string><real>48.56236</real><real>13.40913</real></array>
-		<array><string>Kohlbruck / Erlebnisbad</string><real>48.55872</real><real>13.41119</real></array>
-   </array>
+	<key>route_number</key>
+	<string>8</string>
+	<key>route_destination</key>
+	<string>Kohlbruck / Erlebnisbad</string>
+	<key>stops</key>
+	<array>
+		<array>
+			<string>Königschalding</string>
+			<real>48.57998</real>
+			<real>13.36324</real>
+		</array>
+		<array>
+			<string>Rittsteig</string>
+			<real>48.5808</real>
+			<real>13.36881</real>
+		</array>
+		<array>
+			<string>Gionstr.</string>
+			<real>48.58187</real>
+			<real>13.37145</real>
+		</array>
+		<array>
+			<string>Hofmannsthalstr.</string>
+			<real>48.58332</real>
+			<real>13.37736</real>
+		</array>
+		<array>
+			<string>Pater-Rupert-Mayer-Str.</string>
+			<real>48.58334</real>
+			<real>13.38289</real>
+		</array>
+		<array>
+			<string>Eich</string>
+			<real>48.58445</real>
+			<real>13.3886</real>
+		</array>
+		<array>
+			<string>Raiffeisenstr.</string>
+			<real>48.58466</real>
+			<real>13.39405</real>
+		</array>
+		<array>
+			<string>Heining</string>
+			<real>48.58414</real>
+			<real>13.39572</real>
+		</array>
+		<array>
+			<string>Kachlet</string>
+			<real>48.57684</real>
+			<real>13.40598</real>
+		</array>
+		<array>
+			<string>Hacklstein</string>
+			<real>48.57586</real>
+			<real>13.41049</real>
+		</array>
+		<array>
+			<string>Steinbachmühle</string>
+			<real>48.57403</real>
+			<real>13.41701</real>
+		</array>
+		<array>
+			<string>Stelzhamer Str.</string>
+			<real>48.57332</real>
+			<real>13.4212</real>
+		</array>
+		<array>
+			<string>Parkhaus Bahnhofstr.</string>
+			<real>48.57444</real>
+			<real>13.44596</real>
+		</array>
+		<array>
+			<string>Hauptbahnhof</string>
+			<real>48.57436</real>
+			<real>13.45119</real>
+		</array>
+		<array>
+			<string>ZOB</string>
+			<real>48.57255</real>
+			<real>13.4559</real>
+		</array>
+		<array>
+			<string>Augustinergasse</string>
+			<real>48.57013</real>
+			<real>13.45759</real>
+		</array>
+		<array>
+			<string>Universität</string>
+			<real>48.56882</real>
+			<real>13.45366</real>
+		</array>
+		<array>
+			<string>Wörthstr.</string>
+			<real>48.56706</real>
+			<real>13.44965</real>
+		</array>
+		<array>
+			<string>Klinikum</string>
+			<real>48.56473</real>
+			<real>13.44638</real>
+		</array>
+		<array>
+			<string>Apfelkoch</string>
+			<real>48.56115</real>
+			<real>13.44201</real>
+		</array>
+		<array>
+			<string>Weinleitenweg</string>
+			<real>48.56162</real>
+			<real>13.43692</real>
+		</array>
+		<array>
+			<string>Graf-Salm-Str.</string>
+			<real>48.56242</real>
+			<real>13.43411</real>
+		</array>
+		<array>
+			<string>Schönleitnerweg</string>
+			<real>48.56245</real>
+			<real>13.42742</real>
+		</array>
+		<array>
+			<string>Breslauer Str.</string>
+			<real>48.56024</real>
+			<real>13.42203</real>
+		</array>
+		<array>
+			<string>Königsberger Str.</string>
+			<real>48.56292</real>
+			<real>13.41755</real>
+		</array>
+		<array>
+			<string>Vornholz</string>
+			<real>48.5611</real>
+			<real>13.41435</real>
+		</array>
+		<array>
+			<string>Birkhamerstr.</string>
+			<real>48.56182</real>
+			<real>13.41158</real>
+		</array>
+		<array>
+			<string>Simmerlingweg</string>
+			<real>48.56236</real>
+			<real>13.40913</real>
+		</array>
+		<array>
+			<string>Kohlbruck / Erlebnisbad</string>
+			<real>48.55872</real>
+			<real>13.41119</real>
+		</array>
+	</array>
 </dict>
 </plist>

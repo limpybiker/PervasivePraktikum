@@ -2,6 +2,51 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Nagelschmiedgasse</key>
+	<dict>
+		<key>Linie4 - Achleiten</key>
+		<string>http://swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/nagelschmiedgasse_linie4achleiten.pdf</string>
+	</dict>
+	<key>Rathaus</key>
+	<dict>
+		<key>Linie4 - Achleiten</key>
+		<string>http://swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/rathaus_linie4achleiten.pdf</string>
+	</dict>
+	<key>Römerplatz</key>
+	<dict>
+		<key>Linie4 - Achleiten</key>
+		<string>http://swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/roemerplatz_linie4achleiten.pdf</string>
+	</dict>
+	<key>Christdobl</key>
+	<dict>
+		<key>Linie4 - Achleiten</key>
+		<string>http://swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/christdobl_linie4achleiten.pdf</string>
+	</dict>
+	<key>Ilzbrücke</key>
+	<dict>
+		<key>Linie4 - Achleiten</key>
+		<string>http://swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/ilzbruecke_linie4achleiten.pdf</string>
+	</dict>
+	<key>Stallerweg</key>
+	<dict>
+		<key>Linie8 - Kohlbruck / Erlebnisbad</key>
+		<string>http://swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/stallerweg_linie8_9kohlbruck-erlebnisbad.pdf</string>
+	</dict>
+	<key>Neustift</key>
+	<dict>
+		<key>Linie8 - Kohlbruck / Erlebnisbad</key>
+		<string>http://swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/neustift_linie8_9kohlbruck-erlebnisbad.pdf</string>
+	</dict>
+	<key>Schanzlbrücke</key>
+	<dict>
+		<key>Linie4 - Achleiten</key>
+		<string>http://swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/schanzlbruecke_linie3_4achleiten.pdf</string>
+	</dict>
+	<key>Jahnstr.</key>
+	<dict>
+		<key>Linie4 - Achleiten</key>
+		<string>http://swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/jahnstrasse_linie3_4achleiten.pdf</string>
+	</dict>
 	<key>Achatiusstr.</key>
 	<dict>
 		<key>Linie4 - Achleiten</key>
@@ -91,7 +136,7 @@
 		<key>Linie4 - Achleiten</key>
 		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/kirchenplatz_linie3_4achleiten.pdf</string>
 	</dict>
-	<key>Muehltalstr.</key>
+	<key>Mühltalstr.</key>
 	<dict>
 		<key>Linie4 - Achleiten</key>
 		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/muehltalstrasse_linie3_4achleiten.pdf</string>
@@ -129,12 +174,10 @@
 		<key>Linie4 - Hochstein</key>
 		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/schmiedgasse_linie3_4baeckerholz_hochstein.pdf</string>
 	</dict>
-	<key>Am Schanzl</key>
+	<key>Am Schanzlturm</key>
 	<dict>
-		<key>Linie4 - Achleiten</key>
-		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/schanzlbruecke_linie3_4achleiten.pdf</string>
 		<key>Linie4 - Hochstein</key>
-		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/amschanzlturm_linie3_4baeckerholz_hochstein.pdf</string>
+		<string>http://swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/amschanzlturm_linie3_4baeckerholz_hochstein.pdf</string>
 	</dict>
 	<key>ZOB</key>
 	<dict>
@@ -168,7 +211,7 @@
 		<key>Linie8 - Kohlbruck / Erlebnisbad</key>
 		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/birkhamerstrasse_linie8_9kohlbruck-erlebnisbad.pdf</string>
 	</dict>
-	<key>Breslauerstr.</key>
+	<key>Breslauer Str.</key>
 	<dict>
 		<key>Linie8 - Koenigschalding</key>
 		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/breslauerstrasse_linie8_9koenigschalding.pdf</string>
@@ -187,7 +230,7 @@
 		<key>Linie8 - Koenigschalding</key>
 		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/dr.-winklhofer-strasse_linie8_9koenigschalding.pdf</string>
 	</dict>
-	<key>B.-vonBehr-Str.</key>
+	<key>B.-von Behr-Str.</key>
 	<dict>
 		<key>Linie8 - Kohlbruck / Erlebnisbad</key>
 		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/b.-vonbehr-str._linie8_9kohlbruck-erlebnisbad.pdf</string>
@@ -242,7 +285,7 @@
 		<key>Linie8 - Kohlbruck / Erlebnisbad</key>
 		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/kachlet_linie8_9kohlbruck-erlebnisbad.pdf</string>
 	</dict>
-	<key>Herrmann-Wösner-Str.</key>
+	<key>Herrmann-Woesner-Str.</key>
 	<dict>
 		<key>Linie8 - Kohlbruck / Erlebnisbad</key>
 		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/herrmann-woesner-str._linie8_9kohlbruck-erlebnisbad.pdf</string>
@@ -269,7 +312,7 @@
 		<key>Linie8 - Kohlbruck / Erlebnisbad</key>
 		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/klinikum_linie8_9kohlbruck-erlebnisbad.pdf</string>
 	</dict>
-	<key>Königsbergerstr.</key>
+	<key>Königsberger Str.</key>
 	<dict>
 		<key>Linie8 - Koenigschalding</key>
 		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/koenigsbergerstrasse_linie8_9koenigschalding.pdf</string>
@@ -338,7 +381,7 @@
 		<key>Linie8 - Kohlbruck / Erlebnisbad</key>
 		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/steinbachmuehle_linie8_9kohlbruck-erlebnisbad.pdf</string>
 	</dict>
-	<key>Stelzhamerstr.</key>
+	<key>Stelzhamer Str.</key>
 	<dict>
 		<key>Linie8 - Koenigschalding</key>
 		<string>http://www.stadtwerke-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/stelzhamerstrasse_linie8_9koenigschalding.pdf</string>

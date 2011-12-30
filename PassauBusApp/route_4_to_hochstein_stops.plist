@@ -24,7 +24,7 @@
 			<real>13.48755</real>
 		</array>
 		<array>
-			<string>Kremser Str.</string>
+			<string>Kremserstr.</string>
 			<real>48.5695</real>
 			<real>13.48958</real>
 		</array>
@@ -39,7 +39,7 @@
 			<real>13.4834</real>
 		</array>
 		<array>
-			<string>J.-Bergler-Str.</string>
+			<string>Johann-Bergler-Str.</string>
 			<real>48.57107</real>
 			<real>13.48058</real>
 		</array>
@@ -74,8 +74,8 @@
 			<real>13.4559</real>
 		</array>
 		<array>
-			<string>Am Schanzl</string>
-			<real>48.5749</real>
+			<string>Am Schanzlturm</string>
+			<integer>48</integer>
 			<real>13.45604</real>
 		</array>
 		<array>

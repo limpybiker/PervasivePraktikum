@@ -12,29 +12,31 @@
 #import "GCDAsyncUdpSocket.h"
 #import "GCDAsyncSocket.h"
 #import "JSON.h"
+#import "GPSController.h"
+#import "Reachability.h"
+#import "CustomNotification.h"
 
 
 const double REGISTER_TAG = 0;
 const double UNREGISTER_TAG = 1;
 
-//TODO konstanten für TCP, UPD, Messages
+NSString* const SERVER_HOST = @"192.168.178.30";
+const int SERVER_PORT = 1234;
+const int DEVICE_PORT = 4321;
 
-// BOOL isConnected => status meldungen
+BOOL isConnectedToServer = NO;
+
 
 @implementation AppDelegate
 
-
 @synthesize window = _window;
 @synthesize navigationController;
-@synthesize splashScreenViewController;
-
+@synthesize hostReachable;
 
 - (void) loadSettings{
-    // TODO fix extern var problem
      
     _settingsUseGPS = @"true";
     _settingsShowStops = @"true";
-    
     _settingsShowRoute4 = @"true";
     _settingsShowRoute8 = @"true";
 
@@ -55,8 +57,8 @@ const double UNREGISTER_TAG = 1;
     }
     // read settings
     NSMutableDictionary *savedStock = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    
-    _settingsUseGPS = [[savedStock objectForKey:@"useGPS"] copy];
+
+    _settingsUseGPS = [savedStock objectForKey:@"useGPS"];
     _settingsShowStops = [[savedStock objectForKey:@"showStops"] copy];
     _settingsShowRoute4 = [[savedStock objectForKey:@"showRoute4"] copy];
     _settingsShowRoute8 = [[savedStock objectForKey:@"showRoute8"] copy];
@@ -74,23 +76,7 @@ const double UNREGISTER_TAG = 1;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    // register client on server
-    [self registerOnServer];
-
-    
-    //set up the udp socket
-    udpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-
-	NSError *error = nil;
-	if (![udpSocket bindToPort:4321 error:&error])
-        NSLog(@"Error binding: %@", error);
-    
-	if (![udpSocket beginReceiving:&error])
-		NSLog(@"Error receiving: %@", error);
-    
-    // Override point for customization after application launch.
     UIViewController *rootController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
-    
     navigationController = [[UINavigationController alloc] initWithRootViewController:rootController];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -99,7 +85,53 @@ const double UNREGISTER_TAG = 1;
     
     [self loadSettings];
     
+    
+    // get notified of internet connection changes
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+    hostReachable = [[Reachability reachabilityWithHostName: SERVER_HOST] retain];
+    [hostReachable startNotifier];
+    
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];    
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+
+    if (internetStatus != NotReachable) {
+        // register client on server
+        [self registerOnServer];
+    } else {
+        CustomNotification *notifier = [[CustomNotification alloc] init];
+        [notifier displayCustomNotificationWithText:@"You need an active internet connection to track the buses." inView:self.navigationController.view];
+        [notifier release];
+    }
+
+    //set up the udp socket
+    udpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+
+	NSError *error = nil;
+	if (![udpSocket bindToPort:DEVICE_PORT error:&error])
+        NSLog(@"Error binding: %@", error);
+    
+	if (![udpSocket beginReceiving:&error])
+		NSLog(@"Error receiving: %@", error);
+    
+
+    [[GPSController alloc] init];
+
+    
     return YES;    
+}
+
+- (void) checkNetworkStatus:(NSNotification *)notice {
+    Reachability *reachability = [notice object];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
+    if (internetStatus == NotReachable) {
+        CustomNotification *notifier = [[CustomNotification alloc] init];
+        [notifier displayCustomNotificationWithText:@"You need an active internet connection to track buses." inView:self.navigationController.view];
+        [notifier release];
+    } else {
+        if(!isConnectedToServer)
+            [self registerOnServer];
+    }
 }
 
 // tcp
@@ -117,13 +149,11 @@ const double UNREGISTER_TAG = 1;
     }
 }
 
-// upd
+// receive udp data from server and forward it
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext {
 	
     NSString *msg = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-	
-    //NSLog(@" %@", msg);
-    
+	    
     SBJsonParser *parser = [[SBJsonParser alloc] init];
 	NSError *error = nil;
 	NSDictionary *busData = [parser objectWithString:msg error:&error];
@@ -136,26 +166,25 @@ const double UNREGISTER_TAG = 1;
 } 
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [self deregisterFromServer];
+    if(isConnectedToServer)
+        [self deregisterFromServer];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    [self registerOnServer];
-
+    if(!isConnectedToServer)
+        [self registerOnServer];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    /*
-     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     */
+
 }
 
 
 - (void) registerOnServer {
     asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *error = nil;
-    if (![asyncSocket connectToHost:@"192.168.178.26" onPort:1234 withTimeout:-1 error:&error]) {
+    if (![asyncSocket connectToHost:SERVER_HOST onPort:SERVER_PORT withTimeout:-1 error:&error]) {
 		NSLog(@"Unable to connect to due to invalid configuration: %@", error);
 	}
 	else {
@@ -164,13 +193,14 @@ const double UNREGISTER_TAG = 1;
         NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
         [asyncSocket writeData:data withTimeout:-1 tag:REGISTER_TAG];
         [asyncSocket disconnectAfterWriting];
+        isConnectedToServer = YES;
 	}
 }
 
 - (void) deregisterFromServer {
     asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *error = nil;
-    if (![asyncSocket connectToHost:@"192.168.178.26" onPort:1234 withTimeout:-1 error:&error]) {
+    if (![asyncSocket connectToHost:SERVER_HOST onPort:SERVER_PORT withTimeout:-1 error:&error]) {
 		NSLog(@"Unable to connect to due to invalid configuration: %@", error);
 	}
 	else {
@@ -179,6 +209,7 @@ const double UNREGISTER_TAG = 1;
         NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
         [asyncSocket writeData:data withTimeout:-1 tag:UNREGISTER_TAG];
         [asyncSocket disconnectAfterWriting];
+        isConnectedToServer = NO;
 	}
 }
 

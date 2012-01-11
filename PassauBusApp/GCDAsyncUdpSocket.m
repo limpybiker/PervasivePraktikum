@@ -1692,8 +1692,8 @@ SetParamPtrsAndReturn:
 		
 		LogVerbose(@"send4EventBlock");
 		
-		unsigned long d = dispatch_source_get_data(send4Source);
-		LogVerbose(@"dispatch_source_get_data(send4Source) = %lu", d);
+		//unsigned long d = dispatch_source_get_data(send4Source);
+		//LogVerbose(@"dispatch_source_get_data(send4Source) = %lu", d);
 		
 		flags |= kSock4CanAcceptBytes;
 		[self doSend];
@@ -1778,8 +1778,8 @@ SetParamPtrsAndReturn:
 		
 		LogVerbose(@"send6EventBlock");
 		
-		unsigned long d = dispatch_source_get_data(send6Source);
-		LogVerbose(@"dispatch_source_get_data(send6Source) = %lu", d);
+		//unsigned long d = dispatch_source_get_data(send6Source);
+		//LogVerbose(@"dispatch_source_get_data(send6Source) = %lu", d);
 		
 		flags |= kSock6CanAcceptBytes;
 		[self doSend];

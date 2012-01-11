@@ -17,11 +17,11 @@
 
 
 
-NSString * _settingsUseGPS;
-NSString * _settingsShowStops;
+NSString* _settingsUseGPS;
+NSString* _settingsShowStops;
 
-NSString * _settingsShowRoute4;
-NSString * _settingsShowRoute8;
+NSString* _settingsShowRoute4;
+NSString* _settingsShowRoute8;
 
 
 
@@ -36,10 +36,7 @@ NSString * _settingsShowRoute8;
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
@@ -57,14 +54,14 @@ NSString * _settingsShowRoute8;
     // update settings view
     
     [settingsSwitchUseGPS setOn:NO];
-    if([_settingsUseGPS isEqualToString:@"true"]) [settingsSwitchUseGPS setOn:YES];
+    if([_settingsUseGPS boolValue]) [settingsSwitchUseGPS setOn:YES];
     [settingsSwitchShowStops setOn:NO];
-    if([_settingsShowStops isEqualToString:@"true"]) [settingsSwitchShowStops setOn:YES];
+    if([_settingsShowStops boolValue]) [settingsSwitchShowStops setOn:YES];
  
     [settingsSwitchShowRoute4 setOn:NO];
-    if([_settingsShowRoute4 isEqualToString:@"true"]) [settingsSwitchShowRoute4 setOn:YES];
+    if([_settingsShowRoute4 boolValue]) [settingsSwitchShowRoute4 setOn:YES];
     [settingsSwitchShowRoute8 setOn:NO];
-    if([_settingsShowRoute8 isEqualToString:@"true"]) [settingsSwitchShowRoute8 setOn:YES];
+    if([_settingsShowRoute8 boolValue]) [settingsSwitchShowRoute8 setOn:YES];
     
 }
 
@@ -75,8 +72,6 @@ NSString * _settingsShowRoute8;
     [self setSettingsSwitchShowRoute4:nil];
     [self setSettingsSwitchShowRoute8:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -92,7 +87,7 @@ NSString * _settingsShowRoute8;
     NSError *error;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString * plistPath = [[documentsDirectory stringByAppendingPathComponent:@"AppSettings.plist"] copy];
+    NSString * plistPath = [documentsDirectory stringByAppendingPathComponent:@"AppSettings.plist"];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
@@ -114,9 +109,6 @@ NSString * _settingsShowRoute8;
     [data release];
 }
 
-
-
-
 // settings buttons handling
 
 
@@ -125,8 +117,6 @@ NSString * _settingsShowRoute8;
     if(settingsSwitchUseGPS.isOn) _settingsUseGPS = @"true";
     [self saveSettings];
 }
-
-
 
 - (IBAction)settingsClickSwitchShowStops:(id)sender {
     _settingsShowStops = @"false";
@@ -146,7 +136,6 @@ NSString * _settingsShowRoute8;
     if(settingsSwitchShowRoute8.isOn) _settingsShowRoute8 = @"true";
     [self saveSettings];
 }
-
 
 - (void)dealloc {
     [settingsSwitchUseGPS release];

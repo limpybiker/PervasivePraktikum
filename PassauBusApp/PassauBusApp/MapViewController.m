@@ -6,17 +6,6 @@
 //  Copyright (c) 2011 Josef Kinseher All rights reserved.
 //
 
-
-
-// überlagerung der Bushaltestellen --> id's ?
-// namen der haltestellen: wie auf klick, in navBar, zoomabhängig
-// settings: graphik
-// settings _> zu viel infos in map? reduzieren durch zeige Haltestellen, ...
-// achleiten stops
-// linien, größe der pngs: zoomabhängig, fest ?
-
-// plist mit namen aller plisten => um automatisiert einzulesen
-
 #import "MapViewController.h"
 #import "SettingsViewController.h"
 #import "RMCloudMadeMapSource.h"
@@ -24,17 +13,32 @@
 #import "CMCurrentLocationMarker.h"
 #import "RMMarkerAdditions.h"
 #import "Settings.h"
+#import "CustomNotification.h"
+#import "GPSController.h"
 
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+
+// define the coordinates of the passau city area
+const CLLocationDegrees HIGH_LATITUDE = 48.640622;
+const CLLocationDegrees LOW_LATITUDE = 48.536159;
+const CLLocationDegrees HIGH_LONGITUDE = 13.548203;
+const CLLocationDegrees LOW_LONGITUDE = 13.322296;
 
 
 @implementation MapViewController
 
 @synthesize settingsController;
 
+// constants to set up the view
 const int MARKER_TOUCH_SIZE = 44;
 const int ROUTE_LINE_WIDTH = 5;
 const int NUMBER_OF_BUSES = 15;
+
+// constants to adjust zooming
+const float ZOOM_LEVEL_0 = 13.0;
+const float ZOOM_LEVEL_1 = 14.5;
+const float ZOOM_LEVEL_2 = 15.5;
+
 
 CLLocationCoordinate2D location;
 
@@ -51,14 +55,8 @@ UIImage *stopImage_large;
 NSMutableDictionary *busImages;
 
 
-
 float currentZoomLevel;
-
-
-//TODO: initial size variable für ALLE icons
-//TODO: GLOBALE ID's in PList für alle bus stops
-
-//TODO: bus ids werden gesendet, bisher aber nicht mehr benötigt
+double gps_precision;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -94,8 +92,6 @@ float currentZoomLevel;
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
@@ -104,10 +100,8 @@ float currentZoomLevel;
     [super viewDidLoad];
     [RMMapView class];
     
-    // action handling
     mapView.delegate = self;
 
-    
     self.navigationController.navigationBar.tintColor = nil;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     
@@ -126,11 +120,8 @@ float currentZoomLevel;
     [button addTarget:self action:@selector(doMyPos:) forControlEvents:UIControlEventTouchUpInside];    
     UIBarButtonItem *myPosButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     
-    [image release];
-    [button release];
     
-    
-    self.navigationItem.title = @"Bus Tracker";
+    self.navigationItem.title = @"Passau Bus Tracker";
     self.navigationItem.rightBarButtonItem = settingsButton;
     self.navigationItem.leftBarButtonItem = myPosButton;
     
@@ -146,54 +137,60 @@ float currentZoomLevel;
     [[[RMMapContents alloc] initWithView:mapView tilesource: cmTilesource] autorelease];
     
     // set initial position and set zoom level
-    location.latitude  = 48.57351,0;
-    location.longitude = 13.45392,0;
-    [mapView moveToLatLong: location];
-    [mapView.contents setZoom: 13];
+    CLLocationCoordinate2D start_location;
+    start_location.latitude  = 48.57351,0;
+    start_location.longitude = 13.45392,0;
+    [mapView moveToLatLong: start_location];
+    [mapView.contents setZoom: 13.5];
     currentZoomLevel = [mapView.contents zoom];
     
     // adjust zoom levels
     [mapView.contents setMaxZoom:18];
     [mapView.contents setMinZoom:10];
     
-    
-    // initialize location marker
-    locationMarker = [[CMCurrentLocationMarker alloc] initWithContents:[mapView contents] accurancy:0];    
-    
-    if (![CLLocationManager locationServicesEnabled])
-        NSLog(@"GPS is not enabled");
-    
-
 }
 
 
 -(void) viewDidAppear:(BOOL)animated{
-    
     // clear map
     NSArray * contents = [NSArray arrayWithArray:[[mapView.contents overlay] sublayers]];
     [(RMLayerCollection*)[mapView.contents overlay] removeSublayers:contents]; // works
     
+    // initialize location marker
+    if([_settingsUseGPS boolValue]) {
+        NSLog(@"a");
+        if(GPS_ACCESS ) {
+            NSLog(@"b");
+            locationMarker = [[CMCurrentLocationMarker alloc] initWithContents:mapView.contents accurancy:0];
+            [locationMarker updatePosition:location withAccurnacy:gps_precision];
+        }
+        else {
+            CustomNotification *notifier = [[CustomNotification alloc] init];
+            [notifier displayCustomNotificationWithText:@"To see your position the app needs GPS access." inView:self.view];
+            [notifier release];
+        }
+    }
+    
     //remove all bus stop markers, if to be displayed they are added again
     [stopMarkers removeAllObjects];
     
-    // BOOLEAN VERWENDEN statt string
-    if([_settingsShowRoute4 isEqualToString:@"true"]){
+    if([_settingsShowRoute4 boolValue]) {
         [self drawRoute:@"route_4_to_achleiten.plist": RGB(140, 108, 83) ];
         [self drawRoute:@"route_4_to_hochstein.plist": RGB(140, 108, 83) ];
     }
     
-    if([_settingsShowRoute8 isEqualToString:@"true"]){
+    if([_settingsShowRoute8 boolValue]){
         [self drawRoute:@"route_8_to_koenigschalding.plist": RGB(245, 136, 142) ];
         [self drawRoute:@"route_8_to_kohlbruck.plist": RGB(245, 136, 142) ];
     }
     
-    if([_settingsShowStops isEqualToString:@"true"]) {
-        if([_settingsShowRoute4 isEqualToString:@"true"]){
+    if([_settingsShowStops boolValue]) {
+        if([_settingsShowRoute4 boolValue]){
             [self setBusStops:@"route_4_to_achleiten_stops.plist"];
             [self setBusStops:@"route_4_to_hochstein_stops.plist"];
         }
     
-        if([_settingsShowRoute8 isEqualToString:@"true"]) {
+        if([_settingsShowRoute8 boolValue]) {
             [self setBusStops:@"route_8_to_koenigschalding_stops.plist"];
             [self setBusStops:@"route_8_to_kohlbruck_stops.plist"];
         }
@@ -203,7 +200,7 @@ float currentZoomLevel;
 
 -(void) drawRoute:(NSString*)plistFileName:(UIColor*)routeColor {
     
-    // read "foo.plist" from application bundle
+    // read plist from application bundle
     NSString *filePath = [[NSBundle mainBundle] bundlePath];
     NSString *finalPath = [filePath stringByAppendingPathComponent:plistFileName];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:finalPath];
@@ -227,12 +224,12 @@ float currentZoomLevel;
     path.lineWidth = ROUTE_LINE_WIDTH;
     path.scaleLineWidth = NO;
     [mapView.contents.overlay addSublayer:path]; 
-    
+    [path release];
 }
 
 
 -(void) setBusStops:(NSString*)plistStopsFileName {
-    // read "foo.plist" from application bundle
+    // read plist from application bundle
     NSString *filePath = [[NSBundle mainBundle] bundlePath];
     NSString *finalPath = [filePath stringByAppendingPathComponent:plistStopsFileName];
     NSDictionary *stops = [NSDictionary dictionaryWithContentsOfFile:finalPath];
@@ -262,8 +259,6 @@ float currentZoomLevel;
         [markerData setValue:[position objectAtIndex:1] forKey:@"latitude"];
         [markerData setValue:[position objectAtIndex:2] forKey:@"longitude"];
         
-        
-        // statt id dict mitgeben? für infos an marker
         [self addBusStopMarkerAt:markerData andImage:image];
     }
 }
@@ -276,31 +271,41 @@ float currentZoomLevel;
 
 // update navigation bar on tap on item
 - (void) tapOnMarker: (RMMarker*) marker onMap: (RMMapView*) map {
-    NSLog(@"Name: %@", marker.data);
     // handle stop marker
     if([stopMarkers containsObject:marker]) {    
         NSString *name = [(NSDictionary *)marker.data objectForKey:@"name"];
         TimetableViewController *timetableViewController = [[TimetableViewController alloc] initWithString:name];
-
         [self.navigationController pushViewController:timetableViewController animated:YES];
-        
-        //[timetableViewController release];
+        [timetableViewController release];
     }
     
     //handle bus marker
     if([busMarkers containsObject:marker]) {    
-        
+        UILabel *label = [[UILabel alloc] init];
+        label.font = [UIFont fontWithName:@"Helvetica-Bold" size: 18.0];
+        [label setBackgroundColor:[UIColor clearColor]];
+        [label setTextColor:[UIColor whiteColor]];
+        [label setText:[NSString stringWithFormat:@"Linie%i - %@", [[(NSDictionary *)marker.data objectForKey:@"route_number"] intValue], [(NSDictionary *)marker.data objectForKey:@"route_destination"]]];
+        [label sizeToFit];
+        [self.navigationItem setTitleView:label];
+        [label release];
     }
 }
 
 
 // reset navigation bar on double Tap on Map
 - (void) doubleTapOnMap: (RMMapView*) map At: (CGPoint) point {
-    self.navigationItem.title = @"Passau Bus App";
+    UILabel *label = [[UILabel alloc] init];
+    label.font = [UIFont fontWithName:@"Helvetica-Bold" size: 18.0];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [label setTextColor:[UIColor whiteColor]];
+    [label setText:@"Passau Bus Tracker"];
+    [label sizeToFit];
+    [self.navigationItem setTitleView:label];
+    [label release];
 }
 
 
-// TODO Parameter size weg
 -(void) addBusStopMarkerAt:(NSDictionary*) markerData andImage:(UIImage*)image {
     
     // set marker
@@ -312,23 +317,17 @@ float currentZoomLevel;
     markerPosition.longitude = [[markerData objectForKey:@"longitude"] doubleValue];
     [mapView.contents.markerManager addMarker:marker AtLatLong:markerPosition];
     
-    //[self setText:name forMarker: marker];
-    marker.data = markerData; //[NSstring stringID stringValue];
+    marker.data = markerData;
         
     [marker release];
 }
 
-// TODO Bild nur einmal am startup laden und resizen
 -(void) addBusMarkerAt:(NSDictionary*) busData andID:(int)ID {
-
-    NSLog(@"iconType: %@", [self getIconTypeFromZoomLevel:[mapView.contents zoom]]);
     
     NSDictionary *busLineImages = [busImages objectForKey: [busData objectForKey:@"route_number"]];
     NSString *imageName = [busLineImages objectForKey:[self getIconTypeFromZoomLevel:[mapView.contents zoom]]];
     UIImage *image = [UIImage imageNamed:imageName];
-    
-    NSLog(@"imageName: %@", imageName);
-        
+            
     double longitude = [[busData objectForKey:@"longitude"] doubleValue];
     double latitude = [[busData objectForKey:@"latitude"] doubleValue];    
     CLLocationCoordinate2D busCoordinate;
@@ -340,18 +339,15 @@ float currentZoomLevel;
     marker.data = busData;
     [mapView.contents.markerManager addMarker:marker AtLatLong:busCoordinate];
         
-    [busMarkers addObject:marker];// forKey:[NSNumber numberWithInt:ID]];
+    [busMarkers addObject:marker];
     
     [marker release];
 }
 
 - (void) beforeMapZoom: (RMMapView*) map byFactor: (float) zoomFactor near:(CGPoint) center {
-    
-    NSLog(@"zoom Factor: %f", [mapView.contents zoom]);
 }
 
 - (void) afterMapZoom:(RMMapView *)map byFactor:(float)zoomFactor near:(CGPoint)center {
-    NSLog(@"afterZoom: ");
     [self repaintMarkers];
 }
 
@@ -361,19 +357,19 @@ float currentZoomLevel;
     
     NSLog(@"currentZoomLevel %f ", currentZoomLevel);
     
-    if(([mapView.contents zoom] < 13) && (currentZoomLevel > 13)) {
+    if(([mapView.contents zoom] < ZOOM_LEVEL_0) && (currentZoomLevel > ZOOM_LEVEL_0)) {
         repaint = YES;
         stop_image = stopImage_tiny;
     }
-    if(([mapView.contents zoom] < 14.5) && ([mapView.contents zoom] > 13.0) && ((currentZoomLevel > 14.5) || (currentZoomLevel < 13.0))) {
+    if(([mapView.contents zoom] < ZOOM_LEVEL_1) && ([mapView.contents zoom] > ZOOM_LEVEL_0) && ((currentZoomLevel > ZOOM_LEVEL_1) || (currentZoomLevel < ZOOM_LEVEL_0))) {
         repaint = YES;
         stop_image = stopImage_small;
     }
-    if(([mapView.contents zoom] < 15.5) && ([mapView.contents zoom] > 14.5) && ((currentZoomLevel < 14.5) || (currentZoomLevel > 15.5))) {
+    if(([mapView.contents zoom] < ZOOM_LEVEL_2) && ([mapView.contents zoom] > ZOOM_LEVEL_1) && ((currentZoomLevel < ZOOM_LEVEL_1) || (currentZoomLevel > ZOOM_LEVEL_2))) {
         repaint = YES;
         stop_image = stopImage_middle;
     }
-    if(([mapView.contents zoom] > 15.5) && (currentZoomLevel < 15.5)) {
+    if(([mapView.contents zoom] > ZOOM_LEVEL_2) && (currentZoomLevel < ZOOM_LEVEL_2)) {
         repaint = YES;
         stop_image = stopImage_large;
     }
@@ -390,20 +386,19 @@ float currentZoomLevel;
 
 
 
-// return either tiny, small, middle oder large
-// evtl noch konstanten draus
+// return either tiny, small, middle oder large as image size
 - (NSString*)getIconTypeFromZoomLevel:(float)zoomLevel {
     NSString *iconType = [[[NSString alloc] init] autorelease];
-    if(zoomLevel <= 13) {
+    if(zoomLevel <= ZOOM_LEVEL_0) {
         iconType = @"tiny";
     }
-    if((zoomLevel <= 14.5) && (zoomLevel > 13.0)) {
+    if((zoomLevel <= ZOOM_LEVEL_1) && (zoomLevel > ZOOM_LEVEL_0)) {
         iconType = @"small";
     }
-    if((zoomLevel <= 15.5) && (zoomLevel > 14.5)) {
+    if((zoomLevel <= ZOOM_LEVEL_2) && (zoomLevel > ZOOM_LEVEL_1)) {
         iconType = @"middle";
     }
-    if(zoomLevel > 15.5) {
+    if(zoomLevel > ZOOM_LEVEL_2) {
         iconType = @"large";
     }    
     return iconType;
@@ -438,10 +433,25 @@ float currentZoomLevel;
 
 
 -(void)doMyPos:(id)sender {
-    NSLog(@"myPos pressed");
-    [mapView moveToLatLong: location];
-    [mapView.contents setZoom: 16];
-    [self repaintMarkers];
+    
+    if(GPS_ACCESS) {
+        if(location.latitude >= LOW_LATITUDE && location.latitude <= HIGH_LATITUDE && location.longitude >= LOW_LONGITUDE && location.longitude <= HIGH_LONGITUDE) {
+            [mapView moveToLatLong: location];
+            
+            if([_settingsUseGPS boolValue])
+                [locationMarker updatePosition:location withAccurnacy:gps_precision];
+
+        } else {
+            NSLog(@"showNotification");
+            CustomNotification *notifier = [[CustomNotification alloc] init];
+            [notifier displayCustomNotificationWithText:@"To use this function you must be located in the Passau city area." inView:self.view];
+            [notifier release];
+        }
+    } else {
+        CustomNotification *notifier = [[CustomNotification alloc] init];
+        [notifier displayCustomNotificationWithText:@"To navigate to your position the app needs GPS access." inView:self.view];
+        [notifier release];
+    }
 }
 
 // called when new gps fix available
@@ -450,12 +460,13 @@ float currentZoomLevel;
     NSLog(@"new gps fix available");
     double latitude = [[theNotification.userInfo objectForKey:@"la"] doubleValue];
     double longitude = [[theNotification.userInfo objectForKey:@"lo"] doubleValue];
-    double precision = [[theNotification.userInfo objectForKey:@"p"] doubleValue];
+    gps_precision = [[theNotification.userInfo objectForKey:@"p"] doubleValue];
     
-    location.longitude = latitude;
-    location.latitude  = longitude;
+    location.longitude = longitude;
+    location.latitude  = latitude;
     
-    [locationMarker updatePosition:location withAccurnacy:precision];
+    if([_settingsUseGPS boolValue])
+    [locationMarker updatePosition:location withAccurnacy:gps_precision];
 }
 
 
@@ -463,14 +474,11 @@ float currentZoomLevel;
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+
+-(void) dealloc {
+    [super dealloc];
 }
 
 @end

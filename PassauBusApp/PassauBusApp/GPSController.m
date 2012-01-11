@@ -12,17 +12,22 @@
 
 @synthesize locationManager;
 
+BOOL GPS_ACCESS = YES;
+
 - (id) init {
     self = [super init];
     if (self != nil) {
+        NSLog(@" start GPS Controller ....");
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
         self.locationManager.delegate = self; // send loc updates to myself
+        [self.locationManager startUpdatingLocation];
     }
     return self;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     NSLog(@"Location: %@", [newLocation description]);
+    GPS_ACCESS = YES;
    
     double horizontalAccuracy = newLocation.horizontalAccuracy;
     
@@ -41,11 +46,12 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-	NSLog(@"Error: %@", [error description]);
+    GPS_ACCESS = NO;
 }
 
+
+
 - (void)dealloc {
-    [self.locationManager release];
     [super dealloc];
 }
 

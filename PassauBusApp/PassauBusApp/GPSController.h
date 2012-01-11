@@ -23,4 +23,7 @@
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error;
 
+// indicates whether app can use GPS or not
+extern BOOL GPS_ACCESS;
+
 @end

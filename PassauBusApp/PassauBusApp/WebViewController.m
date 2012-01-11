@@ -3,30 +3,30 @@
 //  PassauBusApp
 //
 //  Created by Macbook on 16.12.11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Josef Kinseher. All rights reserved.
 //
 
 #import "WebViewController.h"
+#import "Reachability.h"
+#import "CustomNotification.h"
 
 @implementation WebViewController
 
 @synthesize myWebView, activityIndicator;
 
-- (id)initWithURLString:(NSString *)_url
+- (id)initWithURLString:(NSString *)_url andName:(NSString*)_name
 {
     self = [super init];
     if (self) {
         urlString = [_url retain];
+        name = [_name retain];
     }
     return self;
 }
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
@@ -37,10 +37,20 @@
     
     CGRect bounds = CGRectMake(250, 400, 160, 140);
     
+    UILabel *label = [[UILabel alloc] init];
+    label.font = [UIFont fontWithName:@"Helvetica-Bold" size: 14.0];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [label setTextColor:[UIColor whiteColor]];
+    [label setText:name];
+    [label sizeToFit];
+    [self.navigationItem setTitleView:label];
+    [label release];
+    
+    
     //add the spinner at the center of the view
     activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];    
-    //CGPoint newCenter = (CGPoint) [self center];
-    //activityIndicator.center = newCenter;
+    CGPoint newCenter = (CGPoint) CGPointMake(160,230);
+    activityIndicator.center = newCenter;
     [self.view addSubview:activityIndicator];
     
     //start the spinner
@@ -49,15 +59,26 @@
     webView = [ [ UIWebView alloc ] initWithFrame:bounds];
     webView.delegate = self;
     
-    //Create a URL object.
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    [myWebView loadRequest:requestObj];
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];    
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
+    if (internetStatus != NotReachable) {
+        //Create a URL object.
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+        [myWebView loadRequest:requestObj];
+    } else {
+        CustomNotification *notifier = [[CustomNotification alloc] init];
+        [notifier displayCustomNotificationWithText:@"You need an active internet connection to access bus timetables." inView:self.view];
+        [notifier release];
+        [self.navigationController popViewControllerAnimated:TRUE];
+    }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)wView {
     [activityIndicator startAnimating];
 }
+
 - (void)webViewDidFinishLoad:(UIWebView *)wView {
     [activityIndicator stopAnimating];
     [activityIndicator removeFromSuperview];
@@ -67,14 +88,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 @end

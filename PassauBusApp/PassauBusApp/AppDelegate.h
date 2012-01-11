@@ -10,22 +10,24 @@
 #import "GCDAsyncUdpSocket.h"
 #import "GCDAsyncSocket.h"
 
+@class Reachability;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
     UINavigationController *navigationController;
     GCDAsyncUdpSocket *udpSocket;
     GCDAsyncSocket *asyncSocket;
-    UIViewController *splashScreeenViewController;
+    
+    Reachability* internetReachable;
+    Reachability* hostReachable;
 }
 
 @property (strong, nonatomic) UINavigationController *navigationController;
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, retain) UIViewController *splashScreenViewController;
-
+@property (nonatomic, retain) Reachability *hostReachable;
 
 - (void) deregisterFromServer;
 - (void) registerOnServer;
-
-
+- (void) checkNetworkStatus:(NSNotification *)notice;
 
 
 @end

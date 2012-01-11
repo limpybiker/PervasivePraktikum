@@ -18,6 +18,10 @@
 		047E7D6A1497ADEB00306100 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047E7D691497ADEB00306100 /* Default@2x.png */; };
 		0482610F14972E3300F7A909 /* bus_stop_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0482610E14972E3300F7A909 /* bus_stop_icon.png */; };
 		FA15762E1498C961007DC5BE /* busStopIcons.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA15762D1498C961007DC5BE /* busStopIcons.plist */; };
+		FA2604C614B122C80089625B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2604C514B122C80089625B /* SystemConfiguration.framework */; };
+		FA2604CB14B123240089625B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2604CA14B123240089625B /* Reachability.m */; };
+		FA2604D114B1D9D60089625B /* CustomNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2604D014B1D9D60089625B /* CustomNotification.m */; };
+		FA4FD2E414BE13B80053CA58 /* PassauBusApp-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA4FD2E314BE13B80053CA58 /* PassauBusApp-Info.plist */; };
 		FA5756AF1496928000D30F61 /* bus_stop_icon10x10.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756AE1496928000D30F61 /* bus_stop_icon10x10.png */; };
 		FA5756B11496928800D30F61 /* bus_stop_icon20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756B01496928800D30F61 /* bus_stop_icon20x20.png */; };
 		FA5756B31496929000D30F61 /* bus_stop_icon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5756B21496929000D30F61 /* bus_stop_icon40x40.png */; };
@@ -40,9 +44,6 @@
 		FAA58F50146D878B00FBE146 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA58F4F146D878B00FBE146 /* MapKit.framework */; };
 		FAA58FD9146D88D000FBE146 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA58FD8146D88D000FBE146 /* QuartzCore.framework */; };
 		FAA58FDB146D88E300FBE146 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA58FDA146D88E300FBE146 /* CoreLocation.framework */; };
-		FAA58FDD146DA04900FBE146 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA58FDC146DA04900FBE146 /* icon.png */; };
-		FAA58FDF146DA05500FBE146 /* red-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA58FDE146DA05500FBE146 /* red-pin.png */; };
-		FAA58FE1146DC99200FBE146 /* marker-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA58FE0146DC99200FBE146 /* marker-blue.png */; };
 		FAA58FE3146DD66600FBE146 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA58FE2146DD66600FBE146 /* libz.dylib */; };
 		FAA58FEB146DD85F00FBE146 /* libCloudMadeApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA58FE6146DD85E00FBE146 /* libCloudMadeApi.a */; };
 		FAA58FEC146DD85F00FBE146 /* libProj4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA58FE8146DD85E00FBE146 /* libProj4.a */; };
@@ -61,12 +62,10 @@
 		FAAF85CD148FBE3500ED849A /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF85C5148FBE3500ED849A /* SBJsonBase.m */; };
 		FAAF85CE148FBE3500ED849A /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF85C7148FBE3500ED849A /* SBJsonParser.m */; };
 		FAAF85CF148FBE3500ED849A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF85C9148FBE3500ED849A /* SBJsonWriter.m */; };
-		FAB0A90C1490F34100D71C7A /* SPOI.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB0A90B1490F34100D71C7A /* SPOI.bundle */; };
 		FAB0A9121491163600D71C7A /* splashScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB0A9111491163600D71C7A /* splashScreen@2x.png */; };
 		FAC01173146C0A820089E264 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC01172146C0A820089E264 /* UIKit.framework */; };
 		FAC01175146C0A820089E264 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC01174146C0A820089E264 /* Foundation.framework */; };
 		FAC01177146C0A820089E264 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC01176146C0A820089E264 /* CoreGraphics.framework */; };
-		FAC0117D146C0A820089E264 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAC0117B146C0A820089E264 /* InfoPlist.strings */; };
 		FAC0117F146C0A830089E264 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC0117E146C0A830089E264 /* main.m */; };
 		FAC01183146C0A830089E264 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC01182146C0A830089E264 /* AppDelegate.m */; };
 		FAC01191146C0B230089E264 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC0118F146C0B230089E264 /* MapViewController.m */; };
@@ -95,6 +94,12 @@
 		047E7D691497ADEB00306100 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		0482610E14972E3300F7A909 /* bus_stop_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_stop_icon.png; sourceTree = "<group>"; };
 		FA15762D1498C961007DC5BE /* busStopIcons.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = busStopIcons.plist; sourceTree = "<group>"; };
+		FA2604C514B122C80089625B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FA2604C914B123150089625B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		FA2604CA14B123240089625B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		FA2604D014B1D9D60089625B /* CustomNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNotification.m; sourceTree = "<group>"; };
+		FA2604D214B1D9E00089625B /* CustomNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNotification.h; sourceTree = "<group>"; };
+		FA4FD2E314BE13B80053CA58 /* PassauBusApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PassauBusApp-Info.plist"; sourceTree = "<group>"; };
 		FA5756AE1496928000D30F61 /* bus_stop_icon10x10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_stop_icon10x10.png; sourceTree = "<group>"; };
 		FA5756B01496928800D30F61 /* bus_stop_icon20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_stop_icon20x20.png; sourceTree = "<group>"; };
 		FA5756B21496929000D30F61 /* bus_stop_icon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_stop_icon40x40.png; sourceTree = "<group>"; };
@@ -165,9 +170,6 @@
 		FAA58F4F146D878B00FBE146 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FAA58FD8146D88D000FBE146 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FAA58FDA146D88E300FBE146 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		FAA58FDC146DA04900FBE146 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		FAA58FDE146DA05500FBE146 /* red-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-pin.png"; sourceTree = "<group>"; };
-		FAA58FE0146DC99200FBE146 /* marker-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker-blue.png"; sourceTree = "<group>"; };
 		FAA58FE2146DD66600FBE146 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		FAA58FE6146DD85E00FBE146 /* libCloudMadeApi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCloudMadeApi.a; sourceTree = "<group>"; };
 		FAA58FE8146DD85E00FBE146 /* libProj4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libProj4.a; sourceTree = "<group>"; };
@@ -231,7 +233,6 @@
 		FAA59029146DD86E00FBE146 /* projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = projects.h; sourceTree = "<group>"; };
 		FAA59058146DE35600FBE146 /* GPSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSController.h; sourceTree = "<group>"; };
 		FAA59059146DE35700FBE146 /* GPSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSController.m; sourceTree = "<group>"; };
-		FAA5905D146DEC8E00FBE146 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		FAA5905E146DEFBF00FBE146 /* route_4_to_achleiten.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_4_to_achleiten.plist; sourceTree = "<group>"; };
 		FAA59060146DEFD000FBE146 /* route_4_to_hochstein.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_4_to_hochstein.plist; sourceTree = "<group>"; };
 		FAA59064146F0F6D00FBE146 /* route_4_to_hochstein_stops.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_4_to_hochstein_stops.plist; sourceTree = "<group>"; };
@@ -253,14 +254,11 @@
 		FAAF85C7148FBE3500ED849A /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		FAAF85C8148FBE3500ED849A /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		FAAF85C9148FBE3500ED849A /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		FAB0A90B1490F34100D71C7A /* SPOI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SPOI.bundle; path = ../../Desktop/SPOI.bundle; sourceTree = "<group>"; };
 		FAB0A9111491163600D71C7A /* splashScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splashScreen@2x.png"; sourceTree = "<group>"; };
 		FAC0116E146C0A820089E264 /* PassauBusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassauBusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC01172146C0A820089E264 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FAC01174146C0A820089E264 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FAC01176146C0A820089E264 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		FAC0117A146C0A820089E264 /* PassauBusApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PassauBusApp-Info.plist"; sourceTree = "<group>"; };
-		FAC0117C146C0A820089E264 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FAC0117E146C0A830089E264 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FAC01180146C0A830089E264 /* PassauBusApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PassauBusApp-Prefix.pch"; sourceTree = "<group>"; };
 		FAC01181146C0A830089E264 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -286,7 +284,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAB0A90C1490F34100D71C7A /* SPOI.bundle in Frameworks */,
+				FA2604C614B122C80089625B /* SystemConfiguration.framework in Frameworks */,
 				FAAF85B4148F94B300ED849A /* CFNetwork.framework in Frameworks */,
 				FAA58FDB146D88E300FBE146 /* CoreLocation.framework in Frameworks */,
 				FAA58FD9146D88D000FBE146 /* QuartzCore.framework in Frameworks */,
@@ -306,9 +304,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA2604C814B122F20089625B /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				FA2604CA14B123240089625B /* Reachability.m */,
+				FA2604C914B123150089625B /* Reachability.h */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		FA5756AC1496923D00D30F61 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				FAC01198146C16C90089E264 /* SettingsIcon.png */,
+				FAC0119A146C16D00089E264 /* MyPosIcon.png */,
+				047E7D691497ADEB00306100 /* Default@2x.png */,
+				047E7D671497ADD400306100 /* Default.png */,
+				047E7D651497ADC400306100 /* busApp-icon114x114.png */,
+				047E7D631497ADBB00306100 /* busApp-icon57x57.png */,
+				FAB0A9111491163600D71C7A /* splashScreen@2x.png */,
+				0482610E14972E3300F7A909 /* bus_stop_icon.png */,
 				FA5756C41496C98500D30F61 /* bus_8_icon20x20.png */,
 				FA5756C21496C95F00D30F61 /* bus_9_icon20x20.png */,
 				FA5756BE1496C94100D30F61 /* bus_8_icon30x30.png */,
@@ -327,7 +342,6 @@
 				FAFD8EAA14964A3900289199 /* bus_9_icon40x40.png */,
 			);
 			name = Icons;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		FA62ED711473DDC500C416B0 /* route-me */ = {
@@ -389,7 +403,6 @@
 				FAAF85AF148F8D2B00ED849A /* GCDAsyncSocket.h */,
 				FA9E758C14891F6E005A3A4C /* GCDAsyncUdpSocket.m */,
 				FA9E758814891F33005A3A4C /* GCDAsyncUdpSocket.h */,
-				FAB0A9111491163600D71C7A /* splashScreen@2x.png */,
 			);
 			name = AsyncSocket;
 			sourceTree = "<group>";
@@ -435,6 +448,7 @@
 		FAA58FEE146DD86E00FBE146 /* inc */ = {
 			isa = PBXGroup;
 			children = (
+				FA2604C814B122F20089625B /* Reachability */,
 				FA62ED711473DDC500C416B0 /* route-me */,
 				FAA58FEF146DD86E00FBE146 /* CloudMade */,
 				FAA59020146DD86E00FBE146 /* Proj4 */,
@@ -536,21 +550,15 @@
 		FAC01163146C0A820089E264 = {
 			isa = PBXGroup;
 			children = (
-				047D7EC11497D028005B17E7 /* AppSettings.plist */,
-				047E7D691497ADEB00306100 /* Default@2x.png */,
-				047E7D671497ADD400306100 /* Default.png */,
-				047E7D651497ADC400306100 /* busApp-icon114x114.png */,
-				047E7D631497ADBB00306100 /* busApp-icon57x57.png */,
-				0482610E14972E3300F7A909 /* bus_stop_icon.png */,
-				FAB0A90B1490F34100D71C7A /* SPOI.bundle */,
+				FA2604C514B122C80089625B /* SystemConfiguration.framework */,
 				FAAF85BC148FBE3500ED849A /* JSON */,
 				FA9E75801488FDC1005A3A4C /* AsyncSocket */,
-				FAA5905D146DEC8E00FBE146 /* Location.gpx */,
 				FAA58FEE146DD86E00FBE146 /* inc */,
 				FAA58FE4146DD85E00FBE146 /* libs */,
 				FAC01178146C0A820089E264 /* PassauBusApp */,
 				FAC01171146C0A820089E264 /* Frameworks */,
 				FAC0116F146C0A820089E264 /* Products */,
+				FA5756AC1496923D00D30F61 /* Icons */,
 				FAC0119C146C16EA0089E264 /* Ressources */,
 			);
 			sourceTree = "<group>";
@@ -580,6 +588,8 @@
 		FAC01178146C0A820089E264 /* PassauBusApp */ = {
 			isa = PBXGroup;
 			children = (
+				FA2604D214B1D9E00089625B /* CustomNotification.h */,
+				FA2604D014B1D9D60089625B /* CustomNotification.m */,
 				047E7D611497A34C00306100 /* Settings.h */,
 				FAC01181146C0A830089E264 /* AppDelegate.h */,
 				FAC01182146C0A830089E264 /* AppDelegate.m */,
@@ -595,28 +605,19 @@
 				FAC01193146C0D900089E264 /* SettingsViewController.h */,
 				FAC01194146C0D900089E264 /* SettingsViewController.m */,
 				FAC01195146C0D900089E264 /* SettingsViewController.xib */,
-				FA5756AC1496923D00D30F61 /* Icons */,
-				FAC01179146C0A820089E264 /* Supporting Files */,
 				FAA59058146DE35600FBE146 /* GPSController.h */,
 				FAA59059146DE35700FBE146 /* GPSController.m */,
-			);
-			path = PassauBusApp;
-			sourceTree = "<group>";
-		};
-		FAC01179146C0A820089E264 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				FAC0117A146C0A820089E264 /* PassauBusApp-Info.plist */,
-				FAC0117B146C0A820089E264 /* InfoPlist.strings */,
+				FA4FD2E314BE13B80053CA58 /* PassauBusApp-Info.plist */,
 				FAC0117E146C0A830089E264 /* main.m */,
 				FAC01180146C0A830089E264 /* PassauBusApp-Prefix.pch */,
 			);
-			name = "Supporting Files";
+			path = PassauBusApp;
 			sourceTree = "<group>";
 		};
 		FAC0119C146C16EA0089E264 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				047D7EC11497D028005B17E7 /* AppSettings.plist */,
 				FAFD8EA51496468800289199 /* mapBusLineToIcon.plist */,
 				FA15762D1498C961007DC5BE /* busStopIcons.plist */,
 				FA64AE811472E8F50017F777 /* route_4_to_achleiten_stops.plist */,
@@ -627,11 +628,6 @@
 				0479CAA61479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist */,
 				0479CAA51479A2540063CEB0 /* route_8_to_koenigschalding.plist */,
 				0479CAA71479A2540063CEB0 /* route_8_to_kohlbruck.plist */,
-				FAA58FE0146DC99200FBE146 /* marker-blue.png */,
-				FAA58FDE146DA05500FBE146 /* red-pin.png */,
-				FAA58FDC146DA04900FBE146 /* icon.png */,
-				FAC01198146C16C90089E264 /* SettingsIcon.png */,
-				FAC0119A146C16D00089E264 /* MyPosIcon.png */,
 				FA6CF883149B7A7600C831EC /* BusStopSchedules.plist */,
 			);
 			name = Ressources;
@@ -687,14 +683,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAC0117D146C0A820089E264 /* InfoPlist.strings in Resources */,
 				FAC01192146C0B230089E264 /* MapViewController.xib in Resources */,
 				FAC01197146C0D900089E264 /* SettingsViewController.xib in Resources */,
 				FAC01199146C16C90089E264 /* SettingsIcon.png in Resources */,
 				FAC0119B146C16D00089E264 /* MyPosIcon.png in Resources */,
-				FAA58FDD146DA04900FBE146 /* icon.png in Resources */,
-				FAA58FDF146DA05500FBE146 /* red-pin.png in Resources */,
-				FAA58FE1146DC99200FBE146 /* marker-blue.png in Resources */,
 				FAA5905F146DEFBF00FBE146 /* route_4_to_achleiten.plist in Resources */,
 				FAA59061146DEFD000FBE146 /* route_4_to_hochstein.plist in Resources */,
 				FAA59065146F0F6F00FBE146 /* route_4_to_hochstein_stops.plist in Resources */,
@@ -731,6 +723,7 @@
 				FACD8750149A6D6800CC2D1C /* TimetableViewController.xib in Resources */,
 				FA6CF884149B7A7600C831EC /* BusStopSchedules.plist in Resources */,
 				FA6CF890149BC17400C831EC /* WebViewController.xib in Resources */,
+				FA4FD2E414BE13B80053CA58 /* PassauBusApp-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,21 +749,12 @@
 				FAAF85CF148FBE3500ED849A /* SBJsonWriter.m in Sources */,
 				FACD874F149A6D6800CC2D1C /* TimetableViewController.m in Sources */,
 				FA6CF88F149BC17400C831EC /* WebViewController.m in Sources */,
+				FA2604CB14B123240089625B /* Reachability.m in Sources */,
+				FA2604D114B1D9D60089625B /* CustomNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		FAC0117B146C0A820089E264 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FAC0117C146C0A820089E264 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FAC01184146C0A830089E264 /* Debug */ = {
@@ -829,7 +813,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				INFOPLIST_FILE = "PassauBusApp/PassauBusApp-Info.plist";
+				INFOPLIST_FILE = "PassauBusApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)\"",
@@ -857,7 +841,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				INFOPLIST_FILE = "PassauBusApp/PassauBusApp-Info.plist";
+				INFOPLIST_FILE = "PassauBusApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)\"",

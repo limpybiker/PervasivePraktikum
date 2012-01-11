@@ -17,7 +17,6 @@
 @interface MapViewController : UIViewController<RMMapViewDelegate> {
     SettingsViewController *settingsController;
     TimetableViewController *timetableController;
-
     
     CMCurrentLocationMarker *locationMarker;
     

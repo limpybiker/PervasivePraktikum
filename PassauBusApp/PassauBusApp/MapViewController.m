@@ -161,7 +161,7 @@ double gps_precision;
         NSLog(@"a");
         if(GPS_ACCESS ) {
             NSLog(@"b");
-            locationMarker = [[CMCurrentLocationMarker alloc] initWithContents:mapView.contents accurancy:0];
+            locationMarker = [[CMCurrentLocationMarker alloc] initWithContents:mapView.contents accurancy:100];
             [locationMarker updatePosition:location withAccurnacy:gps_precision];
         }
         else {

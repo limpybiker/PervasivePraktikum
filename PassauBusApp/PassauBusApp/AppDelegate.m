@@ -58,7 +58,7 @@ BOOL isConnectedToServer = NO;
     // read settings
     NSMutableDictionary *savedStock = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
 
-    _settingsUseGPS = [savedStock objectForKey:@"useGPS"];
+    _settingsUseGPS = [[savedStock objectForKey:@"useGPS"] copy];
     _settingsShowStops = [[savedStock objectForKey:@"showStops"] copy];
     _settingsShowRoute4 = [[savedStock objectForKey:@"showRoute4"] copy];
     _settingsShowRoute8 = [[savedStock objectForKey:@"showRoute8"] copy];

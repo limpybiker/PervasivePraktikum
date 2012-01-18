@@ -12,6 +12,8 @@
 		0479CAAA1479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA61479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist */; };
 		0479CAAB1479A2540063CEB0 /* route_8_to_kohlbruck.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0479CAA71479A2540063CEB0 /* route_8_to_kohlbruck.plist */; };
 		047D7EC21497D028005B17E7 /* AppSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 047D7EC11497D028005B17E7 /* AppSettings.plist */; };
+		047DC7C114BF1DE200D287D6 /* MyPosIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 047DC7C014BF1DE200D287D6 /* MyPosIcon.png */; };
+		047DC7C314BF1EB800D287D6 /* SettingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 047DC7C214BF1EB800D287D6 /* SettingsIcon.png */; };
 		047E7D641497ADBC00306100 /* busApp-icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 047E7D631497ADBB00306100 /* busApp-icon57x57.png */; };
 		047E7D661497ADC400306100 /* busApp-icon114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 047E7D651497ADC400306100 /* busApp-icon114x114.png */; };
 		047E7D681497ADD400306100 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 047E7D671497ADD400306100 /* Default.png */; };
@@ -72,8 +74,6 @@
 		FAC01192146C0B230089E264 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC01190146C0B230089E264 /* MapViewController.xib */; };
 		FAC01196146C0D900089E264 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC01194146C0D900089E264 /* SettingsViewController.m */; };
 		FAC01197146C0D900089E264 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC01195146C0D900089E264 /* SettingsViewController.xib */; };
-		FAC01199146C16C90089E264 /* SettingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC01198146C16C90089E264 /* SettingsIcon.png */; };
-		FAC0119B146C16D00089E264 /* MyPosIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC0119A146C16D00089E264 /* MyPosIcon.png */; };
 		FACD874F149A6D6800CC2D1C /* TimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACD874D149A6D6800CC2D1C /* TimetableViewController.m */; };
 		FACD8750149A6D6800CC2D1C /* TimetableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACD874E149A6D6800CC2D1C /* TimetableViewController.xib */; };
 		FAFD8EA61496468800289199 /* mapBusLineToIcon.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAFD8EA51496468800289199 /* mapBusLineToIcon.plist */; };
@@ -87,6 +87,8 @@
 		0479CAA61479A2540063CEB0 /* route_8_to_kohlbruck_stops.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_kohlbruck_stops.plist; sourceTree = "<group>"; };
 		0479CAA71479A2540063CEB0 /* route_8_to_kohlbruck.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = route_8_to_kohlbruck.plist; sourceTree = "<group>"; };
 		047D7EC11497D028005B17E7 /* AppSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppSettings.plist; sourceTree = "<group>"; };
+		047DC7C014BF1DE200D287D6 /* MyPosIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MyPosIcon.png; sourceTree = "<group>"; };
+		047DC7C214BF1EB800D287D6 /* SettingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsIcon.png; sourceTree = "<group>"; };
 		047E7D611497A34C00306100 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		047E7D631497ADBB00306100 /* busApp-icon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "busApp-icon57x57.png"; sourceTree = "<group>"; };
 		047E7D651497ADC400306100 /* busApp-icon114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "busApp-icon114x114.png"; sourceTree = "<group>"; };
@@ -269,8 +271,6 @@
 		FAC01193146C0D900089E264 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = ../SettingsViewController.h; sourceTree = "<group>"; };
 		FAC01194146C0D900089E264 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = ../SettingsViewController.m; sourceTree = "<group>"; };
 		FAC01195146C0D900089E264 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = ../SettingsViewController.xib; sourceTree = "<group>"; };
-		FAC01198146C16C90089E264 /* SettingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsIcon.png; sourceTree = "<group>"; };
-		FAC0119A146C16D00089E264 /* MyPosIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MyPosIcon.png; sourceTree = "<group>"; };
 		FACD874C149A6D6800CC2D1C /* TimetableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimetableViewController.h; path = ../../TimetableViewController.h; sourceTree = "<group>"; };
 		FACD874D149A6D6800CC2D1C /* TimetableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimetableViewController.m; path = ../../TimetableViewController.m; sourceTree = "<group>"; };
 		FACD874E149A6D6800CC2D1C /* TimetableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TimetableViewController.xib; path = ../../TimetableViewController.xib; sourceTree = "<group>"; };
@@ -316,8 +316,8 @@
 		FA5756AC1496923D00D30F61 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				FAC01198146C16C90089E264 /* SettingsIcon.png */,
-				FAC0119A146C16D00089E264 /* MyPosIcon.png */,
+				047DC7C214BF1EB800D287D6 /* SettingsIcon.png */,
+				047DC7C014BF1DE200D287D6 /* MyPosIcon.png */,
 				047E7D691497ADEB00306100 /* Default@2x.png */,
 				047E7D671497ADD400306100 /* Default.png */,
 				047E7D651497ADC400306100 /* busApp-icon114x114.png */,
@@ -685,8 +685,6 @@
 			files = (
 				FAC01192146C0B230089E264 /* MapViewController.xib in Resources */,
 				FAC01197146C0D900089E264 /* SettingsViewController.xib in Resources */,
-				FAC01199146C16C90089E264 /* SettingsIcon.png in Resources */,
-				FAC0119B146C16D00089E264 /* MyPosIcon.png in Resources */,
 				FAA5905F146DEFBF00FBE146 /* route_4_to_achleiten.plist in Resources */,
 				FAA59061146DEFD000FBE146 /* route_4_to_hochstein.plist in Resources */,
 				FAA59065146F0F6F00FBE146 /* route_4_to_hochstein_stops.plist in Resources */,
@@ -724,6 +722,8 @@
 				FA6CF884149B7A7600C831EC /* BusStopSchedules.plist in Resources */,
 				FA6CF890149BC17400C831EC /* WebViewController.xib in Resources */,
 				FA4FD2E414BE13B80053CA58 /* PassauBusApp-Info.plist in Resources */,
+				047DC7C114BF1DE200D287D6 /* MyPosIcon.png in Resources */,
+				047DC7C314BF1EB800D287D6 /* SettingsIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

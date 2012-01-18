@@ -146,7 +146,7 @@ double gps_precision;
     
     // adjust zoom levels
     [mapView.contents setMaxZoom:18];
-    [mapView.contents setMinZoom:10];
+    [mapView.contents setMinZoom:12];
     
 }
 
@@ -355,21 +355,23 @@ double gps_precision;
     BOOL repaint = NO;
     UIImage *stop_image = nil;
     
-    NSLog(@"currentZoomLevel %f ", currentZoomLevel);
+    //NSLog(@"currentZoomLevel %f ", currentZoomLevel);
     
-    if(([mapView.contents zoom] < ZOOM_LEVEL_0) && (currentZoomLevel > ZOOM_LEVEL_0)) {
+    double zoomLevel = [mapView.contents zoom];
+    
+    if((zoomLevel < ZOOM_LEVEL_0) && (currentZoomLevel > ZOOM_LEVEL_0)) {
         repaint = YES;
         stop_image = stopImage_tiny;
     }
-    if(([mapView.contents zoom] < ZOOM_LEVEL_1) && ([mapView.contents zoom] > ZOOM_LEVEL_0) && ((currentZoomLevel > ZOOM_LEVEL_1) || (currentZoomLevel < ZOOM_LEVEL_0))) {
+    else if((zoomLevel < ZOOM_LEVEL_1) && (zoomLevel > ZOOM_LEVEL_0) && ((currentZoomLevel > ZOOM_LEVEL_1) || (currentZoomLevel < ZOOM_LEVEL_0))) {
         repaint = YES;
         stop_image = stopImage_small;
     }
-    if(([mapView.contents zoom] < ZOOM_LEVEL_2) && ([mapView.contents zoom] > ZOOM_LEVEL_1) && ((currentZoomLevel < ZOOM_LEVEL_1) || (currentZoomLevel > ZOOM_LEVEL_2))) {
+    else if((zoomLevel < ZOOM_LEVEL_2) && (zoomLevel > ZOOM_LEVEL_1) && ((currentZoomLevel < ZOOM_LEVEL_1) || (currentZoomLevel > ZOOM_LEVEL_2))) {
         repaint = YES;
         stop_image = stopImage_middle;
     }
-    if(([mapView.contents zoom] > ZOOM_LEVEL_2) && (currentZoomLevel < ZOOM_LEVEL_2)) {
+    else if((zoomLevel > ZOOM_LEVEL_2) && (currentZoomLevel < ZOOM_LEVEL_2)) {
         repaint = YES;
         stop_image = stopImage_large;
     }
@@ -382,6 +384,11 @@ double gps_precision;
             [[[stopMarkers allObjects] objectAtIndex:i] replaceUIImage:stop_image anchorPoint:CGPointMake(0.5, 0.5)];
         }
     }
+    
+    if(GPS_ACCESS) {
+        [locationMarker updatePosition:location withAccurnacy:gps_precision];
+    }
+     
 }
 
 

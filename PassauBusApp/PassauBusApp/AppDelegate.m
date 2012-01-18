@@ -20,7 +20,7 @@
 const double REGISTER_TAG = 0;
 const double UNREGISTER_TAG = 1;
 
-NSString* const SERVER_HOST = @"192.168.178.30";
+NSString* const SERVER_HOST = @"192.168.178.43";
 const int SERVER_PORT = 1234;
 const int DEVICE_PORT = 4321;
 

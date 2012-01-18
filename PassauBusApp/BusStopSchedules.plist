@@ -4,16 +4,22 @@
 <dict>
 	<key>Nagelschmiedgasse</key>
 	<dict>
+		<key>Linie4 - Hochstein</key>
+		<string>http://www.swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/nagelschmiedgasse_linie4hochstein.pdf</string>
 		<key>Linie4 - Achleiten</key>
 		<string>http://swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/nagelschmiedgasse_linie4achleiten.pdf</string>
 	</dict>
 	<key>Rathaus</key>
 	<dict>
+		<key>Linie4 - Hochstein</key>
+		<string>http://www.swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/rathaus_linie4hochstein.pdf</string>
 		<key>Linie4 - Achleiten</key>
 		<string>http://swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/rathaus_linie4achleiten.pdf</string>
 	</dict>
 	<key>Römerplatz</key>
 	<dict>
+		<key>Linie4 - Hochstein</key>
+		<string>http://www.swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/roemerplatz_linie4hochstein.pdf</string>
 		<key>Linie4 - Achleiten</key>
 		<string>http://swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/roemerplatz_linie4achleiten.pdf</string>
 	</dict>
@@ -24,6 +30,8 @@
 	</dict>
 	<key>Ilzbrücke</key>
 	<dict>
+		<key>Linie4 - Hochstein</key>
+		<string>http://www.swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/ilzbruecke_linie4hochstein.pdf</string>
 		<key>Linie4 - Achleiten</key>
 		<string>http://swp-passau.de/pages/inhalt/bus_und_parken/stadtverkehr/pdf/ilzbruecke_linie4achleiten.pdf</string>
 	</dict>

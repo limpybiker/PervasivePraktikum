@@ -73,6 +73,7 @@ NSMutableDictionary *schedules;
         
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 12.0, 260.0, 24.0)];
 		label.text = [[[schedules objectForKey:name] allKeys] objectAtIndex:[indexPath row]];
+        [label setBackgroundColor:[UIColor clearColor]];
 		[cell.contentView addSubview:label];
 		[label release];	
 	}
